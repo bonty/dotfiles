@@ -187,7 +187,7 @@ if [ "$TERM" = "screen" ]; then
           else
             echo -ne "\ek${1%% *}@${shorthost}\e\\"
         fi
-        echo -ne "\e_`dirs`\e\\"
+        # echo -ne "\e_`dirs`\e\\"
     }
 
     precmd() {

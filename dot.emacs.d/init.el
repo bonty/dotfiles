@@ -3,8 +3,8 @@
 ;;; my .emacs settings
 
 ;; TODO
-;; setting: .skk, wl, w3m, navi2ch(install to .emacs.d/elisp)
-;; skype.el, redo, eshell, keychord.el, vi-mode, php-mode, mmm-mode, objc-mode
+;; setting: wl, navi2ch(install to .emacs.d/elisp)
+;; redo, eshell,  php-mode, mmm-mode, objc-mode
 
 ;; Common Lisp exstensions for Emacs
 (require 'cl nil t)
@@ -179,7 +179,7 @@
 (setq-default indent-tabs-mode nil)
 
 ;; set deafault tab width
-;; (setq-default tab-width 4)
+;; (setq-default tab-width 8)
 
 ;; auto relative indent
 (setq indent-line-function 'indent-relative-maybe)
@@ -375,6 +375,7 @@
 (define-key global-map "\C-cr" 'replace-string)
 (define-key global-map "\C-ci" 'indent-region)
 (define-key global-map "\C-\\" 'undo)
+(define-key global-map "\M-/" 'undo-tree-redo)
 (define-key global-map "\C-h" 'delete-backward-char)
 (define-key global-map "\C-x\C-b" 'electric-buffer-list)
 (define-key global-map "\C-cg" 'goto-line)
@@ -548,6 +549,21 @@
 (server-start)
 (require 'sudo-ext nil t)
 
+;; key-chord.el
+(when (require 'key-chord nil t)
+  (setq key-chord-two-keys-delay 0.04)
+  (key-chord-mode t)
+  (key-chord-define-global "jk" 'view-mode))
+
+;; point-undo.el
+(when (require 'point-undo nil t)
+  (define-key global-map [f7] 'point-undo)
+  (define-key global-map [S-f7] 'point-redo))
+
+;; undo-tree.el
+(when (require 'undo-tree nil t)
+  (global-undo-tree-mode))
+
 
 ;;; Shell
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -564,7 +580,8 @@
             (define-key comint-mode-map "\M-n" 'comint-next-matching-input-from-input)
             ; M-r search history
             (define-key comint-mode-map "\M-r" 'anything-complete-shell-history)
-            (ansi-color-for-comint-mode-on)))
+            (ansi-color-for-comint-mode-on))
+          (setq tab-width 8))
 
 ;; save shell history (shell-history.el)
 (require 'shell-history nil t)
@@ -588,8 +605,7 @@
   (ac-set-trigger-key "TAB")
 
   ;; default max candidate
-  (setq ac-candidate-max 20)
-  )
+  (setq ac-candidate-max 20))
 
 
 ;;; ac-company.el
@@ -600,8 +616,8 @@
   (ac-company-define-source ac-source-company-xcode company-xcode)
 
   ;; set objc-mode
-  (setq ac-modes (append ac-modes '(objc-mode)))
-)
+  (setq ac-modes (append ac-modes '(objc-mode))))
+
 
 ;;; flymake.el
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -812,6 +828,70 @@
 (autoload-if-found 'wl "wl" "Wanderlust" t)
 (autoload-if-found 'wl-other-frame "wl" "Wanderlust on new frame." t)
 (autoload-if-found 'wl-draft "wl-draft" "Write draft with Wanderlust." t)
+
+;;; view-mode
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq view-read-only t)
+(defvar pager-keybind
+  `( ;; vi-like
+    ("h" . backward-word)
+    ("l" . forward-word)
+    ("j" . next-line)
+    ("k" . previous-line)
+    (";" . gene-word)
+    ("b" . scroll-down)
+    (" " . scroll-up)
+    ;; w3m-like
+    ("m" . gene-word)
+    ("i" . win-delete-current-window-and-squeeze)
+    ("w" . forward-word)
+    ("e" . backward-word)
+    ("(" . point-undo)
+    (")" . point-redo)
+    ("J" . ,(lambda () (interactive) (scroll-up 1)))
+    ("K" . ,(lambda () (interactive) (scroll-down 1)))
+    ;; ;; bm-easy
+    ;; ("." . bm-toggle)
+    ;; ("[" . bm-previous)
+    ;; ("]" . bm-next)
+    ;; langhelp-like
+    ("c" . scroll-other-window-down)
+    ("v" . scroll-other-window)
+    ))
+(defun define-many-keys (keymap key-table &optional includes)
+  (let (key cmd)
+    (dolist (key-cmd key-table)
+      (setq key (car key-cmd)
+            cmd (cdr key-cmd))
+      (if (or (not includes) (member key includes))
+          (define-key keymap key cmd))))
+  keymap)
+
+(defun view-mode-hook0 ()
+  (define-many-keys view-mode-map pager-keybind)
+  (hl-line-mode 1)
+  (define-key view-mode-map " " 'scroll-up))
+(add-hook 'view-mode-hook 'view-mode-hook0)
+
+;; open read-only file in view-mode 
+(defadvice find-file
+  (around find-file-switch-to-view-file (file &optional wild) activate)
+  (if (and (not (file-writable-p file))
+           (not (file-directory-p file)))
+      (view-file file)
+    ad-do-it))
+;; dont leave view-mode when read-only
+(defvar view-mode-force-exit nil)
+(defmacro do-not-exit-view-mode-unless-writable-advice (f)
+  `(defadvice ,f (around do-not-exit-view-mode-unless-writable activate)
+     (if (and (buffer-file-name)
+              (not view-mode-force-exit)
+              (not (file-writable-p (buffer-file-name))))
+         (message "File is unwritable, so stay in view-mode.")
+       ad-do-it)))
+
+(do-not-exit-view-mode-unless-writable-advice view-mode-exit)
+(do-not-exit-view-mode-unless-writable-advice view-mode-disable)
 
 
 ;;; Perl
