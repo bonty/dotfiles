@@ -150,6 +150,10 @@
   (eval-safe (tool-bar-mode nil))
   )
 
+;; hide scroll bar
+(when window-system
+  (set scroll-bar-mode nil))
+
 ;; disable visible bell
 (setq visible-bell nil)
 
@@ -493,6 +497,7 @@
                  'cperl-mode-hook
                  'c-mode-hook
                  'c++-mode-hook
+                 'java-mode-hook
                  'emacs-lisp-mode-hook
                  'objc-mode-hook
                  'js2-mode-hook
@@ -1031,6 +1036,21 @@
                (define-key c++-mode-map "[" 'insert-brackets)
                )))
 
+
+;;; Java
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-hook 'java-mode-hook
+          '(lambda()
+             (progn
+               ;; auto insert brackets by brackets.el
+               (define-key java-mode-map "{" 'insert-braces)
+               (define-key java-mode-map "(" 'insert-parens)
+               (define-key java-mode-map "\"" 'insert-double-quotation)
+               (define-key java-mode-map "\`" 'insert-back-quotation)
+               (define-key java-mode-map "'" 'insert-single-quotation)
+               (define-key java-mode-map "[" 'insert-brackets)
+               )))
 
 ;;; Objective-C
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
