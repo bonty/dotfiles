@@ -108,7 +108,7 @@ setopt auto_pushd
 setopt auto_remove_slash
 setopt auto_resume
 setopt complete_in_word
-setopt correct
+# setopt correct
 setopt equals
 setopt extended_glob
 setopt extended_history
