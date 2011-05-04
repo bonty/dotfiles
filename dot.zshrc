@@ -18,7 +18,8 @@ export TMP="$HOME/tmp"
 # export GREP_OPTIONS="--color=auto"
 export LS_COLORS=':no=00:fi=00:di=36:ln=35:pi=33:so=32:bd=34;46:cd=34;43:ex=31:'
 export PERL5LIB=$HOME/usr/lib/perl
-PATH=$HOME/usr/bin:/opt/local/bin:/usr/local/git/bin:/usr/local/bin:/usr/X11R6/bin:/usr/X11/bin:/usr/bin:/usr/sbin:/share/usr/bin:/sbin:/bin:${PATH}
+# PATH=$HOME/usr/bin:/opt/local/bin:/usr/local/git/bin:/usr/local/bin:/usr/X11R6/bin:/usr/X11/bin:/usr/bin:/usr/sbin:/share/usr/bin:/sbin:/bin:${PATH}
+PATH=$HOME/usr/bin:/usr/local/git/bin:/usr/local/bin:/usr/X11R6/bin:/usr/X11/bin:/usr/bin:/usr/sbin:/share/usr/bin:/sbin:/bin:${PATH}
 WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
 
 # history
