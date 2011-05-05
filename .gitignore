@@ -1,0 +1,5 @@
+# ignore files/dirs that emacs create
+*.elc
+ac-comphist.dat
+anything-c-adaptive-history
+auto-save-list

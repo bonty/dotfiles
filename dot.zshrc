@@ -4,14 +4,14 @@
 
 # environment
 export LANG="ja_JP.UTF-8"
-case "${OSTYPE}" in
-    freebsd*|darwin*)
-        export PAGER="/opt/local/bin/lv"
-        ;;
-    linux*)
-        export PAGER="/usr/bin/lv"
-        ;;
-esac
+# case "${OSTYPE}" in
+#     freebsd*|darwin*)
+#         export PAGER="/opt/local/bin/lv"
+#         ;;
+#     linux*)
+#         export PAGER="/usr/bin/lv"
+#         ;;
+# esac
 export SHELL="/bin/zsh"
 export TMP="$HOME/tmp"
 # export EDITOR="emacsclient"
@@ -78,7 +78,7 @@ alias sl='ls'
 alias l='ls'
 alias la='ls -a'
 alias ll='ls -l'
-alias lv='$PAGER'
+# alias lv='$PAGER'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
@@ -90,7 +90,8 @@ alias s='screen'
 alias x='exit'
 alias q='exit'
 
-alias -g L='| $PAGER'
+# alias -g L='| $PAGER'
+alias -g L='| lv'
 alias -g G='| grep'
 alias -g H='| head'
 alias -g T='| tail'

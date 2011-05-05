@@ -152,7 +152,7 @@
 
 ;; hide scroll bar
 (when window-system
-  (set scroll-bar-mode nil))
+  (eval-safe (scroll-bar-mode nil)))
 
 ;; disable visible bell
 (setq visible-bell nil)
@@ -332,6 +332,105 @@
 (global-hl-line-mode)
 
 
+;;; sdic
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; @see http://d.hatena.ne.jp/derui/20100120/1263995789
+(defun temp-cancel-read-only (function &optional jaspace-off)
+  "eval temporarily cancel buffer-read-only
+&optional t is turn of jaspace-mode"
+  (let ((read-only-p nil)
+        (jaspace-mode-p nil))
+    (when (and jaspace-off jaspace-mode)
+      (jaspace-mode)
+      (setq jaspace-mode-p t))
+    (when buffer-read-only
+      (toggle-read-only)
+      (setq read-only-p t))
+    (eval function)
+    (when read-only-p
+      (toggle-read-only))
+    (when jaspace-mode-p
+      (jaspace-mode))))
+
+(defun my-sdic-describe-word-with-popup (word &optional search-function)
+  "Display the meaning of word."
+  (interactive
+   (let ((f (if current-prefix-arg (sdic-select-search-function)))
+         (w (sdic-read-from-minibuffer)))
+     (list w f)))
+  (let ((old-buf (current-buffer))
+        (dict-data))
+    (set-buffer (get-buffer-create sdic-buffer-name))
+    (or (string= mode-name sdic-mode-name) (sdic-mode))
+    (erase-buffer)
+    (let ((case-fold-search t)
+          (sdic-buffer-start-point (point-min)))
+      (if (prog1 (funcall (or search-function
+                              (if (string-match "\\cj" word)
+                                  'sdic-search-waei-dictionary
+                                'sdic-search-eiwa-dictionary))
+                          word)
+            (set-buffer-modified-p nil)
+            (setq dict-data (buffer-string))
+            (set-buffer old-buf))
+          (temp-cancel-read-only
+           '(popup-tip dict-data :scroll-bar t :truncate nil))
+        (message "Can't find word, \"%s\"." word))))
+  )
+
+(defadvice sdic-describe-word-at-point (around sdic-popup-advice activate)
+  (letf (((symbol-function 'sdic-describe-word) (symbol-function 'my-sdic-describe-word-with-popup)))
+    ad-do-it))
+
+;; @see http://www.fugenji.org/~thomas/diary/index.php?no=r443
+(when (autoload-if-found 'sdic-describe-word "sdic" "search word" t nil)
+  (global-set-key "\C-cW" 'sdic-describe-word))
+(when (autoload-if-found 'sdic-describe-word-at-point "sdic" "カーソル位置の英単語の意味を調べる" t nil)
+  (global-set-key "\C-cw" 'sdic-describe-word-at-point))
+
+;; ----- sdicが呼ばれたときの設定
+(eval-after-load "sdic"
+  '(progn
+     ;; saryのコマンドをセットする
+     (setq sdicf-array-command "/usr/local/bin/sary")
+     ;; sdicファイルのある位置を設定し、arrayコマンドを使用するよう設定(現在のところ英和のみ)
+     (setq sdic-eiwa-dictionary-list
+           '((sdicf-client "/usr/local/share/dict/eijiro.sdic"
+                           (strategy array)))
+           sdic-waei-dictionary-list
+           '((sdicf-client "/usr/local/share/dict/waeijiro.sdic"
+                           (strategy array))))
+     ;; saryを直接使用できるように sdicf.el 内に定義されているarrayコマンド用関数を強制的に置換
+     (fset 'sdicf-array-init 'sdicf-common-init)
+     (fset 'sdicf-array-quit 'sdicf-common-quit)
+     (fset 'sdicf-array-search
+           (lambda (sdic pattern &optional case regexp)
+             (sdicf-array-init sdic)
+             (if regexp
+                 (signal 'sdicf-invalid-method '(regexp))
+               (save-excursion
+                 (set-buffer (sdicf-get-buffer sdic))
+                 (delete-region (point-min) (point-max))
+                 (apply 'sdicf-call-process
+                        sdicf-array-command
+                        (sdicf-get-coding-system sdic)
+                        nil t nil
+                        (if case
+                            (list "-i" pattern (sdicf-get-filename sdic))
+                          (list pattern (sdicf-get-filename sdic))))
+                 (goto-char (point-min))
+                 (let (entries)
+                   (while (not (eobp)) (sdicf-search-internal))
+                   (nreverse entries))))))
+     ;; おまけ--辞書バッファ内で移動した時、常にバッファの一行目になるようにする
+     (defadvice sdic-forward-item (after sdic-forward-item-always-top activate)
+       (recenter 0))
+     (defadvice sdic-backward-item (after sdic-backward-item-always-top activate)
+       (recenter 0))))
+
+(setq sdic-default-coding-system 'utf-8-unix)
+
 ;;; Font
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -339,35 +438,42 @@
 (when window-system
   (when (>= emacs-major-version 23)
     (set-face-attribute 'default nil
-                        :family "monaco"
-                        :height 120)
-    (set-fontset-font
-     (frame-parameter nil 'font)
-     'japanese-jisx0208
-     '("Hiragino Maru Gothic Pro" . "iso10646-1"))
-    (set-fontset-font
-     (frame-parameter nil 'font)
-     'japanese-jisx0212
-     '("Hiragino Maru Gothic Pro" . "iso10646-1"))
-    (set-fontset-font
-     (frame-parameter nil 'font)
-     'mule-unicode-0100-24ff
-     '("monaco" . "iso10646-1"))
+                        :family "Ricty"
+                        :height 150
+                        :weight 'bold
+                        )
 
-    ;; for halfwidth kana
     (set-fontset-font
-     (frame-parameter nil 'font)
-     'katakana-jisx0201
-     '("Hiragino Maru Gothic Pro" . "iso10646-1"))
+     nil 'japanese-jisx0208
+     (font-spec :family "Ricty"))
+    ;; (set-fontset-font
+    ;;  (frame-parameter nil 'font)
+    ;;  'japanese-jisx0208
+    ;;  '("Hiragino Maru Gothic Pro" . "iso10646-1"))
+    ;; (set-fontset-font
+    ;;  (frame-parameter nil 'font)
+    ;;  'japanese-jisx0212
+    ;;  '("Hiragino Maru Gothic Pro" . "iso10646-1"))
+    ;; (set-fontset-font
+    ;;  (frame-parameter nil 'font)
+    ;;  'mule-unicode-0100-24ff
+    ;;  '("monaco" . "iso10646-1"))
 
-    (setq face-font-rescale-alist
-          '(("^-apple-hiragino.*" . 1.2)
-            (".*osaka-bold.*" . 1.2)
-            (".*osaka-medium.*" . 1.2)
-            (".courier-bold-.*-mac-roman" . 1.0)
-            (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
-            (".*monaco-bold-.*-mac-roman" . 0.9)
-            ("-cdac$" . 1.3)))))
+    ;; ;; for halfwidth kana
+    ;; (set-fontset-font
+    ;;  (frame-parameter nil 'font)
+    ;;  'katakana-jisx0201
+    ;;  '("Hiragino Maru Gothic Pro" . "iso10646-1"))
+
+    ;; (setq face-font-rescale-alist
+    ;;       '(("^-apple-hiragino.*" . 1.2)
+    ;;         (".*osaka-bold.*" . 1.2)
+    ;;         (".*osaka-medium.*" . 1.2)
+    ;;         (".courier-bold-.*-mac-roman" . 1.0)
+    ;;         (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
+    ;;         (".*monaco-bold-.*-mac-roman" . 0.9)
+    ;;         ("-cdac$" . 1.3)))
+    ))
 
 
 ;;; Keybind
@@ -386,6 +492,10 @@
 (define-key function-key-map [delete] "\C-d")
 (define-key global-map "\C-m" 'newline-and-indent)
 (define-key global-map "\C-a" 'beginning-of-indented-line)
+
+(when (eq window-system 'ns)
+  ;; toggle fullscreen mode
+  (define-key global-map (kbd "M-<RET>") 'ns-toggle-fullscreen))
 
 ;; move beginning of indented line
 ;; @see http://d.hatena.ne.jp/gifnksm/20100131/1264956220
@@ -408,7 +518,7 @@
           (backward-char)
           (beginning-of-visual-indented-line (point)))
          ;; when current pos is second visual line
-     (t (beginning-of-visual-line)))))
+         (t (beginning-of-visual-line)))))
 
   (when (< emacs-major-version 23)
     (if (string-match
@@ -830,9 +940,9 @@
 ;;; Wanderlust
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(autoload-if-found 'wl "wl" "Wanderlust" t)
-(autoload-if-found 'wl-other-frame "wl" "Wanderlust on new frame." t)
-(autoload-if-found 'wl-draft "wl-draft" "Write draft with Wanderlust." t)
+;; (autoload-if-found 'wl "wl" "Wanderlust" t)
+;; (autoload-if-found 'wl-other-frame "wl" "Wanderlust on new frame." t)
+;; (autoload-if-found 'wl-draft "wl-draft" "Write draft with Wanderlust." t)
 
 ;;; view-mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -1182,4 +1292,14 @@
   )
 
 
+;;; set fullscreen when start
+(when (and (eq window-system 'ns) (>= emacs-major-version 23))
+  (ns-toggle-fullscreen-internal))
+
 ;; EOF ;;
+
+
+
+
+
+
