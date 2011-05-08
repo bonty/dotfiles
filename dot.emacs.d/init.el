@@ -1,10 +1,7 @@
 ;; -* Mode: Emacs-Lisp ; Coding: utf-8 -*-
 
-;;; my .emacs settings
-
 ;; TODO
-;; setting: wl, navi2ch(install to .emacs.d/elisp)
-;; redo, eshell,  php-mode, mmm-mode, objc-mode
+
 
 ;; Common Lisp exstensions for Emacs
 (require 'cl nil t)
@@ -73,11 +70,8 @@
               "/usr/sbin"
               "/bin"
               "/usr/bin"
-              "/opt/local/bin"
-              "/sw/bin"
               "/usr/local/bin"
-              (expand-file-name "~/bin")
-              (expand-file-name "~/.emacs.d/bin")
+              (expand-file-name "~/usr/bin")
               ))
  (when (and (file-exists-p dir) (not (member dir exec-path)))
    (setenv "PATH" (concat dir ":" (getenv "PATH")))
@@ -313,25 +307,6 @@
   (progn
     (set-frame-parameter nil 'alpha 85)))
 
-(defface hlline-face
-  '((((class color)
-      (background dark))
-     (:background "dark slate gray")
-     )
-    (((class color)
-      (background light))
-     (:background "ForestGreen"))
-    (t
-     ()))
-  "*Face used by hl-line.")
-
-(when window-system
-  (setq hl-line-face 'hlline-face))
-(when (eq window-system nil)
-  (setq hl-line-face 'underline))
-(global-hl-line-mode)
-
-
 ;;; sdic
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -446,33 +421,6 @@
     (set-fontset-font
      nil 'japanese-jisx0208
      (font-spec :family "Ricty"))
-    ;; (set-fontset-font
-    ;;  (frame-parameter nil 'font)
-    ;;  'japanese-jisx0208
-    ;;  '("Hiragino Maru Gothic Pro" . "iso10646-1"))
-    ;; (set-fontset-font
-    ;;  (frame-parameter nil 'font)
-    ;;  'japanese-jisx0212
-    ;;  '("Hiragino Maru Gothic Pro" . "iso10646-1"))
-    ;; (set-fontset-font
-    ;;  (frame-parameter nil 'font)
-    ;;  'mule-unicode-0100-24ff
-    ;;  '("monaco" . "iso10646-1"))
-
-    ;; ;; for halfwidth kana
-    ;; (set-fontset-font
-    ;;  (frame-parameter nil 'font)
-    ;;  'katakana-jisx0201
-    ;;  '("Hiragino Maru Gothic Pro" . "iso10646-1"))
-
-    ;; (setq face-font-rescale-alist
-    ;;       '(("^-apple-hiragino.*" . 1.2)
-    ;;         (".*osaka-bold.*" . 1.2)
-    ;;         (".*osaka-medium.*" . 1.2)
-    ;;         (".courier-bold-.*-mac-roman" . 1.0)
-    ;;         (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
-    ;;         (".*monaco-bold-.*-mac-roman" . 0.9)
-    ;;         ("-cdac$" . 1.3)))
     ))
 
 
@@ -538,7 +486,8 @@
 (when (require 'auto-install nil t)
   (setq auto-install-directory "~/.emacs.d/elisp/")
   (auto-install-update-emacswiki-package-name t)
-  (auto-install-compatibility-setup))
+  (auto-install-compatibility-setup)
+  (setq ediff-window-setup-function 'ediff-setup-windows-plain))
 
 
 ;;; auto-async-byte-complie.el
@@ -548,48 +497,24 @@
   (setq auto-async-byte-compile-exclude-files-regexp "/junk/")
   (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-complie-mode))
 
-;;; anything.el
+
+;;; use modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(setenv "TEMPDIR" "~/.emacs.d/tmp")
-
-;; load anything.el settings
-(when (require 'anything nil t)
-  (when (executable-find "w3m")
-    (require 'anything-config nil t))
-  (require 'anything-startup nil t)
-
-  (when (require 'anything-complete nil t)
-    (anything-lisp-complete-symbol-set-timer 150)
-
-    (setq anything-enable-shortcuts 'alphabet
-          anything-sources
-          (list anything-c-source-buffers
-                anything-c-source-file-name-history
-                anything-c-source-info-pages
-                anything-c-source-man-pages
-                anything-c-source-locate
-                anything-c-source-emacs-commands
-                anything-c-source-complete-shell-history
-                ))
-
-    (define-key ctl-x-map "\C-y" 'anything-show-kill-ring)
-
-    (mapc '(lambda (key)
-             (global-set-key key 'anything))
-          (list
-           [(control ?:)]
-           [(control \;)]
-           [(control x)(b)]
-           [(control x)(control :)]
-           [(control x)(control \;)])))
-
-  ;; anything-dabbrev-expand
-  (when (require 'anything-dabbrev-expand nil t)
-    (global-set-key "\C-o" 'anything-dabbrev-expand)
-    (define-key anything-dabbrev-map "\C-o" 'anything-dabbrev-find-all-buffers))
-  )
-
+(setq modes '(fundamental-mode-hook
+              text-mode-hook
+              cperl-mode-hook
+              c-mode-hook
+              c++-mode-hook
+              java-mode-hook
+              emacs-lisp-mode-hook
+              js2-mode-hook
+              ruby-mode-hook
+              python-mode-hook
+              py-mode-hook
+              lisp-interaction-mode-hook
+              lisp-mode-hook
+              sh-mode-hook
+              ))
 
 ;;; load plugins
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -597,41 +522,85 @@
 ;; align
 (require 'align nil t)
 
+;; crosshairs.el
+(when (require 'crosshairs nil t)
+  (crosshairs-mode t)
+
+  (defface hl-line '((t (:background "Black"))) ; Try also (:underline "Yellow")
+      "*Face to use for `hl-line-face'." :group 'hl-line)
+  (setq hl-line-face 'hl-line)
+
+  (defface col-highlight '((t (:background "Black")))
+    "*Face for current-column highlighting by `column-highlight-mode'.
+Not used if `col-highlight-vline-face-flag' is nil."
+    :group 'column-highlight :group 'faces)
+
+  (defvar col-highlight-face 'col-highlight
+    "Face used for highlighting current column.
+Do NOT change this.")
+
+  ;; (defface hlline-face
+  ;;   '((((class color)
+  ;;       (background dark))
+  ;;      (:background "green")
+  ;;      )
+  ;;     (((class color)
+  ;;       (background light))
+  ;;      (:background "ForestGreen"))
+  ;;     (t
+  ;;      ()))
+  ;;   "*Face used by hl-line.")
+
+  ;; (when window-system
+  ;;   (setq hl-line-face 'hlline-face))
+  ;; (when (eq window-system nil)
+  ;;   (setq hl-line-face 'underline))
+  ;; ;; (global-hl-line-mode)
+  )
+
+;; uniquify
+(when (require 'uniquify nil t)
+  (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+  (setq uniquify-ignore-buffers-re "*[^*]+*"))
+
 ;; linum
 (when (require 'linum nil t)
-  ;; (global-linum-mode t)
+  (setq linum-format "%5d ")
 
   ;; define linum enable mode
   ;; @see http://macemacsjp.sourceforge.jp/index.php?CocoaEmacs#aae602ba
-  (dolist (hook (list
-                 'cperl-mode-hook
-                 'c-mode-hook
-                 'c++-mode-hook
-                 'java-mode-hook
-                 'emacs-lisp-mode-hook
-                 'objc-mode-hook
-                 'js2-mode-hook
-                 'ruby-mode-hook
-                 'python-mode-hook
-                 'lisp-interaction-mode-hook
-                 'lisp-mode-hook
-                 'sh-mode-hook
-                 'text-mode-hook
-                 ))
-    (add-hook hook (lambda () (linum-mode t))))
-  (setq linum-format "%5d ")
+  (dolist (lang modes)
+    (add-hook lang (lambda () (linum-mode t))))
   )
 
 ;; recentf-ext.el
+(setq recentf-max-saved-items 500)
+(setq recentf-exclude '("/TAGS$" "/var/tmp/"))
 (require 'recentf-ext nil t)
 
-;; bracket.el
-(require 'brackets nil t)
+;; brackets.el
+(when (require 'brackets nil t)
+  (dolist (lang modes)
+    (add-hook lang (lambda ()
+                     (define-key (current-local-map) "{" 'insert-braces)
+                     (define-key (current-local-map) "(" 'insert-parens)
+                     (define-key (current-local-map) "\"" 'insert-double-quotation)
+                     (define-key (current-local-map) "\`" 'insert-back-quotation)
+                     (define-key (current-local-map) "\'" 'insert-single-quotation)
+                     (define-key (current-local-map) "[" 'insert-brackets)
+                     )))
+  )
+
+;; tempbuf.el
+(when (require 'tempbuf nil t)
+  (add-hook 'find-file-hooks 'turn-on-tempbuf-mode)
+  (add-hook 'dired-mode-hook 'turn-on-tempbuf-mode)
+  )
 
 ;; auto-save-buffers.el
 ;; @see http://0xcc.net/misc/auto-save/
 (when (require 'auto-save-buffers nil t)
-  (run-with-idle-timer 0.5 t 'auto-save-buffers))
+  (run-with-idle-timer 1 t 'auto-save-buffers))
 
 ;; autosave and resume all buffers (revive.el)
 ;; @see http://www.hasta-pronto.org/archives/2008/01/30-0235.php
@@ -643,22 +612,13 @@
       (add-hook 'kill-emacs-hook 'save-current-configuration)   ; autosave when quit
       )))
 
-;; killring (kill-summary.el)
-;; Usage:
-;; p/n(or j/k)      : select kill-ring
-;; C-p/C-n          : move kill-ring candidate
-;; SPC              : select current line
-;; C-v(scroll-down) : scroll
-;; d                : delete kill-ring
-(when (autoload-if-found 'kill-summary "kill-summary" nil t)
-  (global-set-key "\M-y" 'kill-summary))
-
 ;; mic-paren.el
 ;; highlight characteres between parenthesis
 (when (require 'mic-paren nil t)
   (paren-activate)
   (setq paren-match-face 'bold)
-  (setq paren-sexp-mode t))
+  (setq paren-sexp-mode t)
+  (setq paren-sexp-ignore-comments t))
 
 ;; sudo-ext.el
 (server-start)
@@ -679,9 +639,89 @@
 (when (require 'undo-tree nil t)
   (global-undo-tree-mode))
 
+;; undohist.el
+(when (require 'undohist nil t)
+  (undohist-initialize))
+
+;; color-moccur.el
+(when (require 'color-moccur nil t)
+  (setq moccur-split-word t))
+
+;;; auto-complete.el
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(when (require 'auto-complete-config nil t)
+  (global-auto-complete-mode t)
+
+  ;; keybind in complete window
+  (define-key ac-completing-map (kbd "C-n") 'ac-next)
+  (define-key ac-completing-map (kbd "C-p") 'ac-previous)
+  (define-key ac-completing-map (kbd "M-/") 'ac-stop)
+
+  ;; stop auto launch
+  ;; (setq ac-auto-start nil)
+
+  ;; set trigger key
+  (ac-set-trigger-key "TAB")
+
+  ;; default max candidate
+  (setq ac-candidate-max 20))
+
+
+;;; anything.el
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setenv "TEMPDIR" "~/.emacs.d/tmp")
+(setq warning-suppress-types nil)
+
+;; load anything.el settings
+(when (require 'anything-startup nil t)
+
+  (when (require 'anything-complete nil t)
+    (anything-lisp-complete-symbol-set-timer 150)
+
+    (setq anything-enable-shortcuts 'alphabet
+          anything-sources
+          (list anything-c-source-buffers
+                anything-c-source-file-name-history
+                anything-c-source-info-pages
+                anything-c-source-man-pages
+                anything-c-source-locate
+                anything-c-source-emacs-commands
+                anything-c-source-complete-shell-history
+                ))
+
+    (global-set-key (kbd "M-y") 'anything-show-kill-ring)
+
+    (mapc '(lambda (key)
+             (global-set-key key 'anything))
+          (list
+           [(control ?:)]
+           [(control \;)]
+           [(control x)(b)]
+           [(control x)(control :)]
+           [(control x)(control \;)])))
+
+  ;; anything-dabbrev-expand
+  (when (require 'anything-dabbrev-expand nil t)
+    (global-set-key "\C-o" 'anything-dabbrev-expand)
+    (define-key anything-dabbrev-map "\C-o" 'anything-dabbrev-find-all-buffers))
+
+  ;; anything-c-moccur
+  (when (require 'anything-c-moccur nil t)
+    (setq moccur-split-word t)
+    (global-set-key (kbd "M-s") 'anything-c-moccur)
+    (define-key isearch-mode-map (kbd "C-o") 'anything-c-moccur-from-isearch)
+    (define-key isearch-mode-map (kbd "C-M-o") 'isearch-occur)
+    )
+  )
+
 
 ;;; Shell
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; multi-shell.el
+(require 'multi-shell nil t)
 
 ;; display escape
 (autoload-if-found 'ansi-color-for-comint-mode-on "ansi-color"
@@ -700,38 +740,6 @@
 
 ;; save shell history (shell-history.el)
 (require 'shell-history nil t)
-
-
-;;; auto-complete.el
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(when (require 'auto-complete nil t)
-  (global-auto-complete-mode t)
-
-  ;; keybind in complete window
-  (define-key ac-completing-map (kbd "C-n") 'ac-next)
-  (define-key ac-completing-map (kbd "C-p") 'ac-previous)
-  (define-key ac-completing-map (kbd "M-/") 'ac-stop)
-
-  ;; stop auto launch
-  ;; (setq ac-auto-start nil)
-
-  ;; set trigger key
-  (ac-set-trigger-key "TAB")
-
-  ;; default max candidate
-  (setq ac-candidate-max 20))
-
-
-;;; ac-company.el
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(when (require 'ac-company nil t)
-  ;; enable company-xcode in ac-company
-  (ac-company-define-source ac-source-company-xcode company-xcode)
-
-  ;; set objc-mode
-  (setq ac-modes (append ac-modes '(objc-mode))))
 
 
 ;;; flymake.el
@@ -803,6 +811,20 @@
 
   (add-hook 'cperl-mode-hook '(lambda () (flymake-perl-load)))
 
+  ;; setting for C
+  (defun flymake-c-init ()
+    (let* ((temp-file   (flymake-init-create-temp-buffer-copy
+                         'flymake-create-temp-inplace))
+           (local-file  (file-relative-name
+                         temp-file
+                         (file-name-directory buffer-file-name))))
+      (list "gcc" (list "-Wall" "-Wextra" "-fsyntax-only" local-file))))
+
+  (push '("\\.c$" flymake-c-init) flymake-allowed-file-name-masks)
+
+  (add-hook 'c-mode-hook '(lambda () (flymake-mode t)))
+
+
   ;; setting for C++
   (defun flymake-cc-init ()
     (let* ((temp-file   (flymake-init-create-temp-buffer-copy
@@ -815,34 +837,6 @@
   (push '("\\.cpp$" flymake-cc-init) flymake-allowed-file-name-masks)
 
   (add-hook 'c++-mode-hook '(lambda () (flymake-mode t)))
-
-  ;; setting for Objective-C
-  ;; @see http://sakito.jp/emacs/emacsobjectivec.html
-  (defvar xcode:gccver "4.0")
-  (defvar xcode:sdkver "3.1.2")
-  (defvar xcode:sdkpath "/Developer/Platforms/iPhoneSimulator.platform/Developer")
-  (defvar xcode:sdk (concat xcode:sdkpath "/SDKs/iPhoneSimulator" xcode:sdkver ".sdk"))
-  (defvar flymake-objc-compiler (concat xcode:sdkpath "/usr/bin/gcc-" xcode:gccver))
-  (defvar flymake-objc-compile-default-options (list "-Wall" "-Wextra" "-fsyntax-only" "-ObjC" "-std=c99" "-isysroot" xcode:sdk))
-  (defvar flymake-last-position nil)
-  (defvar flymake-objc-compile-options '("-I."))
-  (defun flymake-objc-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
-           (local-file (file-relative-name
-                        temp-file
-                        (file-name-directory buffer-file-name))))
-      (list flymake-objc-compiler (append flymake-objc-compile-default-options flymake-objc-compile-options (list local-file)))))
-
-  (add-hook 'objc-mode-hook
-            (lambda ()
-              (push '("\\.m$" flymake-objc-init) flymake-allowed-file-name-masks)
-              (push '("\\.h$" flymake-objc-init) flymake-allowed-file-name-masks)
-
-              (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
-                  (flymake-mode t))
-              ))
-
   )
 
 
@@ -859,93 +853,31 @@
 ;;;;; yasnipet.el
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(when (require 'yasnippet nil t)
-  (yas/initialize)
-  (yas/load-directory "~/.emacs.d/elisp/snippets")
-  (setq yas/prompt-functions '(yas/dropdown-prompt)))
+(when (require 'yasnippet-config nil t)
+  (yas/setup "~/.emacs.d/elisp/"))
 
 
 ;;; smartchr.el
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (when (require 'smartchr nil t)
-  ;; (global-set-key (kbd "=") (smartchr '("=" " = " " == ")))
-  (global-set-key (kbd ">") (smartchr '(">" ">>" " => " " => \'`!!'\'" " => \"`!!'\"")))
+  (dolist (lang modes)
+    (add-hook lang (lambda ()
+                     (define-key (current-local-map) (kbd "=") (smartchr '("=" " = " " == ")))
+                     (define-key (current-local-map) (kbd ">") (smartchr '(">" ">>" " => " " => \'`!!'\'" " => \"`!!'\"")))
+                     )))
   )
 
-
-;;; SKK
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; ;; set user directory
-;; (setq skk-user-directory "~/.emacs.d/etc/skk/")
-
-;; (when (require 'skk-autoloads nil t)
-;;   (global-set-key "\C-x\C-j" 'skk-mode)
-;;   (global-set-key "\C-xj" nil)
-;;   (global-set-key "\C-xt" nil)
-
-;;   ;; auto byte compile .skk
-;;   (setq skk-byte-compile-init-file t)
-;;   )
-
-
-;;; migemo
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; (when (require 'migemo nil t
-;;   (setq migemo-command "migemo")
-;;   (setq migemo-options '("-t" "emacs" "-U"))
-;;   (setq migemo-dictionary (expand-file-name "~/.emacs.d/share/migemo/migemo-dict"))
-;;   (setq migemo-user-dictionary nil)
-;;   (setq migemo-regex-dictionary nil)
-;;   (setenv "RUBYLIB" "~/.emacs.d/lib/ruby/site_ruby/")
-;;   )
-;; (setq migemo-command "migemo")
-;; (setq migemo-options '("-t" "emacs"))
-;; (setq migemo-dictionary (expand-file-name "~/.emacs.d/share/migemo/migemo-dict"))
-;; (setq migemo-user-dictionary nil)
-;; (setq migemo-regex-dictionary nil)
-;; (setenv "RUBYLIB" "~/.emacs.d/lib/ruby/site_ruby/")
-;; (require 'migemo nil t)
-
-
-;;; w3m
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; how to install emacs-w3m
-;; @see http://homepage.mac.com/matsuan_tamachan/software/EmacsW3m.html
-;; ./configure --with-emacs=/usr/local/bin/emacs --with-lispdir=~/.emacs.d/elisp/w3m --with-icondir=~/.emacs.d/elisp/w3m/icon
-;; make
-;; make install
-;; make install-icons
-;; (when (and
-;;        (executable-find "w3m")
-;;        (require 'w3m-load nil t))
-;;   (autoload-if-found 'w3m "w3m" "Interface for w3m on Emacs." t)
-;;   )
-
-
-;;; navi2ch
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(when (autoload-if-found 'navi2ch "navi2ch" "Navigator for 2ch for Emacs" t)
-  (setq navi2ch-article-auto-range nil)
-  ;; (setq navi2ch-mona-enable t)
-  ;; (setq navi2ch-mona-use-ipa-mona t)
-  ;; (setq navi2ch-mona-ipa-mona-font-family-name "IPAMonaPGothic")
-  )
-
-
-;;; Wanderlust
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; (autoload-if-found 'wl "wl" "Wanderlust" t)
-;; (autoload-if-found 'wl-other-frame "wl" "Wanderlust on new frame." t)
-;; (autoload-if-found 'wl-draft "wl-draft" "Write draft with Wanderlust." t)
 
 ;;; view-mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(when (require 'viewer nil t)
+  (viewer-stay-in-setup)
+  (setq viewer-modeline-color-unwritable "tomato")
+  (setq viewer-modeline-color-view "orange")
+  (viewer-change-modeline-color-setup))
+
 (setq view-read-only t)
 (defvar pager-keybind
   `( ;; vi-like
@@ -965,10 +897,6 @@
     (")" . point-redo)
     ("J" . ,(lambda () (interactive) (scroll-up 1)))
     ("K" . ,(lambda () (interactive) (scroll-down 1)))
-    ;; ;; bm-easy
-    ;; ("." . bm-toggle)
-    ;; ("[" . bm-previous)
-    ;; ("]" . bm-next)
     ;; langhelp-like
     ("c" . scroll-other-window-down)
     ("v" . scroll-other-window)
@@ -1035,19 +963,10 @@
   (add-hook 'cperl-mode-hook
             '(lambda()
                (progn
-                 ;; auto insert brackets by brackets.el
-                 (define-key cperl-mode-map "{" 'insert-braces)
-                 (define-key cperl-mode-map "(" 'insert-parens)
-                 (define-key cperl-mode-map "\"" 'insert-double-quotation)
-                 (define-key cperl-mode-map "\`" 'insert-back-quotation)
-                 (define-key cperl-mode-map "'" 'insert-single-quotation)
-                 (define-key cperl-mode-map "[" 'insert-brackets)
-
                  ;; smartchr
                  (eval-safe
                   (define-key cperl-mode-map (kbd "F") (smartchr '("F" "$" "$_" "$_->" "@$")))
                   (define-key cperl-mode-map (kbd "M") (smartchr '("M" "my $`!!' = " "my @`!!' = " "my %`!!' = " "my ($self, $`!!') = @_;")))
-                  (define-key cperl-mode-map (kbd "=") (smartchr '("=" " = " " == ")))
                   )
 
                  ;; perl-completion
@@ -1062,53 +981,18 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; js2-mode modified by mooz
-;; @see http://d.hatena.ne.jp/mooz/20100315/p1
+;; @see https://github.com/mooz/js2-mode
 (when (require 'js2-mode nil t)
   (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+
   (add-hook 'js2-mode-hook
             '(lambda()
                (progn
-                 (define-key js2-mode-map "{" 'insert-braces)
-                 (define-key js2-mode-map "(" 'insert-parens)
-                 (define-key js2-mode-map "\"" 'insert-double-quotation)
-                 (define-key js2-mode-map "\`" 'insert-back-quotation)
-                 (define-key js2-mode-map "'" 'insert-single-quotation)
-                 (define-key js2-mode-map "[" 'insert-brackets)
+                 ;; smartchr
+                 (eval-safe
+                  (define-key js2-mode-map (kbd "V") (smartchr '("V" "var `!!' = ")))
+                  )
                  )))
-  )
-
-;; ejacs
-;; @see http://code/google.com/p/ejacs/
-;; @see http://d.hatena.ne.jp/Rion778/20100925/1285419192
-;; usage: C-c C-j => launch js-console
-;;        C-c C-r => evaluate region and send interpreter
-(when (autoload-if-found 'js-console "js-console" nil t)
-  ;; launch js2-mode and js-console
-  (defun js-console-other-window ()
-    "Run JavaScript on other window"
-    (interactive)
-    (split-window)
-    (js-console)
-    (other-window t)
-    )
-
-  ;; evaluate region
-  (defun js-execute-region ()
-    "Execute region"
-    (interactive)
-    (let ((buf-name (buffer-name (current-buffer))))
-      (copy-region-as-kill (point-min)(point-max))
-      (let ((js-code (car kill-ring)))
-        (switch-to-buffer-other-window "*js*")
-        (js-console-exec-input (car kill-ring))
-        (js-console-display-output (switch-to-buffer-other-window buf-name))
-        )))
-
-  (add-hook 'js2-mode-hook '(lambda ()
-                              (local-set-key "\C-c\C-r" 'js-execute-region)
-                              ))
-
-  (define-key global-map "\C-c\C-j" 'js-console-other-window)
   )
 
 
@@ -1120,152 +1004,6 @@
              (progn
                ;; style
                (c-set-style "cc-mode")
-
-               ;; auto insert brackets by brackets.el
-               (define-key c-mode-map "{" 'insert-braces)
-               (define-key c-mode-map "(" 'insert-parens)
-               (define-key c-mode-map "\"" 'insert-double-quotation)
-               (define-key c-mode-map "\`" 'insert-back-quotation)
-               (define-key c-mode-map "'" 'insert-single-quotation)
-               (define-key c-mode-map "[" 'insert-brackets)
-               )))
-
-
-;;; C++
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(add-hook 'c++-mode-hook
-          '(lambda()
-             (progn
-               ;; auto insert brackets by brackets.el
-               (define-key c++-mode-map "{" 'insert-braces)
-               (define-key c++-mode-map "(" 'insert-parens)
-               (define-key c++-mode-map "\"" 'insert-double-quotation)
-               (define-key c++-mode-map "\`" 'insert-back-quotation)
-               (define-key c++-mode-map "'" 'insert-single-quotation)
-               (define-key c++-mode-map "[" 'insert-brackets)
-               )))
-
-
-;;; Java
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(add-hook 'java-mode-hook
-          '(lambda()
-             (progn
-               ;; auto insert brackets by brackets.el
-               (define-key java-mode-map "{" 'insert-braces)
-               (define-key java-mode-map "(" 'insert-parens)
-               (define-key java-mode-map "\"" 'insert-double-quotation)
-               (define-key java-mode-map "\`" 'insert-back-quotation)
-               (define-key java-mode-map "'" 'insert-single-quotation)
-               (define-key java-mode-map "[" 'insert-brackets)
-               )))
-
-;;; Objective-C
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; @see http://sakito.jp/emacs/emacsobjectivec.html
-(add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@implementation" . objc-mode))
-(add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@interface" . objc-mode))
-(add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@protocol" . objc-mode))
-
-(ffap-bindings)
-(setq ffap-newfile-prompt t) ; confirm when new file
-(setq ffap-kpathsea-depth 5) ; expand path depth ffap-kpathsea-expand-path
-
-(setq ff-other-file-alist
-      '(("\\.mm?$" (".h"))
-        ("\\.cc$"  (".hh" ".h"))
-        ("\\.hh$"  (".cc" ".C"))
-
-        ("\\.c$"   (".h"))
-        ("\\.h$"   (".c" ".cc" ".C" ".CC" ".cxx" ".cpp" ".m" ".mm"))
-
-        ("\\.C$"   (".H"  ".hh" ".h"))
-        ("\\.H$"   (".C"  ".CC"))
-
-        ("\\.CC$"  (".HH" ".H"  ".hh" ".h"))
-        ("\\.HH$"  (".CC"))
-
-        ("\\.cxx$" (".hh" ".h"))
-        ("\\.cpp$" (".hpp" ".hh" ".h"))
-
-        ("\\.hpp$" (".cpp" ".c"))))
-
-(defun xcode:buildandrun ()
-  (interactive)
-  (do-applescript
-   (format
-    (concat
-     "tell application \"Xcode\" to activate \r"
-     "tell application \"System Events\" \r"
-     "     tell process \"Xcode\" \r"
-     "          key code 36 using {command down} \r"
-     "    end tell \r"
-     "end tell \r"
-     ))))
-
-(add-hook 'objc-mode-hook
-          (lambda ()
-            (progn
-              (define-key c-mode-base-map (kbd "C-c o") 'ff-find-other-file)
-              (define-key objc-mode-map (kbd "\t") 'ac-complete)
-              (define-key objc-mode-map (kbd "C-c C-r") 'xcode:buildandrun)
-
-              ;; enable complete using XCode
-              (push 'ac-source-company-xcode ac-sources)
-              ;; complete C++ keyword only comment out using Objective-C++
-              ;; (push 'ac-source-c++-keywords ac-sources)
-
-              ;; auto insert brackets by brackets.el
-              (define-key objc-mode-map "{" 'insert-braces)
-              (define-key objc-mode-map "(" 'insert-parens)
-              (define-key objc-mode-map "\"" 'insert-double-quotation)
-              (define-key objc-mode-map "\`" 'insert-back-quotation)
-              (define-key objc-mode-map "'" 'insert-single-quotation)
-              (define-key objc-mode-map "[" 'insert-brackets)
-
-              ;; smartchr
-              (eval-safe
-               (local-set-key (kbd "@") (smartchr '("@\"`!!'\"" "@"))))
-              )))
-
-
-;;; PHP
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-
-;;; Ruby
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(add-hook 'ruby-mode-hook
-          '(lambda()
-             (progn
-               ;; auto insert brackets by brackets.el
-               (define-key ruby-mode-map "{" 'insert-braces)
-               (define-key ruby-mode-map "(" 'insert-parens)
-               (define-key ruby-mode-map "\"" 'insert-double-quotation)
-               (define-key ruby-mode-map "\`" 'insert-back-quotation)
-               (define-key ruby-mode-map "'" 'insert-single-quotation)
-               (define-key ruby-mode-map "[" 'insert-brackets)
-               )))
-
-
-;;; ELisp
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(add-hook 'emacs-lisp-mode-hook
-          '(lambda()
-             (progn
-               ;; auto insert brackets by brackets.el
-               (define-key emacs-lisp-mode-map "{" 'insert-braces)
-               (define-key emacs-lisp-mode-map "(" 'insert-parens)
-               (define-key emacs-lisp-mode-map "\"" 'insert-double-quotation)
-               (define-key emacs-lisp-mode-map "\`" 'insert-back-quotation)
-               (define-key emacs-lisp-mode-map "'" 'insert-single-quotation)
-               (define-key emacs-lisp-mode-map "[" 'insert-brackets)
                )))
 
 
