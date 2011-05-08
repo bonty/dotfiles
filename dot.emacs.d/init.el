@@ -415,12 +415,7 @@
     (set-face-attribute 'default nil
                         :family "Ricty"
                         :height 150
-                        :weight 'bold
-                        )
-
-    (set-fontset-font
-     nil 'japanese-jisx0208
-     (font-spec :family "Ricty"))
+                        :weight 'bold)
     ))
 
 
@@ -522,41 +517,41 @@
 ;; align
 (require 'align nil t)
 
-;; crosshairs.el
-(when (require 'crosshairs nil t)
-  (crosshairs-mode t)
+;; ;; crosshairs.el
+;; (when (require 'crosshairs nil t)
+;;   (crosshairs-mode t)
 
-  (defface hl-line '((t (:background "Black"))) ; Try also (:underline "Yellow")
-      "*Face to use for `hl-line-face'." :group 'hl-line)
-  (setq hl-line-face 'hl-line)
+  ;; (defface hl-line '((t (:background "Black"))) ; Try also (:underline "Yellow")
+  ;;     "*Face to use for `hl-line-face'." :group 'hl-line)
+  ;; (setq hl-line-face 'hl-line)
 
-  (defface col-highlight '((t (:background "Black")))
-    "*Face for current-column highlighting by `column-highlight-mode'.
-Not used if `col-highlight-vline-face-flag' is nil."
-    :group 'column-highlight :group 'faces)
+;;   (defface col-highlight '((t (:background "Black")))
+;;     "*Face for current-column highlighting by `column-highlight-mode'.
+;; Not used if `col-highlight-vline-face-flag' is nil."
+;;     :group 'column-highlight :group 'faces)
 
-  (defvar col-highlight-face 'col-highlight
-    "Face used for highlighting current column.
-Do NOT change this.")
+;;   (defvar col-highlight-face 'col-highlight
+;;     "Face used for highlighting current column.
+;; Do NOT change this.")
 
-  ;; (defface hlline-face
-  ;;   '((((class color)
-  ;;       (background dark))
-  ;;      (:background "green")
-  ;;      )
-  ;;     (((class color)
-  ;;       (background light))
-  ;;      (:background "ForestGreen"))
-  ;;     (t
-  ;;      ()))
-  ;;   "*Face used by hl-line.")
+  (defface hlline-face
+    '((((class color)
+        (background dark))
+       (:background "green")
+       )
+      (((class color)
+        (background light))
+       (:background "ForestGreen"))
+      (t
+       ()))
+    "*Face used by hl-line.")
 
-  ;; (when window-system
-  ;;   (setq hl-line-face 'hlline-face))
-  ;; (when (eq window-system nil)
-  ;;   (setq hl-line-face 'underline))
-  ;; ;; (global-hl-line-mode)
-  )
+  (when window-system
+    (setq hl-line-face 'hlline-face))
+  (when (eq window-system nil)
+    (setq hl-line-face 'underline))
+  ;; (global-hl-line-mode)
+  ;; )
 
 ;; uniquify
 (when (require 'uniquify nil t)
@@ -565,7 +560,7 @@ Do NOT change this.")
 
 ;; linum
 (when (require 'linum nil t)
-  (setq linum-format "%5d ")
+  (setq linum-format "%4d")
 
   ;; define linum enable mode
   ;; @see http://macemacsjp.sourceforge.jp/index.php?CocoaEmacs#aae602ba
@@ -710,7 +705,7 @@ Do NOT change this.")
   ;; anything-c-moccur
   (when (require 'anything-c-moccur nil t)
     (setq moccur-split-word t)
-    (global-set-key (kbd "M-s") 'anything-c-moccur)
+    (global-set-key (kbd "M-s") 'anything-c-moccur-occur-by-moccur)
     (define-key isearch-mode-map (kbd "C-o") 'anything-c-moccur-from-isearch)
     (define-key isearch-mode-map (kbd "C-M-o") 'isearch-occur)
     )
@@ -1035,9 +1030,3 @@ Do NOT change this.")
   (ns-toggle-fullscreen-internal))
 
 ;; EOF ;;
-
-
-
-
-
-
