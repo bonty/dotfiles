@@ -307,6 +307,24 @@
   (progn
     (set-frame-parameter nil 'alpha 85)))
 
+(defface hlline-face
+  '((((class color)
+      (background dark))
+     (:background "green")
+     )
+    (((class color)
+      (background light))
+     (:background "ForestGreen"))
+    (t
+     ()))
+  "*Face used by hl-line.")
+
+(when window-system
+  (setq hl-line-face 'hlline-face))
+(when (eq window-system nil)
+  (setq hl-line-face 'underline))
+;; (global-hl-line-mode)
+
 ;;; sdic
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -533,24 +551,6 @@
 ;;   (defvar col-highlight-face 'col-highlight
 ;;     "Face used for highlighting current column.
 ;; Do NOT change this.")
-
-  (defface hlline-face
-    '((((class color)
-        (background dark))
-       (:background "green")
-       )
-      (((class color)
-        (background light))
-       (:background "ForestGreen"))
-      (t
-       ()))
-    "*Face used by hl-line.")
-
-  (when window-system
-    (setq hl-line-face 'hlline-face))
-  (when (eq window-system nil)
-    (setq hl-line-face 'underline))
-  ;; (global-hl-line-mode)
   ;; )
 
 ;; uniquify
@@ -560,7 +560,7 @@
 
 ;; linum
 (when (require 'linum nil t)
-  (setq linum-format "%4d")
+  (setq linum-format "%4d ")
 
   ;; define linum enable mode
   ;; @see http://macemacsjp.sourceforge.jp/index.php?CocoaEmacs#aae602ba
