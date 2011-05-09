@@ -307,23 +307,6 @@
   (progn
     (set-frame-parameter nil 'alpha 85)))
 
-(defface hlline-face
-  '((((class color)
-      (background dark))
-     (:background "green")
-     )
-    (((class color)
-      (background light))
-     (:background "ForestGreen"))
-    (t
-     ()))
-  "*Face used by hl-line.")
-
-(when window-system
-  (setq hl-line-face 'hlline-face))
-(when (eq window-system nil)
-  (setq hl-line-face 'underline))
-;; (global-hl-line-mode)
 
 ;;; sdic
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -535,23 +518,32 @@
 ;; align
 (require 'align nil t)
 
-;; ;; crosshairs.el
-;; (when (require 'crosshairs nil t)
-;;   (crosshairs-mode t)
+;; crosshairs.el
+(when (require 'crosshairs nil t)
+  (when window-system
+    (defface hlline-face
+      '((((class color)
+          (background dark))
+         (:background "SlateGlay3")
+         )
+        (((class color)
+          (background light))
+         (:background "ForestGreen"))
+        (t
+         ()))
+      "Face to use for `hl-line-face'."
+      :group 'hl-line))
+  (when (eq window-system nil)
+    (defface hlline-face
+      '((t (:background "Black")))
+      "Face to use for `hl-line-face'."
+      :group 'hl-line))
 
-  ;; (defface hl-line '((t (:background "Black"))) ; Try also (:underline "Yellow")
-  ;;     "*Face to use for `hl-line-face'." :group 'hl-line)
-  ;; (setq hl-line-face 'hl-line)
+  (setq hl-line-face 'hlline-face)
+  (setq col-highlight-face 'hlline-face)
 
-;;   (defface col-highlight '((t (:background "Black")))
-;;     "*Face for current-column highlighting by `column-highlight-mode'.
-;; Not used if `col-highlight-vline-face-flag' is nil."
-;;     :group 'column-highlight :group 'faces)
-
-;;   (defvar col-highlight-face 'col-highlight
-;;     "Face used for highlighting current column.
-;; Do NOT change this.")
-  ;; )
+  (crosshairs-mode t)
+  )
 
 ;; uniquify
 (when (require 'uniquify nil t)
