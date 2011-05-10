@@ -361,9 +361,9 @@
 
 ;; @see http://www.fugenji.org/~thomas/diary/index.php?no=r443
 (when (autoload-if-found 'sdic-describe-word "sdic" "search word" t nil)
-  (global-set-key "\C-cW" 'sdic-describe-word))
+  (global-set-key (kbd "C-c W") 'sdic-describe-word))
 (when (autoload-if-found 'sdic-describe-word-at-point "sdic" "カーソル位置の英単語の意味を調べる" t nil)
-  (global-set-key "\C-cw" 'sdic-describe-word-at-point))
+  (global-set-key (kbd "C-c w") 'sdic-describe-word-at-point))
 
 ;; ----- sdicが呼ばれたときの設定
 (eval-after-load "sdic"
@@ -423,19 +423,20 @@
 ;;; Keybind
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(define-key isearch-mode-map "\C-k" 'isearch-edit-string)
-(define-key global-map "\C-cc" 'comment-region)
-(define-key global-map "\C-cu" 'uncomment-region)
-(define-key global-map "\C-cr" 'replace-string)
-(define-key global-map "\C-ci" 'indent-region)
-(define-key global-map "\C-\\" 'undo)
-(define-key global-map "\M-/" 'undo-tree-redo)
-(define-key global-map "\C-h" 'delete-backward-char)
-(define-key global-map "\C-x\C-b" 'electric-buffer-list)
-(define-key global-map "\C-cg" 'goto-line)
-(define-key function-key-map [delete] "\C-d")
-(define-key global-map "\C-m" 'newline-and-indent)
-(define-key global-map "\C-a" 'beginning-of-indented-line)
+(define-key isearch-mode-map (kbd "C-k") 'isearch-edit-string)
+(define-key global-map (kbd "C-c c") 'comment-region)
+(define-key global-map (kbd "C-c u") 'uncomment-region)
+(define-key global-map (kbd "C-c r") 'replace-string)
+(define-key global-map (kbd "TAB") 'indent-region)
+(define-key global-map (kbd "C-c i") 'indent-region)
+(define-key global-map (kbd "C-\\") 'undo)
+(define-key global-map (kbd "M-/") 'undo-tree-redo)
+(define-key global-map (kbd "C-h") 'delete-backward-char)
+;; (define-key global-map (kbd "C-x C-b") 'electric-buffer-list)
+(define-key global-map (kbd "C-c g") 'goto-line)
+(define-key function-key-map [delete] (kbd "C-d"))
+(define-key global-map (kbd "C-m") 'newline-and-indent)
+(define-key global-map (kbd "C-a") 'beginning-of-indented-line)
 
 (when (eq window-system 'ns)
   ;; toggle fullscreen mode
@@ -691,8 +692,8 @@
 
   ;; anything-dabbrev-expand
   (when (require 'anything-dabbrev-expand nil t)
-    (global-set-key "\C-o" 'anything-dabbrev-expand)
-    (define-key anything-dabbrev-map "\C-o" 'anything-dabbrev-find-all-buffers))
+    (global-set-key (kbd "C-o") 'anything-dabbrev-expand)
+    (define-key anything-dabbrev-map (kbd "C-o") 'anything-dabbrev-find-all-buffers))
 
   ;; anything-c-moccur
   (when (require 'anything-c-moccur nil t)
@@ -718,10 +719,10 @@
 (add-hook 'shell-mode-hook
           (lambda ()
             ; M-p/n complete history
-            (define-key comint-mode-map "\M-p" 'comint-previous-matching-input-from-input)
-            (define-key comint-mode-map "\M-n" 'comint-next-matching-input-from-input)
+            (define-key comint-mode-map (kbd "M-p") 'comint-previous-matching-input-from-input)
+            (define-key comint-mode-map (kbd "M-n") 'comint-next-matching-input-from-input)
             ; M-r search history
-            (define-key comint-mode-map "\M-r" 'anything-complete-shell-history)
+            (define-key comint-mode-map (kbd "M-r") 'anything-complete-shell-history)
             (ansi-color-for-comint-mode-on))
           (setq tab-width 8))
 
@@ -761,7 +762,7 @@
     (let ((err (get-char-property (point) 'help-echo)))
       (when err
         (message err))))
-  (global-set-key "\C-ce" 'next-flymake-error)
+  (global-set-key (kbd "C-c e") 'next-flymake-error)
 
   ;; setting for perl
   ;; @see http://unknownplace.org/memo/2007/12/21#e001
@@ -834,7 +835,7 @@
   (add-hook 'sgml-mode-hook 'zencoding-mode)
   (add-hook 'html-mode-hook 'zencoding-mode)
   (add-hook 'text-mode-hook 'zencoding-mode)
-  (define-key zencoding-mode-keymap "\C-z" 'zencoding-expand-line))
+  (define-key zencoding-mode-keymap (kbd "C-z") 'zencoding-expand-line))
 
 
 ;;;;; yasnipet.el
@@ -939,13 +940,21 @@
   (defalias 'perl-mode 'cperl-mode)
 
   ;; coding style
-  (setq cperl-close-paren-offset -4)
-  (setq cperl-continued-statement-offset 4)
-  (setq cperl-indent-level 4)
+  (setq cperl-close-paren-offset -2)
+  (setq cperl-continued-statement-offset 2)
+  (setq cperl-indent-level 2)
   (setq cperl-indent-parens-as-block t)
-  (setq cperl-label-offset -4)
+  (setq cperl-label-offset -2)
   (setq cperl-highlight-variables-indiscriminately t)
+  (setq cperl-tab-always-indent t)
   (setq cperl-fontlock t)
+
+  ;; color settings
+  (set-face-bold-p 'cperl-array-face nil)
+  (set-face-background 'cperl-array-face nil)
+  (set-face-bold-p 'cperl-hash-face nil)
+  (set-face-italic-p 'cperl-hash-face nil)
+  (set-face-background 'cperl-hash-face nil)
 
   (add-hook 'cperl-mode-hook
             '(lambda()
@@ -959,7 +968,15 @@
                  ;; perl-completion
                  (when (require 'perl-completion nil t)
                    (add-to-list 'ac-sources 'ac-source-perl-completion)
-                   (perl-completion-mode t))
+                   (perl-completion-mode t)
+
+                   ;; keybind
+                   (define-key plcmp-mode-map (kbd "C-M-d") 'plcmp-cmd-show-doc)
+                   (define-key plcmp-mode-map (kbd "C-M-p") 'plcmp-cmd-show-doc-at-point)
+                   (define-key plcmp-mode-map (kbd "C-M-m") 'plcmp-cmd-menu)
+                   (define-key plcmp-mode-map (kbd "C-M-i") 'plcmp-cmd-smart-complete)
+                   (define-key plcmp-mode-map (kbd "C-M-c") 'plcmp-cmd-clear-all-caches)
+                   )
                  )))
   )
 
