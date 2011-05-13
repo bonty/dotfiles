@@ -111,25 +111,28 @@
 (set-buffer-file-coding-system 'utf-8-unix)
 (setq default-buffer-file-coding-system 'utf-8)
 (setq local-coding-system 'utf-8)
-(cond
- (windows-p ; local variables for windows (shift-jis)
-  (setq file-name-coding-system 'sjis-dos)
-  (setq default-file-name-coding-system 'sjis-dos))
- (t         ; default setting
-  (setq file-name-coding-system 'utf-8)
-  (setq default-file-name-coding-system 'utf-8)))
+(setq file-name-coding-system 'utf-8)
+(setq default-file-name-coding-system 'utf-8)
 
-;; Mapping wide character correctly (for Emacs22.x)
-(if (< emacs-major-version 23)
-    (utf-translate-cjk-set-unicode-range
-     '((#x00a2 . #x00a3) (#x00a7 . #x00a8) (#x00ac . #x00ac)
-       (#x00b0 . #x00b1) (#x00b4 . #x00b4) (#x00b6 . #x00b6)
-       (#x00d7 . #x00d7) (#X00f7 . #x00f7) (#x0370 . #x03ff)
-       (#x0400 . #x04FF) (#x2000 . #x206F) (#x2100 . #x214F)
-       (#x2190 . #x21FF) (#x2200 . #x22FF) (#x2300 . #x23FF)
-       (#x2500 . #x257F) (#x25A0 . #x25FF) (#x2600 . #x26FF)
-       (#x2e80 . #xd7a3) (#xff00 . #xffef)
-       )))
+;; (cond
+;;  (windows-p ; local variables for windows (shift-jis)
+;;   (setq file-name-coding-system 'sjis-dos)
+;;   (setq default-file-name-coding-system 'sjis-dos))
+;;  (t         ; default setting
+;;   (setq file-name-coding-system 'utf-8)
+;;   (setq default-file-name-coding-system 'utf-8)))
+
+;; ;; Mapping wide character correctly (for Emacs22.x)
+;; (if (< emacs-major-version 23)
+;;     (utf-translate-cjk-set-unicode-range
+;;      '((#x00a2 . #x00a3) (#x00a7 . #x00a8) (#x00ac . #x00ac)
+;;        (#x00b0 . #x00b1) (#x00b4 . #x00b4) (#x00b6 . #x00b6)
+;;        (#x00d7 . #x00d7) (#X00f7 . #x00f7) (#x0370 . #x03ff)
+;;        (#x0400 . #x04FF) (#x2000 . #x206F) (#x2100 . #x214F)
+;;        (#x2190 . #x21FF) (#x2200 . #x22FF) (#x2300 . #x23FF)
+;;        (#x2500 . #x257F) (#x25A0 . #x25FF) (#x2600 . #x26FF)
+;;        (#x2e80 . #xd7a3) (#xff00 . #xffef)
+;;        )))
 
 
 ;;; Global Settings
@@ -223,22 +226,22 @@
 (setq isearch-lazy-highlight-initial-delay 0)
 (setq query-replace-highlight t)
 
-;; emphasis fullwidth space and tab
-(defface my-face-b-1 '((t (:background "medium aquamarine"))) nil)
-(defface my-face-b-2 '((t (:background "medium aquamarine"))) nil)
-(defface my-face-u-1 '((t (:foreground "SteelBlue" :underline t))) nil)
-(defvar my-face-b-1 'my-face-b-1)
-(defvar my-face-b-2 'my-face-b-2)
-(defvar my-face-u-1 'my-face-u-1)
-(defadvice font-lock-mode (before my-font-lock-mode ())
-  (font-lock-add-keywords
-   major-mode
-   '(;("\t" 0 my-face-b-2 append)      ; tab
-     ("　" 0 my-face-b-1 append)      ; fullwidth space
-     ("[ \t]+$" 0 my-face-u-1 append) ; following space
-     )))
-(ad-enable-advice 'font-lock-mode 'before 'my-font-lock-mode)
-(ad-activate 'font-lock-mode)
+;; ;; emphasis fullwidth space and tab
+;; (defface my-face-b-1 '((t (:background "medium aquamarine"))) nil)
+;; (defface my-face-b-2 '((t (:background "medium aquamarine"))) nil)
+;; (defface my-face-u-1 '((t (:foreground "SteelBlue" :underline t))) nil)
+;; (defvar my-face-b-1 'my-face-b-1)
+;; (defvar my-face-b-2 'my-face-b-2)
+;; (defvar my-face-u-1 'my-face-u-1)
+;; (defadvice font-lock-mode (before my-font-lock-mode ())
+;;   (font-lock-add-keywords
+;;    major-mode
+;;    '(;("\t" 0 my-face-b-2 append)      ; tab
+;;      ("　" 0 my-face-b-1 append)      ; fullwidth space
+;;      ("[ \t]+$" 0 my-face-u-1 append) ; following space
+;;      )))
+;; (ad-enable-advice 'font-lock-mode 'before 'my-font-lock-mode)
+;; (ad-activate 'font-lock-mode)
 
 
 ;;; Color settings
@@ -279,28 +282,28 @@
 ;; Cyan    #66cdaa(102,205,170) #00ffff(0,255,255)
 ;; White   #f5f5f5(245,245,245) #ffffff(255,255,255)
 
-(when (eq window-system nil)
-  ;; (set-background-color "Black")
-  ;; (set-foreground-color "White")
-  (set-cursor-color "Green")
-  (set-face-background 'region "White")
-  (set-face-foreground 'region "Black")
-  (set-face-foreground 'font-lock-string-face  "Magenta")
-  (set-face-foreground 'font-lock-comment-face "Yellow")
-  (set-face-foreground 'font-lock-keyword-face "Yellow")
-  (set-face-foreground 'font-lock-function-name-face "Blue")
-  (set-face-foreground 'font-lock-variable-name-face "Green")
-  (set-face-foreground 'font-lock-type-face "Blue")
-  (set-face-foreground 'font-lock-warning-face "Yellow")
-  (set-face-foreground 'font-lock-builtin-face "Yellow")
-  (set-face-foreground 'font-lock-constant-face "Red")
-  (set-face-background 'highlight "Gray")
-  (set-face-foreground 'highlight "Black")
-  (set-face-foreground 'modeline "Black")
-  (set-face-background 'modeline "White")
-  (set-face-foreground 'mode-line-inactive "Gray")
-  (set-face-background 'mode-line-inactive "Black")
-  (set-face-foreground 'minibuffer-prompt "Green"))
+;; (when (eq window-system nil)
+;;   ;; (set-background-color "Black")
+;;   ;; (set-foreground-color "White")
+;;   (set-cursor-color "Green")
+;;   (set-face-background 'region "White")
+;;   (set-face-foreground 'region "Black")
+;;   (set-face-foreground 'font-lock-string-face  "Magenta")
+;;   (set-face-foreground 'font-lock-comment-face "Yellow")
+;;   (set-face-foreground 'font-lock-keyword-face "Yellow")
+;;   (set-face-foreground 'font-lock-function-name-face "Blue")
+;;   (set-face-foreground 'font-lock-variable-name-face "Green")
+;;   (set-face-foreground 'font-lock-type-face "Blue")
+;;   (set-face-foreground 'font-lock-warning-face "Yellow")
+;;   (set-face-foreground 'font-lock-builtin-face "Yellow")
+;;   (set-face-foreground 'font-lock-constant-face "Red")
+;;   (set-face-background 'highlight "Gray")
+;;   (set-face-foreground 'highlight "Black")
+;;   (set-face-foreground 'modeline "Black")
+;;   (set-face-background 'modeline "White")
+;;   (set-face-foreground 'mode-line-inactive "Gray")
+;;   (set-face-background 'mode-line-inactive "Black")
+;;   (set-face-foreground 'minibuffer-prompt "Green"))
 
 ;; transition when use window-system
 (when window-system
@@ -520,30 +523,13 @@
 (require 'align nil t)
 
 ;; crosshairs.el
-(when (require 'crosshairs nil t)
-  (when window-system
-    (defface hlline-face
-      '((((class color)
-          (background dark))
-         (:background "SlateGlay3")
-         )
-        (((class color)
-          (background light))
-         (:background "ForestGreen"))
-        (t
-         ()))
-      "Face to use for `hl-line-face'."
-      :group 'hl-line))
-  (when (eq window-system nil)
-    (defface hlline-face
-      '((t (:background "Black")))
-      "Face to use for `hl-line-face'."
-      :group 'hl-line))
-
+(when (require 'hl-line+ nil t)
+  (defface hlline-face
+    '((t (:background "White")))
+    "Face to use for `hl-line-face'."
+    :group 'hl-line)
   (setq hl-line-face 'hlline-face)
-  (setq col-highlight-face 'hlline-face)
-
-  (crosshairs-mode t)
+  (global-hl-line-mode t)
   )
 
 ;; uniquify
@@ -618,10 +604,10 @@
   (key-chord-mode t)
   (key-chord-define-global "jk" 'view-mode))
 
-;; point-undo.el
-(when (require 'point-undo nil t)
-  (define-key global-map [f7] 'point-undo)
-  (define-key global-map [S-f7] 'point-redo))
+;; ;; point-undo.el
+;; (when (require 'point-undo nil t)
+;;   (define-key global-map [f7] 'point-undo)
+;;   (define-key global-map [S-f7] 'point-redo))
 
 ;; undo-tree.el
 (when (require 'undo-tree nil t)
@@ -709,7 +695,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; multi-shell.el
-(require 'multi-shell nil t)
+(when (require 'multi-shell nil t)
+  (setq multi-shell-revert-window-keystroke (kbd "q"))
+  )
+
 
 ;; display escape
 (autoload-if-found 'ansi-color-for-comint-mode-on "ansi-color"
@@ -848,13 +837,13 @@
 ;;; smartchr.el
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(when (require 'smartchr nil t)
-  (dolist (lang modes)
-    (add-hook lang (lambda ()
-                     (define-key (current-local-map) (kbd "=") (smartchr '("=" " = " " == ")))
-                     (define-key (current-local-map) (kbd ">") (smartchr '(">" ">>" " => " " => \'`!!'\'" " => \"`!!'\"")))
-                     )))
-  )
+;; (when (require 'smartchr nil t)
+;;   (dolist (lang modes)
+;;     (add-hook lang (lambda ()
+;;                      (define-key (current-local-map) (kbd "=") (smartchr '("=" " = " " == ")))
+;;                      (define-key (current-local-map) (kbd ">") (smartchr '(">" ">>" " => " " => \'`!!'\'" " => \"`!!'\"")))
+;;                      )))
+;;   )
 
 
 ;;; view-mode
@@ -904,7 +893,7 @@
   (define-key view-mode-map " " 'scroll-up))
 (add-hook 'view-mode-hook 'view-mode-hook0)
 
-;; open read-only file in view-mode 
+;; open read-only file in view-mode
 (defadvice find-file
   (around find-file-switch-to-view-file (file &optional wild) activate)
   (if (and (not (file-writable-p file))
@@ -959,12 +948,6 @@
   (add-hook 'cperl-mode-hook
             '(lambda()
                (progn
-                 ;; smartchr
-                 (eval-safe
-                  (define-key cperl-mode-map (kbd "F") (smartchr '("F" "$" "$_" "$_->" "@$")))
-                  (define-key cperl-mode-map (kbd "M") (smartchr '("M" "my $`!!' = " "my @`!!' = " "my %`!!' = " "my ($self, $`!!') = @_;")))
-                  )
-
                  ;; perl-completion
                  (when (require 'perl-completion nil t)
                    (add-to-list 'ac-sources 'ac-source-perl-completion)
@@ -989,14 +972,14 @@
 (when (require 'js2-mode nil t)
   (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
-  (add-hook 'js2-mode-hook
-            '(lambda()
-               (progn
-                 ;; smartchr
-                 (eval-safe
-                  (define-key js2-mode-map (kbd "V") (smartchr '("V" "var `!!' = ")))
-                  )
-                 )))
+  ;; (add-hook 'js2-mode-hook
+  ;;           '(lambda()
+  ;;              (progn
+  ;;                ;; smartchr
+  ;;                (eval-safe
+  ;;                 (define-key js2-mode-map (kbd "V") (smartchr '("V" "var `!!' = ")))
+  ;;                 )
+  ;;                )))
   )
 
 
