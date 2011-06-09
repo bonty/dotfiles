@@ -12,7 +12,7 @@ export LANG="ja_JP.UTF-8"
 #         export PAGER="/usr/bin/lv"
 #         ;;
 # esac
-export SHELL="/bin/zsh"
+export SHELL="/usr/local/bin/zsh"
 export TMP="$HOME/tmp"
 # export EDITOR="emacsclient"
 # export GREP_OPTIONS="--color=auto"
@@ -51,10 +51,10 @@ case ${UID} in
         RPROMPT="%{${fg[blue]}%}[%/]%{${reset_color}%}"
         ;;
     *)
-        PROMPT="[%n@%m] %{${fg[white]}%}$%{${reset_color}%} "
-        PROMPT2="%B%{${fg[white]}%}%_$%{${reset_color}%}%b "
-        SPROMPT="%B%{${fg[white]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
-        RPROMPT="%{${fg[white]}%}[%/]%{${reset_color}%}"
+        PROMPT="[%n@%m] $ "
+        PROMPT2="%B%_$%b "
+        SPROMPT="%B%r is correct? [n,y,a,e]:%b "
+        RPROMPT="[%/]"
         ;;
 esac
 

@@ -226,117 +226,72 @@
 (setq query-replace-highlight t)
 (global-font-lock-mode t)
 
-(when (require 'color-theme nil t)
-  (color-theme-initialize)
-  (color-theme-sitaramv-nt)
-  )
-;; (add-hook 'font-lock-mode-hook
-;;   '(lambda ()
-;;   (set-face-background 'region "Blue")
-;;   (set-face-foreground 'region "White")
-;;   (set-face-foreground 'font-lock-string-face  "Red")
-;;   (set-face-foreground 'font-lock-comment-face "Green")
-;;   (set-face-foreground 'font-lock-comment-delimiter-face "Green")
-;;   (set-face-foreground 'font-lock-keyword-face "Magenta")
-;;   (set-face-foreground 'font-lock-function-name-face "Cyan")
-;;   (set-face-foreground 'font-lock-variable-name-face "Green")
-;;   (set-face-foreground 'font-lock-type-face "Blue")
-;;   (set-face-foreground 'font-lock-warning-face "Yellow")
-;;   (set-face-foreground 'font-lock-builtin-face "Cyan")
-;;   (set-face-foreground 'font-lock-constant-face "Red")
-;;   (set-face-background 'highlight "Blue")
-;;   (set-face-foreground 'highlight "White")
-;;   (set-face-foreground 'modeline "Black")
-;;   (set-face-background 'modeline "White")
-;;   (set-face-foreground 'mode-line-inactive "White")
-;;   (set-face-background 'mode-line-inactive "Black")
-;;   (set-face-foreground 'minibuffer-prompt "Green")
-;;   ))
-
-;; ;; emphasis fullwidth space and tab
-;; (defface my-face-b-1 '((t (:background "medium aquamarine"))) nil)
-;; (defface my-face-b-2 '((t (:background "medium aquamarine"))) nil)
-;; (defface my-face-u-1 '((t (:foreground "SteelBlue" :underline t))) nil)
-;; (defvar my-face-b-1 'my-face-b-1)
-;; (defvar my-face-b-2 'my-face-b-2)
-;; (defvar my-face-u-1 'my-face-u-1)
-;; (defadvice font-lock-mode (before my-font-lock-mode ())
-;;   (font-lock-add-keywords
-;;    major-mode
-;;    '(;("\t" 0 my-face-b-2 append)      ; tab
-;;      ("　" 0 my-face-b-1 append)      ; fullwidth space
-;;      ("[ \t]+$" 0 my-face-u-1 append) ; following space
-;;      )))
-;; (ad-enable-advice 'font-lock-mode 'before 'my-font-lock-mode)
-;; (ad-activate 'font-lock-mode)
-
-
 ;;; Color settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; http://hie.s64.xrea.com/xyzzy/note/colors.html
 ;; xyzzy Part7 374
-;; (when window-system
-;;   (set-background-color "#313e32")
-;;   (set-foreground-color "#ffffff")
-;;   (set-cursor-color "#84ff84")
-;;   (set-face-background 'region "#ffffff")
-;;   (set-face-foreground 'region "#000000")
-;;   (set-face-foreground 'font-lock-string-face  "#ffa2ff")
-;;   (set-face-foreground 'font-lock-comment-face "#ecc142")
-;;   (set-face-foreground 'font-lock-keyword-face "SandyBrown")
-;;   (set-face-foreground 'font-lock-function-name-face "SkyBlue")
-;;   (set-face-foreground 'font-lock-variable-name-face "LimeGreen")
-;;   (set-face-foreground 'font-lock-type-face "SkyBlue1")
-;;   (set-face-foreground 'font-lock-warning-face "Yellow")
-;;   (set-face-foreground 'font-lock-builtin-face "Goldenrod")
-;;   (set-face-foreground 'font-lock-constant-face "Tomato")
-;;   (set-face-background 'highlight "Gray")
-;;   (set-face-foreground 'highlight "Black")
-;;   (set-face-foreground 'modeline "Black")
-;;   (set-face-background 'modeline "White")
-;;   (set-face-foreground 'mode-line-inactive "Gray")
-;;   (set-face-background 'mode-line-inactive "Black")
-;;   (set-face-foreground 'minibuffer-prompt "Green"))
+(when window-system
+  (set-background-color "#313e32")
+  (set-foreground-color "#ffffff")
+  (set-cursor-color "#84ff84")
+  (set-face-background 'region "#87ceff")
+  (set-face-foreground 'region "#000000")
+  (set-face-foreground 'font-lock-string-face  "#ffa2ff")
+  (set-face-foreground 'font-lock-comment-face "#ecc142")
+  (set-face-foreground 'font-lock-keyword-face "SandyBrown")
+  (set-face-foreground 'font-lock-function-name-face "SkyBlue")
+  (set-face-foreground 'font-lock-variable-name-face "LimeGreen")
+  (set-face-foreground 'font-lock-type-face "SkyBlue1")
+  (set-face-foreground 'font-lock-warning-face "Yellow")
+  (set-face-foreground 'font-lock-builtin-face "Goldenrod")
+  (set-face-foreground 'font-lock-constant-face "Tomato")
+  (set-face-background 'highlight "Gray")
+  (set-face-foreground 'highlight "Black")
+  (set-face-foreground 'modeline "Black")
+  (set-face-background 'modeline "White")
+  (set-face-foreground 'mode-line-inactive "Gray")
+  (set-face-background 'mode-line-inactive "Black")
+  (set-face-foreground 'minibuffer-prompt "Green"))
 
 ;; Color Scheme
-;; Black   #000000(0,0,0)       #000000(85,85,85)
-;; Red     #ff6347(255,99,71)   #ff0000(255,0,0)
-;; Green   #32cd32(50,205,50)   #00ff00(0,255,0)
+;; Black   #000000(0,0,0)       #000000(64,64,64)
+;; Red     #ff6347(255,99,71)   #ff0000(255,64,64)
+;; Green   #32cd32(0,255,0)     #00ff00(50,255,50)
 ;; Yellow  #ecc142(236,193,66)  #ffff00(255,255,0)
-;; Blue    #87ceff(135,206,255) #00adff(0,173,255)
+;; Blue    #87ceff(135,206,255) #00adff(128,162,255)
 ;; Magenta #ffa2ff(255,162,255) #ff00ff(255,0,255)
-;; Cyan    #66cdaa(102,205,170) #00ffff(0,255,255)
-;; White   #f5f5f5(245,245,245) #ffffff(255,255,255)
+;; Cyan    #0000ff(0,255,255)   #a2ffff(162,255,255)
+;; White   #f5f5f5(225,225,225) #ffffff(255,255,255)
 
-;; (when (eq window-system nil)
+(when (eq window-system nil)
   ;; (set-background-color "Black")
   ;; (set-foreground-color "White")
   ;; (set-cursor-color "Green")
-  ;; (set-face-background 'region "Blue")
-  ;; (set-face-foreground 'region "White")
-  ;; (set-face-foreground 'font-lock-string-face  "Red")
-  ;; (set-face-foreground 'font-lock-comment-face "Green")
-  ;; (set-face-foreground 'font-lock-comment-delimiter-face "Green")
-  ;; (set-face-foreground 'font-lock-keyword-face "Magenta")
-  ;; (set-face-foreground 'font-lock-function-name-face "Cyan")
-  ;; (set-face-foreground 'font-lock-variable-name-face "Green")
-  ;; (set-face-foreground 'font-lock-type-face "Blue")
-  ;; (set-face-foreground 'font-lock-warning-face "Yellow")
-  ;; (set-face-foreground 'font-lock-builtin-face "Cyan")
-  ;; (set-face-foreground 'font-lock-constant-face "Red")
-  ;; (set-face-background 'highlight "Blue")
-  ;; (set-face-foreground 'highlight "White")
-  ;; (set-face-foreground 'modeline "Black")
-  ;; (set-face-background 'modeline "White")
-  ;; (set-face-foreground 'mode-line-inactive "White")
-  ;; (set-face-background 'mode-line-inactive "Black")
-  ;; (set-face-foreground 'minibuffer-prompt "Green"))
+  (set-face-background 'region "Blue")
+  (set-face-foreground 'region "Black")
+  (set-face-foreground 'font-lock-string-face  "Magenta")
+  (set-face-foreground 'font-lock-comment-face "Yellow")
+  (set-face-foreground 'font-lock-comment-delimiter-face "Yellow")
+  (set-face-foreground 'font-lock-keyword-face "Yellow")
+  (set-face-foreground 'font-lock-function-name-face "Blue")
+  (set-face-foreground 'font-lock-variable-name-face "Green")
+  (set-face-foreground 'font-lock-type-face "Blue")
+  (set-face-foreground 'font-lock-warning-face "Yellow")
+  (set-face-foreground 'font-lock-builtin-face "Yellow")
+  (set-face-foreground 'font-lock-constant-face "Red")
+  (set-face-background 'highlight "Blue")
+  (set-face-foreground 'highlight "White")
+  (set-face-foreground 'modeline "Black")
+  (set-face-background 'modeline "White")
+  (set-face-foreground 'mode-line-inactive "Glay")
+  (set-face-background 'mode-line-inactive "Black")
+  (set-face-foreground 'minibuffer-prompt "Green"))
 
 ;; transition when use window-system
-;; (when window-system
-;;   (progn
-;;     (set-frame-parameter nil 'alpha 85)))
+(when window-system
+  (progn
+    (set-frame-parameter nil 'alpha 85)))
 
 
 ;;; sdic
@@ -552,7 +507,7 @@
 ;; crosshairs.el
 (when (require 'hl-line+ nil t)
   (defface hlline-face
-    '((t (:background "White")))
+    '((t (:background "Black")))
     "Face to use for `hl-line-face'."
     :group 'hl-line)
   (setq hl-line-face 'hlline-face)
