@@ -5,7 +5,7 @@
 # environment
 export LANG="ja_JP.UTF-8"
 
-if [ -e "/usr/local/bin/lv"]; then
+if [ -e "/usr/local/bin/lv" ]; then
     export PAGER="/usr/local/bin/lv"
 else
     export PAGER="/usr/bin/less"
