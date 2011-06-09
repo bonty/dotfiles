@@ -556,7 +556,7 @@
 ;; auto-save-buffers.el
 ;; @see http://0xcc.net/misc/auto-save/
 (when (require 'auto-save-buffers nil t)
-  (run-with-idle-timer 1 t 'auto-save-buffers))
+  (run-with-idle-timer 0.5 t 'auto-save-buffers))
 
 ;; autosave and resume all buffers (revive.el)
 ;; @see http://www.hasta-pronto.org/archives/2008/01/30-0235.php

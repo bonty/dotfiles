@@ -4,21 +4,24 @@
 
 # environment
 export LANG="ja_JP.UTF-8"
-# case "${OSTYPE}" in
-#     freebsd*|darwin*)
-#         export PAGER="/opt/local/bin/lv"
-#         ;;
-#     linux*)
-#         export PAGER="/usr/bin/lv"
-#         ;;
-# esac
-export SHELL="/usr/local/bin/zsh"
+
+if [ -e "/usr/local/bin/lv"]; then
+    export PAGER="/usr/local/bin/lv"
+else
+    export PAGER="/usr/bin/less"
+fi
+
+if [ -e "/usr/local/bin/zsh" ]; then
+    export SHELL="/usr/local/bin/zsh"
+else
+    export SHELL="/bin/zsh"
+fi 
+
 export TMP="$HOME/tmp"
-# export EDITOR="emacsclient"
+export EDITOR="emacsclient"
 # export GREP_OPTIONS="--color=auto"
 export LS_COLORS=':no=00:fi=00:di=36:ln=35:pi=33:so=32:bd=34;46:cd=34;43:ex=31:'
-export PERL5LIB=$HOME/usr/lib/perl
-# PATH=$HOME/usr/bin:/opt/local/bin:/usr/local/git/bin:/usr/local/bin:/usr/X11R6/bin:/usr/X11/bin:/usr/bin:/usr/sbin:/share/usr/bin:/sbin:/bin:${PATH}
+export PERL5LIB=$HOME/usr/lib/perl:$PERL5LIB
 PATH=$HOME/usr/bin:/usr/local/git/bin:/usr/local/bin:/usr/X11R6/bin:/usr/X11/bin:/usr/bin:/usr/sbin:/share/usr/bin:/sbin:/bin:${PATH}
 WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
 
@@ -78,7 +81,7 @@ alias sl='ls'
 alias l='ls'
 alias la='ls -a'
 alias ll='ls -l'
-# alias lv='$PAGER'
+alias lv='$PAGER'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
@@ -90,8 +93,7 @@ alias s='screen'
 alias x='exit'
 alias q='exit'
 
-# alias -g L='| $PAGER'
-alias -g L='| lv'
+alias -g L='| $PAGER'
 alias -g G='| grep'
 alias -g H='| head'
 alias -g T='| tail'
