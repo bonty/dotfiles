@@ -484,6 +484,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq modes '(fundamental-mode-hook
               text-mode-hook
+              perl-mode-hook
               cperl-mode-hook
               c-mode-hook
               c++-mode-hook
@@ -498,110 +499,6 @@
               sh-mode-hook
               ))
 
-;;; load plugins
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; align
-(require 'align nil t)
-
-;; crosshairs.el
-(when (require 'hl-line+ nil t)
-  (defface hlline-face
-    '((t (:background "Black")))
-    "Face to use for `hl-line-face'."
-    :group 'hl-line)
-  (setq hl-line-face 'hlline-face)
-  (global-hl-line-mode t)
-  )
-
-;; uniquify
-(when (require 'uniquify nil t)
-  (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
-  (setq uniquify-ignore-buffers-re "*[^*]+*"))
-
-;; linum
-(when (require 'linum nil t)
-  (setq linum-format "%4d ")
-
-  ;; define linum enable mode
-  ;; @see http://macemacsjp.sourceforge.jp/index.php?CocoaEmacs#aae602ba
-  (dolist (lang modes)
-    (add-hook lang (lambda () (linum-mode t))))
-  )
-
-;; recentf-ext.el
-(setq recentf-max-saved-items 500)
-(setq recentf-exclude '("/TAGS$" "/var/tmp/"))
-(require 'recentf-ext nil t)
-
-;; brackets.el
-(when (require 'brackets nil t)
-  (dolist (lang modes)
-    (add-hook lang (lambda ()
-                     (define-key (current-local-map) "{" 'insert-braces)
-                     (define-key (current-local-map) "(" 'insert-parens)
-                     (define-key (current-local-map) "\"" 'insert-double-quotation)
-                     (define-key (current-local-map) "\`" 'insert-back-quotation)
-                     (define-key (current-local-map) "\'" 'insert-single-quotation)
-                     (define-key (current-local-map) "[" 'insert-brackets)
-                     )))
-  )
-
-;; tempbuf.el
-(when (require 'tempbuf nil t)
-  ;; (add-hook 'find-file-hooks 'turn-on-tempbuf-mode)
-  (add-hook 'dired-mode-hook 'turn-on-tempbuf-mode)
-  )
-
-;; auto-save-buffers.el
-;; @see http://0xcc.net/misc/auto-save/
-(when (require 'auto-save-buffers nil t)
-  (run-with-idle-timer 0.5 t 'auto-save-buffers))
-
-;; autosave and resume all buffers (revive.el)
-;; @see http://www.hasta-pronto.org/archives/2008/01/30-0235.php
-(when (autoload-if-found 'save-current-configuration "revive" "Save status" t)
-  (when (autoload-if-found 'resume "revive" "Resume Emacs" t)
-    (when (autoload-if-found 'wipe "revive" "Wipe emacs" t)
-      (define-key ctl-x-map "R" 'resume)                        ; C-x R resume
-      (define-key ctl-x-map "K" 'wipe)                          ; C-x K kill
-      (add-hook 'kill-emacs-hook 'save-current-configuration)   ; autosave when quit
-      )))
-
-;; mic-paren.el
-;; highlight characteres between parenthesis
-(when (require 'mic-paren nil t)
-  (paren-activate)
-  (setq paren-match-face 'bold)
-  (setq paren-sexp-mode t)
-  (setq paren-sexp-ignore-comments t))
-
-;; sudo-ext.el
-(server-start)
-(require 'sudo-ext nil t)
-
-;; key-chord.el
-(when (require 'key-chord nil t)
-  (setq key-chord-two-keys-delay 0.04)
-  (key-chord-mode t)
-  (key-chord-define-global "jk" 'view-mode))
-
-;; ;; point-undo.el
-;; (when (require 'point-undo nil t)
-;;   (define-key global-map [f7] 'point-undo)
-;;   (define-key global-map [S-f7] 'point-redo))
-
-;; undo-tree.el
-(when (require 'undo-tree nil t)
-  (global-undo-tree-mode))
-
-;; undohist.el
-(when (require 'undohist nil t)
-  (undohist-initialize))
-
-;; color-moccur.el
-(when (require 'color-moccur nil t)
-  (setq moccur-split-word t))
 
 ;;; auto-complete.el
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -678,6 +575,7 @@
 
 ;; multi-shell.el
 (when (require 'multi-shell nil t)
+  (setq multi-shell-revert-window-after-complete nil)
   (setq multi-shell-revert-window-keystroke (kbd "q"))
   )
 
@@ -999,9 +897,131 @@
         section-name "documentclass")
   )
 
+;;; load plugins
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; align
+(require 'align nil t)
+
+;; crosshairs.el
+(when (require 'hl-line+ nil t)
+  (defface hlline-face
+    '((t (:background "Black")))
+    "Face to use for `hl-line-face'."
+    :group 'hl-line)
+  (setq hl-line-face 'hlline-face)
+  (global-hl-line-mode t)
+  )
+
+;; uniquify
+(when (require 'uniquify nil t)
+  (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+  (setq uniquify-ignore-buffers-re "*[^*]+*"))
+
+;; linum
+(when (require 'linum nil t)
+  (setq linum-format "%4d ")
+
+  ;; define linum enable mode
+  ;; @see http://macemacsjp.sourceforge.jp/index.php?CocoaEmacs#aae602ba
+  (dolist (lang modes)
+    (add-hook lang (lambda () (linum-mode t))))
+  )
+
+;; recentf-ext.el
+(setq recentf-max-saved-items 500)
+(setq recentf-exclude '("/TAGS$" "/var/tmp/"))
+(require 'recentf-ext nil t)
+
+;; brackets.el
+(when (require 'brackets nil t)
+  (dolist (lang modes)
+    (add-hook lang (lambda ()
+                     (define-key (current-local-map) "{" 'insert-braces)
+                     (define-key (current-local-map) "(" 'insert-parens)
+                     (define-key (current-local-map) "\"" 'insert-double-quotation)
+                     (define-key (current-local-map) "\`" 'insert-back-quotation)
+                     (define-key (current-local-map) "\'" 'insert-single-quotation)
+                     (define-key (current-local-map) "[" 'insert-brackets)
+                     )))
+  )
+
+;; tempbuf.el
+(when (require 'tempbuf nil t)
+  ;; (add-hook 'find-file-hooks 'turn-on-tempbuf-mode)
+  (add-hook 'dired-mode-hook 'turn-on-tempbuf-mode)
+  )
+
+;; auto-save-buffers.el
+;; @see http://0xcc.net/misc/auto-save/
+(when (require 'auto-save-buffers nil t)
+  (run-with-idle-timer 0.5 t 'auto-save-buffers))
+
+;; autosave and resume all buffers (revive.el)
+;; @see http://www.hasta-pronto.org/archives/2008/01/30-0235.php
+(when (autoload-if-found 'save-current-configuration "revive" "Save status" t)
+  (when (autoload-if-found 'resume "revive" "Resume Emacs" t)
+    (when (autoload-if-found 'wipe "revive" "Wipe emacs" t)
+      (define-key ctl-x-map "R" 'resume)                        ; C-x R resume
+      (define-key ctl-x-map "K" 'wipe)                          ; C-x K kill
+      (add-hook 'kill-emacs-hook 'save-current-configuration)   ; autosave when quit
+      )))
+
+;; mic-paren.el
+;; highlight characteres between parenthesis
+(when (require 'mic-paren nil t)
+  (paren-activate)
+  (setq paren-match-face 'bold)
+  (setq paren-sexp-mode t)
+  (setq paren-sexp-ignore-comments t))
+
+;; sudo-ext.el
+(server-start)
+(require 'sudo-ext nil t)
+
+;; key-chord.el
+(when (require 'key-chord nil t)
+  (setq key-chord-two-keys-delay 0.04)
+  (key-chord-mode t)
+  (key-chord-define-global "jk" 'view-mode))
+
+;; ;; point-undo.el
+;; (when (require 'point-undo nil t)
+;;   (define-key global-map [f7] 'point-undo)
+;;   (define-key global-map [S-f7] 'point-redo))
+
+;; undo-tree.el
+(when (require 'undo-tree nil t)
+  (global-undo-tree-mode))
+
+;; undohist.el
+(when (require 'undohist nil t)
+  (undohist-initialize))
+
+;; color-moccur.el
+(when (require 'color-moccur nil t)
+  (setq moccur-split-word t))
+
+;; doxygen.el
+(when (require 'doxygen nil t)
+  ;; C
+  (define-key c-mode-map (kbd "C-c d f") 'doxygen-insert-function-comment)
+  (define-key c-mode-map (kbd "C-c d m") 'doxygen-insert-member-group-region)
+  (define-key c-mode-map (kbd "C-c d i") 'doxygen-insert-comment)
+  (define-key c-mode-map (kbd "C-c d c") 'doxygen-insert-compound-comment)
+
+  ;; C++
+  (define-key c++-mode-map (kbd "C-c d f") 'doxygen-insert-function-comment)
+  (define-key c++-mode-map (kbd "C-c d m") 'doxygen-insert-member-group-region)
+  (define-key c++-mode-map (kbd "C-c d i") 'doxygen-insert-comment)
+  (define-key c++-mode-map (kbd "C-c d c") 'doxygen-insert-compound-comment)
+  )
+
 
 ;;; set fullscreen when start
 (when (and (eq window-system 'ns) (>= emacs-major-version 23))
   (ns-toggle-fullscreen-internal))
 
 ;; EOF ;;
+
+
