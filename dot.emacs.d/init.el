@@ -1006,12 +1006,14 @@
 (when (require 'doxygen nil t)
   ;; C
   (define-key c-mode-map (kbd "C-c d f") 'doxygen-insert-function-comment)
+  (define-key c-mode-map (kbd "C-c d F") 'doxygen-insert-file-comment)
   (define-key c-mode-map (kbd "C-c d m") 'doxygen-insert-member-group-region)
   (define-key c-mode-map (kbd "C-c d i") 'doxygen-insert-comment)
   (define-key c-mode-map (kbd "C-c d c") 'doxygen-insert-compound-comment)
 
   ;; C++
   (define-key c++-mode-map (kbd "C-c d f") 'doxygen-insert-function-comment)
+  (define-key c++-mode-map (kbd "C-c d F") 'doxygen-insert-file-comment)
   (define-key c++-mode-map (kbd "C-c d m") 'doxygen-insert-member-group-region)
   (define-key c++-mode-map (kbd "C-c d i") 'doxygen-insert-comment)
   (define-key c++-mode-map (kbd "C-c d c") 'doxygen-insert-compound-comment)
