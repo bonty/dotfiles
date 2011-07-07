@@ -867,7 +867,7 @@
 ;;; C
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-hook 'c-mode-common-hook
+(add-hook 'c-mode-hook
           '(lambda()
              (progn
                ;; style
@@ -1017,6 +1017,16 @@
   (define-key c++-mode-map (kbd "C-c d c") 'doxygen-insert-compound-comment)
   )
 
+;; ;; c-doc.el
+;; (when (require 'c-doc nil t)
+;;   (custom-set-variables
+;;    '(c-doc-mail-address "xxx@yyy.zzz")
+;;    '(c-doc-author (format "XXX <%s>" c-doc-mail-address))
+;;    '(c-doc-url "http://www.xxx.yyy"))
+
+;;   (define-key c-mode-map (kbd "C-c d i") 'c-doc-insert)
+;;   (define-key c++-mode-map (kbd "C-c d i") 'c-doc-insert)
+;;   )
 
 ;;; set fullscreen when start
 (when (and (eq window-system 'ns) (>= emacs-major-version 23))
