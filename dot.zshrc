@@ -6,8 +6,8 @@
 export LANG="ja_JP.UTF-8"
 export LC_CTYPE="ja_JP.UTF-8"
 
-if [ -e "/usr/local/bin/lv" ]; then
-    export PAGER="/usr/local/bin/lv"
+if [ -e `whereis lv | awk '{print $2}'` ]; then
+    export PAGER=`whereis lv | awk '{print $2}'`
 else
     export PAGER="/usr/bin/less"
 fi
