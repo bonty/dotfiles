@@ -989,12 +989,11 @@
 (set-face-background 'anything-match "#49483e")
 (set-face-background 'isearch "#f92672")
 (set-face-foreground 'isearch "#f8f8f0")
-(set-face-foreground 'linum "#f8f8f2")
+(set-face-foreground 'linum "#75716e")
 (set-face-foreground 'modeline "#000")
 (set-face-background 'modeline "#ffbf00")
 (set-face-foreground 'mode-line-inactive "#75716e")
 (set-face-background 'mode-line-inactive "#222322")
 (set-face-foreground 'minibuffer-prompt "#0f0")
-
 
 ;; EOF ;;
