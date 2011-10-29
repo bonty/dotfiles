@@ -226,74 +226,6 @@
 (setq query-replace-highlight t)
 (global-font-lock-mode t)
 
-;;; Color settings
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; http://hie.s64.xrea.com/xyzzy/note/colors.html
-;; xyzzy Part7 374
-(when window-system
-  (set-background-color "#313e32")
-  (set-foreground-color "#ffffff")
-  (set-cursor-color "#84ff84")
-  (set-face-background 'region "#87ceff")
-  (set-face-foreground 'region "#000000")
-  (set-face-foreground 'font-lock-string-face  "#ffa2ff")
-  (set-face-foreground 'font-lock-comment-face "#ecc142")
-  (set-face-foreground 'font-lock-keyword-face "SandyBrown")
-  (set-face-foreground 'font-lock-function-name-face "SkyBlue")
-  (set-face-foreground 'font-lock-variable-name-face "LimeGreen")
-  (set-face-foreground 'font-lock-type-face "SkyBlue1")
-  (set-face-foreground 'font-lock-warning-face "Yellow")
-  (set-face-foreground 'font-lock-builtin-face "Goldenrod")
-  (set-face-foreground 'font-lock-constant-face "Tomato")
-  (set-face-background 'highlight "Gray")
-  (set-face-foreground 'highlight "Black")
-  (set-face-foreground 'modeline "Black")
-  (set-face-background 'modeline "White")
-  (set-face-foreground 'mode-line-inactive "Gray")
-  (set-face-background 'mode-line-inactive "Black")
-  (set-face-foreground 'minibuffer-prompt "Green"))
-
-;; Color Scheme
-;; Black   #000000(0,0,0)       #000000(64,64,64)
-;; Red     #ff6347(255,99,71)   #ff0000(255,64,64)
-;; Green   #32cd32(0,255,0)     #00ff00(50,255,50)
-;; Yellow  #ecc142(236,193,66)  #ffff00(255,255,0)
-;; Blue    #87ceff(135,206,255) #00adff(128,162,255)
-;; Magenta #ffa2ff(255,162,255) #ff00ff(255,0,255)
-;; Cyan    #0000ff(0,255,255)   #a2ffff(162,255,255)
-;; White   #f5f5f5(225,225,225) #ffffff(255,255,255)
-
-(when (eq window-system nil)
-  ;; (set-background-color "Black")
-  ;; (set-foreground-color "White")
-  ;; (set-cursor-color "Green")
-  (set-face-background 'region "Blue")
-  (set-face-foreground 'region "Black")
-  (set-face-foreground 'font-lock-string-face  "Magenta")
-  (set-face-foreground 'font-lock-comment-face "Yellow")
-  (set-face-foreground 'font-lock-comment-delimiter-face "Yellow")
-  (set-face-foreground 'font-lock-keyword-face "Yellow")
-  (set-face-foreground 'font-lock-function-name-face "Blue")
-  (set-face-foreground 'font-lock-variable-name-face "Green")
-  (set-face-foreground 'font-lock-type-face "Blue")
-  (set-face-foreground 'font-lock-warning-face "Yellow")
-  (set-face-foreground 'font-lock-builtin-face "Yellow")
-  (set-face-foreground 'font-lock-constant-face "Red")
-  (set-face-background 'highlight "Blue")
-  (set-face-foreground 'highlight "White")
-  (set-face-foreground 'modeline "Black")
-  (set-face-background 'modeline "White")
-  (set-face-foreground 'mode-line-inactive "Glay")
-  (set-face-background 'mode-line-inactive "Black")
-  (set-face-foreground 'minibuffer-prompt "Green"))
-
-;; transition when use window-system
-(when window-system
-  (progn
-    (set-frame-parameter nil 'alpha 85)))
-
-
 ;;; sdic
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -1021,10 +953,48 @@
 ;;   (define-key c++-mode-map (kbd "C-c d i") 'c-doc-insert)
 ;;   )
 
-;;; set fullscreen when start
-(when (and (eq window-system 'ns) (>= emacs-major-version 23))
-  (ns-toggle-fullscreen-internal))
+;;; Color settings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Color Scheme
+;; Black   #000000(0,0,0)       #000000(64,64,64)
+;; Red     #ff6347(255,99,71)   #ff0000(255,64,64)
+;; Green   #32cd32(0,255,0)     #00ff00(50,255,50)
+;; Yellow  #ecc142(236,193,66)  #ffff00(255,255,0)
+;; Blue    #87ceff(135,206,255) #00adff(128,162,255)
+;; Magenta #ffa2ff(255,162,255) #ff00ff(255,0,255)
+;; Cyan    #0000ff(0,255,255)   #a2ffff(162,255,255)
+;; White   #f5f5f5(225,225,225) #ffffff(255,255,255)
+
+(set-background-color "#313e32")
+(set-foreground-color "#fff")
+(set-cursor-color "#84ff84")
+
+(set-face-foreground 'font-lock-builtin-face "#a6e22a");
+(set-face-foreground 'font-lock-comment-delimiter-face "#75716e")
+(set-face-foreground 'font-lock-comment-face "#75716e")
+(set-face-foreground 'font-lock-constant-face "#ae81ff")
+(set-face-foreground 'font-lock-doc-face "#e6db74")
+(set-face-foreground 'font-lock-string-face "#e6db74")
+(set-face-foreground 'font-lock-function-name-face "#a6e22e")
+(set-face-foreground 'font-lock-keyword-face "#f92672")
+(set-face-foreground 'font-lock-type-face "#89bdff")
+(set-face-foreground 'font-lock-variable-name-face "#f92672")
+(set-face-foreground 'font-lock-warning-face "#fd5ff1")
+(set-face-background 'region "#49483e")
+(set-face-background 'hl-line "#49483e")
+(set-face-background 'highlight "#f92672")
+(set-face-foreground 'highlight "#f8f8f0")
+(set-face-background 'lazy-highlight "#49483e")
+(set-face-background 'anything-match "#49483e")
+(set-face-background 'isearch "#f92672")
+(set-face-foreground 'isearch "#f8f8f0")
+(set-face-foreground 'linum "#f8f8f2")
+(set-face-foreground 'modeline "#000")
+(set-face-background 'modeline "#ffbf00")
+(set-face-foreground 'mode-line-inactive "#75716e")
+(set-face-background 'mode-line-inactive "#222322")
+(set-face-foreground 'minibuffer-prompt "#0f0")
+
 
 ;; EOF ;;
-
-

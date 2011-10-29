@@ -6,8 +6,16 @@
 export LANG="ja_JP.UTF-8"
 export LC_CTYPE="ja_JP.UTF-8"
 
-if [ -e `whereis lv | awk '{print $2}'` ]; then
-    export PAGER=`whereis lv | awk '{print $2}'`
+# export TMP="$HOME/tmp"
+# export EDITOR="emacsclient"
+# export GREP_OPTIONS="--color=auto"
+export LS_COLORS=':no=00:fi=00:di=36:ln=35:pi=33:so=32:bd=34;46:cd=34;43:ex=31:'
+export PERL5LIB=$HOME/usr/lib/perl:$PERL5LIB
+PATH=$HOME/usr/bin:/usr/local/bin:/usr/X11R6/bin:/usr/X11/bin:/usr/bin:/usr/sbin:/share/usr/bin:/sbin:/bin:${PATH}
+WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
+
+if [ -e `which lv` ]; then
+    export PAGER=`which lv`
 else
     export PAGER="/usr/bin/less"
 fi
@@ -16,15 +24,7 @@ if [ -e "/usr/local/bin/zsh" ]; then
     export SHELL="/usr/local/bin/zsh"
 else
     export SHELL="/bin/zsh"
-fi 
-
-export TMP="$HOME/tmp"
-export EDITOR="emacsclient"
-# export GREP_OPTIONS="--color=auto"
-export LS_COLORS=':no=00:fi=00:di=36:ln=35:pi=33:so=32:bd=34;46:cd=34;43:ex=31:'
-export PERL5LIB=$HOME/usr/lib/perl:$PERL5LIB
-PATH=$HOME/usr/bin:/usr/local/git/bin:/usr/local/bin:/usr/X11R6/bin:/usr/X11/bin:/usr/bin:/usr/sbin:/share/usr/bin:/sbin:/bin:${PATH}
-WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
+fi
 
 # history
 HISTFILE=$HOME/.zsh_history
@@ -82,7 +82,7 @@ alias sl='ls'
 alias l='ls'
 alias la='ls -a'
 alias ll='ls -l'
-alias lv='$PAGER'
+# alias lv='$PAGER'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
