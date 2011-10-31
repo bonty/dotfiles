@@ -39,3 +39,6 @@ hardstatus alwayslastline "[%02c] %`%-w%{= bk}%n %t%{-}%+w %="
 # keybind
 bind U encoding utf8
 bind E encoding euc
+
+# set screen env
+setenv SCREEN true

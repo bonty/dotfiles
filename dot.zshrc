@@ -170,14 +170,11 @@ function ssh_screen(){
     eval server=?${$#}
         screen -t $server ssh "$@"
 }
-if [ x$TERM = xscreen ]; then
+if [ "$SCREEN" = "true" ]; then
     alias ssh=ssh_screen
-fi
-
-if [ "$TERM" = "screen" ]; then
+    
     local -a shorthost
-
-    echo $TERMCAP | grep -q -i screen
+    echo $TERMCAP | grep -q -i xterm-256color
     if [ $? -eq 0 ]; then
         shorthost=""
     else
