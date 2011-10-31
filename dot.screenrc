@@ -1,12 +1,12 @@
-#
-# .screenrc file ver.110302
-#
-
 # prefix key
 escape ^tt
 
 defscrollback 1000
 defmonitor on
+
+# color setting
+defbce on
+term xterm-256color
 
 # encoding
 defencoding utf-8
