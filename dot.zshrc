@@ -1,7 +1,3 @@
-#
-# .zshrc file ver.081115
-#
-
 # environment
 export LANG="ja_JP.UTF-8"
 export LC_CTYPE="ja_JP.UTF-8"
@@ -87,7 +83,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 alias h='history 20'
-alias emacs='emacs -nw'
+alias emacs='TERM=xterm-256color emacs -nw'
 alias e='emacs'
 alias screen='screen -U'
 alias s='screen'
@@ -170,11 +166,11 @@ function ssh_screen(){
     eval server=?${$#}
         screen -t $server ssh "$@"
 }
-if [ "$SCREEN" = "true" ]; then
+if [ ${TERM%%-*} = screen ]; then
     alias ssh=ssh_screen
     
     local -a shorthost
-    echo $TERMCAP | grep -q -i xterm-256color
+    echo $TERMCAP | grep -q -i screen
     if [ $? -eq 0 ]; then
         shorthost=""
     else
@@ -186,7 +182,7 @@ if [ "$SCREEN" = "true" ]; then
     preexec() {
         if [ "$shorthost" = "" ]; then
             echo -ne "\ek${1%% *}\e\\"
-          else
+        else
             echo -ne "\ek${1%% *}@${shorthost}\e\\"
         fi
         # echo -ne "\e_`dirs`\e\\"

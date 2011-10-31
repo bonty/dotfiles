@@ -6,13 +6,11 @@ defmonitor on
 
 # color setting
 defbce on
-term xterm-256color
+term screen-256color-bce
 
 # encoding
 defencoding utf-8
 encoding utf-8 utf-8
-# defc1 off
-# defutf8 on
 
 # no annoying audible bell
 vbell off
