@@ -532,104 +532,6 @@
 (require 'shell-history nil t)
 
 
-;;; flymake.el
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(when (require 'flymake nil t)
-
-  ;; set warning face
-  (set-face-background 'flymake-errline "Red")
-  (set-face-foreground 'flymake-errline "Black")
-  (set-face-background 'flymake-warnline "Yellow")
-  (set-face-foreground 'flymake-warnline "Black")
-
-  ;; display error in minibuffer
-  (defun flymake-display-err-minibuf
-    "Displays the error/warning for the current line in the minibuffer"
-    (interactive)
-    (let* ((line-no (flymake-current-line-no))
-           (line-err-info-list (nth 0 (flymake-find-err-info flymake-err-info line-no)))
-           (count (length line-err-info-list)))
-      (while (> count 0)
-        (let* ((file (flymake-ler-file (nth (1- count) line-erro)))
-               (full-file (flymake-ler-full-file (nth (1- count) line-err-info-list)))
-               (text (flymake-ler-text (nth (1- count) line-err-info-list)))
-               (line (flymake-ler-line (nth (1- count) line-err-info-list)))))
-        (setq count (1- count)))))
-
-  ;; C-c e => jump flymake error
-  (defun next-flymake-error ()
-    (interactive)
-    (flymake-goto-next-error)
-    (let ((err (get-char-property (point) 'help-echo)))
-      (when err
-        (message err))))
-  (global-set-key (kbd "C-c e") 'next-flymake-error)
-
-  ;; setting for perl
-  ;; @see http://unknownplace.org/memo/2007/12/21#e001
-
-  ;; set-perl5lib
-  ;; @see http://svn.coderepos.org/share/lang/elisp/set-perl5lib/set-perl5lib.el
-  (require 'set-perl5lib nil t)
-
-  (defvar flymake-perl-err-line-patterns
-    '(("\\(.*\\) at \\([^ \n]+\\) line \\([0-9]+\\)[,.\n]" 2 3 nil 1)))
-
-  (defconst flymake-allowed-perl-file-name-masks
-    '(("\\.pl$" flymake-perl-init)
-      ("\\.pm$" flymake-perl-init)
-      ("\\.t$" flymake-perl-init)))
-
-  (defun flymake-perl-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
-           (local-file (file-relative-name
-                        temp-file
-                        (file-name-directory buffer-file-name))))
-      (list "perl" (list "-wc" local-file))))
-
-  (defun flymake-perl-load ()
-    (interactive)
-    (defadvice flymake-post-syntax-check (before flymake-force-check-was-interrupted)
-      (setq flymake-check-was-interrupted t))
-    (ad-activate 'flymake-post-syntax-check)
-    (setq flymake-allowed-file-name-masks (append flymake-allowed-file-name-masks flymake-allowed-perl-file-name-masks))
-    (setq flymake-err-line-patterns flymake-perl-err-line-patterns)
-    (set-perl5lib)
-    (flymake-mode t))
-
-  (add-hook 'cperl-mode-hook '(lambda () (flymake-perl-load)))
-
-  ;; setting for C
-  (defun flymake-c-init ()
-    (let* ((temp-file   (flymake-init-create-temp-buffer-copy
-                         'flymake-create-temp-inplace))
-           (local-file  (file-relative-name
-                         temp-file
-                         (file-name-directory buffer-file-name))))
-      (list "gcc" (list "-Wall" "-Wextra" "-fsyntax-only" local-file))))
-
-  (push '("\\.c$" flymake-c-init) flymake-allowed-file-name-masks)
-
-  (add-hook 'c-mode-hook '(lambda () (flymake-mode t)))
-
-
-  ;; setting for C++
-  (defun flymake-cc-init ()
-    (let* ((temp-file   (flymake-init-create-temp-buffer-copy
-                         'flymake-create-temp-inplace))
-           (local-file  (file-relative-name
-                         temp-file
-                         (file-name-directory buffer-file-name))))
-      (list "g++" (list "-Wall" "-Wextra" "-fsyntax-only" local-file))))
-
-  (push '("\\.cpp$" flymake-cc-init) flymake-allowed-file-name-masks)
-
-  (add-hook 'c++-mode-hook '(lambda () (flymake-mode t)))
-  )
-
-
 ;;; zencoding-mode.el
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -778,6 +680,38 @@
   )
 
 
+;;; Ruby
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; ruby-mode
+(when (require 'ruby-mode nil t)
+  (add-to-list 'auto-mode-alist '("\\rb$$" . ruby-mode))
+  (setq interpreter-mode-alist (append '(("ruby" . ruby-mode)) interpreter-mode-alist))
+  (autoload-if-found 'run-ruby "inf-ruby" "Run an inferior Ruby process")
+  (autoload-if-found 'inf-ruby-keys "inf-ruby" "Set local key defs for inf-ruby in ruby-mode")
+  (add-hook 'ruby-mode-hook
+            '(lambda ()
+               (inf-ruby-keys)))
+
+  (setq ruby-indent-level 2)
+  (setq ruby-indent-tabs-mode nil)
+  )
+
+;; ruby-electric.el
+(when (require 'ruby-electric nil t)
+  (add-hook 'ruby-mode-hook
+            '(lambda ()
+               (ruby-electric-mode t)))
+  )
+
+;; Interactively Do Things
+(when (require 'ido nil t)
+  (ido-mode t)
+  )
+
+;; Rinari
+(when (require 'rinari nil t))
+
 ;;; JavaScript
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -837,6 +771,125 @@
         dvi2-command "pxdvi -geo +0+0 -s 4"
         section-name "documentclass")
   )
+
+
+;;; flymake.el
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(when (require 'flymake nil t)
+
+  ;; set warning face
+  (set-face-background 'flymake-errline "Red")
+  (set-face-foreground 'flymake-errline "Black")
+  (set-face-background 'flymake-warnline "Yellow")
+  (set-face-foreground 'flymake-warnline "Black")
+
+  ;; display error in minibuffer
+  (defun flymake-display-err-minibuf
+    "Displays the error/warning for the current line in the minibuffer"
+    (interactive)
+    (let* ((line-no (flymake-current-line-no))
+           (line-err-info-list (nth 0 (flymake-find-err-info flymake-err-info line-no)))
+           (count (length line-err-info-list)))
+      (while (> count 0)
+        (let* ((file (flymake-ler-file (nth (1- count) line-erro)))
+               (full-file (flymake-ler-full-file (nth (1- count) line-err-info-list)))
+               (text (flymake-ler-text (nth (1- count) line-err-info-list)))
+               (line (flymake-ler-line (nth (1- count) line-err-info-list)))))
+        (setq count (1- count)))))
+
+  ;; C-c e => jump flymake error
+  (defun next-flymake-error ()
+    (interactive)
+    (flymake-goto-next-error)
+    (let ((err (get-char-property (point) 'help-echo)))
+      (when err
+        (message err))))
+  (global-set-key (kbd "C-c e") 'next-flymake-error)
+
+  ;; setting for perl
+  ;; @see http://unknownplace.org/memo/2007/12/21#e001
+
+  ;; set-perl5lib
+  ;; @see http://svn.coderepos.org/share/lang/elisp/set-perl5lib/set-perl5lib.el
+  (require 'set-perl5lib nil t)
+
+  (defvar flymake-perl-err-line-patterns
+    '(("\\(.*\\) at \\([^ \n]+\\) line \\([0-9]+\\)[,.\n]" 2 3 nil 1)))
+
+  (defconst flymake-allowed-perl-file-name-masks
+    '(("\\.pl$" flymake-perl-init)
+      ("\\.pm$" flymake-perl-init)
+      ("\\.t$" flymake-perl-init)))
+
+  (defun flymake-perl-init ()
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+      (list "perl" (list "-wc" local-file))))
+
+  (defun flymake-perl-load ()
+    (interactive)
+    (defadvice flymake-post-syntax-check (before flymake-force-check-was-interrupted)
+      (setq flymake-check-was-interrupted t))
+    (ad-activate 'flymake-post-syntax-check)
+    (setq flymake-allowed-file-name-masks (append flymake-allowed-file-name-masks flymake-allowed-perl-file-name-masks))
+    (setq flymake-err-line-patterns flymake-perl-err-line-patterns)
+    (set-perl5lib)
+    (flymake-mode t))
+
+  (add-hook 'cperl-mode-hook '(lambda () (flymake-perl-load)))
+
+  ;; setting for Ruby
+  (defun flymake-ruby-init ()
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+      (list "ruby" (list "-c" local-file))))
+
+  (push '(".+\\.rb$" flymake-ruby-init) flymake-allowed-file-name-masks)
+  (push '("Rakefile$" flymake-ruby-init) flymake-allowed-file-name-masks)
+
+  (push '("^\\(.*\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3) flymake-err-line-patterns)
+
+  (add-hook 'ruby-mode-hook
+             '(lambda ()
+                (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
+                    (flymake-mode t)
+                    )))
+
+  ;; setting for C
+  (defun flymake-c-init ()
+    (let* ((temp-file   (flymake-init-create-temp-buffer-copy
+                         'flymake-create-temp-inplace))
+           (local-file  (file-relative-name
+                         temp-file
+                         (file-name-directory buffer-file-name))))
+      (list "gcc" (list "-Wall" "-Wextra" "-fsyntax-only" local-file))))
+
+  (push '("\\.c$" flymake-c-init) flymake-allowed-file-name-masks)
+
+  (add-hook 'c-mode-hook '(lambda () (flymake-mode t)))
+
+
+  ;; setting for C++
+  (defun flymake-cc-init ()
+    (let* ((temp-file   (flymake-init-create-temp-buffer-copy
+                         'flymake-create-temp-inplace))
+           (local-file  (file-relative-name
+                         temp-file
+                         (file-name-directory buffer-file-name))))
+      (list "g++" (list "-Wall" "-Wextra" "-fsyntax-only" local-file))))
+
+  (push '("\\.cpp$" flymake-cc-init) flymake-allowed-file-name-masks)
+
+  (add-hook 'c++-mode-hook '(lambda () (flymake-mode t)))
+  )
+
 
 ;;; load plugins
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
