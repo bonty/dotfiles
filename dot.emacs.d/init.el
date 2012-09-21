@@ -1,30 +1,52 @@
-;; -* Mode: Emacs-Lisp ; Coding: utf-8 -*-
-
-;; TODO
+;; -*- mode: emacs-lisp ; coding: utf-8 -*-
 
 
 ;; Common Lisp exstensions for Emacs
 (require 'cl nil t)
 
+;; load-path
+(let ((default-directory "~/.emacs.d"))
+  (setq load-path (cons default-directory load-path))
+  (normal-top-level-add-subdirs-to-load-path))
 
-;;; Macros
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; exec-path
+(dolist (dir (list
+              (expand-file-name "~/usr/bin")
+              "/bin"
+              "/sbin"
+              "/usr/bin"
+              "/usr/sbin"
+              "/opt/local/bin"
+              "/opt/local/sbin"
+              "/opt/X11/bin"
+              "/usr/local/bin"
+              "/usr/local/sbin"
+              ))
 
-;; eval-safe
-;; usage: (eval-safe (some-suspicious-condition)) #nesting available
-;; @see http://www.sodan.org/~knagano/emacs/dotemacs.html
-(defmacro eval-safe (&rest body)
-  `(condition-case err
-       (progn ,@body)
-     (error (message "[eval-safe] %s" err))))
+  (when (and (file-exists-p dir) (not (member dir exec-path)))
+    (setenv "PATH" (concat dir ":" (getenv "PATH")))
+    (setq exec-path (append (list dir) exec-path))))
 
+;; image-load-path
+;; @see http://www.mail-archive.com/emacs-devel@gnu.org/msg10703.html
+(when (eq window-system nil)
+  (defvar image-load-path
+    (list (file-name-as-directory (expand-file-name "images" data-directory))
+          'data-directory 'load-path)
+    "List of locations in which to search for image files.
+    If an element is a string, it defines a directory to search.
+    If an element is a variable symbol whose value is a string, that
+    value defines a directory to search.
+    If an element is a variable symbol whose value is a list, the
+    value is used as a list of directories to search.")
+  )
 
-;;; Functions
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; load function/macro
+(load "functions/functions")
+(load "functions/macros")
 
 ;; system-type predicates
 ;; @see http://github.com/elim/dotemacs/blob/master/init.el
-(defun x->bool (elt) (not (not elt)))
 (setq darwin-p  (eq system-type 'darwin)
       ns-p      (featurep 'ns)
       carbon-p  (eq window-system 'mac)
@@ -43,122 +65,29 @@
       meadow-p  (featurep 'meadow)
       windows-p (or cygwin-p nt-p meadow-p))
 
-;; autoload-if-found
-;; @see http://www.sodan.org/~knagano/emacs/dotemacs.html
-(defun autoload-if-found (function file &optional docstring interactive type)
-  "set autoload iff. FILE has found."
-  (and (locate-library file)
-       (autoload function file docstring interactive type)))
-
-
-;;; load-path
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; System
-(let ((default-directory "~/.emacs.d/elisp/"))
-  (setq load-path (cons default-directory load-path))
-  (normal-top-level-add-subdirs-to-load-path))
-;; (setq load-path (cons "/usr/local/share/emacs/site-lisp" load-path))
-
-
-;;; exec-path
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;;(setq exec-path (cons "~/.emacs.d/bin" exec-path))
-(dolist (dir (list
-              "/sbin"
-              "/usr/sbin"
-              "/bin"
-              "/usr/bin"
-              "/usr/local/bin"
-              (expand-file-name "~/usr/bin")
-              ))
- (when (and (file-exists-p dir) (not (member dir exec-path)))
-   (setenv "PATH" (concat dir ":" (getenv "PATH")))
-   (setq exec-path (append (list dir) exec-path))))
-
-;; add shell $PATH to exec-path
-;; @see http://d.hatena.ne.jp/sugyan/20100704/1278212225
-;; (loop for x in (reverse
-;;                 (split-string (substring (shell-command-to-string "echo $PATH") 0 -1) ":"))
-;;       do (add-to-list 'exec-path x))
-
-;; image-load-path
-;; @see http://www.mail-archive.com/emacs-devel@gnu.org/msg10703.html
-(when (eq window-system nil)
-  (defvar image-load-path
-    (list (file-name-as-directory (expand-file-name "images" data-directory))
-          'data-directory 'load-path)
-    "List of locations in which to search for image files.
-    If an element is a string, it defines a directory to search.
-    If an element is a variable symbol whose value is a string, that
-    value defines a directory to search.
-    If an element is a variable symbol whose value is a list, the
-    value is used as a list of directories to search.")
-  )
-
-
-;;; Language Environment (default utf8)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(set-language-environment "Japanese")
-(set-language-environment-coding-systems "Japanese")
-(prefer-coding-system 'utf-8-unix)
-(set-default-coding-systems 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-clipboard-coding-system 'utf-8)
-(set-buffer-file-coding-system 'utf-8-unix)
-(setq default-buffer-file-coding-system 'utf-8)
-(setq local-coding-system 'utf-8)
-(setq file-name-coding-system 'utf-8)
-(setq default-file-name-coding-system 'utf-8)
-
-;; (cond
-;;  (windows-p ; local variables for windows (shift-jis)
-;;   (setq file-name-coding-system 'sjis-dos)
-;;   (setq default-file-name-coding-system 'sjis-dos))
-;;  (t         ; default setting
-;;   (setq file-name-coding-system 'utf-8)
-;;   (setq default-file-name-coding-system 'utf-8)))
-
-;; ;; Mapping wide character correctly (for Emacs22.x)
-;; (if (< emacs-major-version 23)
-;;     (utf-translate-cjk-set-unicode-range
-;;      '((#x00a2 . #x00a3) (#x00a7 . #x00a8) (#x00ac . #x00ac)
-;;        (#x00b0 . #x00b1) (#x00b4 . #x00b4) (#x00b6 . #x00b6)
-;;        (#x00d7 . #x00d7) (#X00f7 . #x00f7) (#x0370 . #x03ff)
-;;        (#x0400 . #x04FF) (#x2000 . #x206F) (#x2100 . #x214F)
-;;        (#x2190 . #x21FF) (#x2200 . #x22FF) (#x2300 . #x23FF)
-;;        (#x2500 . #x257F) (#x25A0 . #x25FF) (#x2600 . #x26FF)
-;;        (#x2e80 . #xd7a3) (#xff00 . #xffef)
-;;        )))
-
-
-;;; Global Settings
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; locale setting
+(set-locale-environment nil)
 
 ;; hide startup message
 (setq inhibit-startup-message t)
 
-;; hide menubar and toolbar (eval-safe)
-(when (eq window-system nil)
-  (eval-safe (menu-bar-mode nil))
-  (eval-safe (tool-bar-mode nil))
-  )
+;; hide menubar and toolbar
+(when (not window-system)
+  (menu-bar-mode -1))
+(tool-bar-mode -1)
 
 ;; hide scroll bar
 (when window-system
-  (eval-safe (scroll-bar-mode nil)))
+  (eval-safe (scroll-bar-mode -1)))
 
 ;; disable visible bell
-(setq visible-bell nil)
+(setq visible-bell -1)
 
 ;; disable beep
 (setq ring-bell-funciton '(lambda ()))
 
 ;; disable backup
-(setq make-backup-files nil)
+(setq make-backup-files -1)
 
 ;; delete auto save file when quit
 (setq delete-auto-save-files t)
@@ -178,9 +107,6 @@
 
 ;; set space indent (not tab)
 (setq-default indent-tabs-mode nil)
-
-;; set deafault tab width
-;; (setq-default tab-width 8)
 
 ;; auto relative indent
 (setq indent-line-function 'indent-relative-maybe)
@@ -214,10 +140,7 @@
 (setq cua-enable-cua-keys nil)
 (cua-mode t)
 
-
-;;; Highlight
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
+;; highlight
 (show-paren-mode t)
 (setq show-paren-ring-bell-on-mismatch t)
 (setq transient-mark-mode t)
@@ -226,130 +149,29 @@
 (setq query-replace-highlight t)
 (global-font-lock-mode t)
 
-;;; sdic
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; @see http://d.hatena.ne.jp/derui/20100120/1263995789
-(defun temp-cancel-read-only (function &optional jaspace-off)
-  "eval temporarily cancel buffer-read-only
-&optional t is turn of jaspace-mode"
-  (let ((read-only-p nil)
-        (jaspace-mode-p nil))
-    (when (and jaspace-off jaspace-mode)
-      (jaspace-mode)
-      (setq jaspace-mode-p t))
-    (when buffer-read-only
-      (toggle-read-only)
-      (setq read-only-p t))
-    (eval function)
-    (when read-only-p
-      (toggle-read-only))
-    (when jaspace-mode-p
-      (jaspace-mode))))
-
-(defun my-sdic-describe-word-with-popup (word &optional search-function)
-  "Display the meaning of word."
-  (interactive
-   (let ((f (if current-prefix-arg (sdic-select-search-function)))
-         (w (sdic-read-from-minibuffer)))
-     (list w f)))
-  (let ((old-buf (current-buffer))
-        (dict-data))
-    (set-buffer (get-buffer-create sdic-buffer-name))
-    (or (string= mode-name sdic-mode-name) (sdic-mode))
-    (erase-buffer)
-    (let ((case-fold-search t)
-          (sdic-buffer-start-point (point-min)))
-      (if (prog1 (funcall (or search-function
-                              (if (string-match "\\cj" word)
-                                  'sdic-search-waei-dictionary
-                                'sdic-search-eiwa-dictionary))
-                          word)
-            (set-buffer-modified-p nil)
-            (setq dict-data (buffer-string))
-            (set-buffer old-buf))
-          (temp-cancel-read-only
-           '(popup-tip dict-data :scroll-bar t :truncate nil))
-        (message "Can't find word, \"%s\"." word))))
-  )
-
-(defadvice sdic-describe-word-at-point (around sdic-popup-advice activate)
-  (letf (((symbol-function 'sdic-describe-word) (symbol-function 'my-sdic-describe-word-with-popup)))
-    ad-do-it))
-
-;; @see http://www.fugenji.org/~thomas/diary/index.php?no=r443
-(when (autoload-if-found 'sdic-describe-word "sdic" "search word" t nil)
-  (global-set-key (kbd "C-c W") 'sdic-describe-word))
-(when (autoload-if-found 'sdic-describe-word-at-point "sdic" "カーソル位置の英単語の意味を調べる" t nil)
-  (global-set-key (kbd "C-c w") 'sdic-describe-word-at-point))
-
-;; ----- sdicが呼ばれたときの設定
-(eval-after-load "sdic"
-  '(progn
-     ;; saryのコマンドをセットする
-     (setq sdicf-array-command "/usr/local/bin/sary")
-     ;; sdicファイルのある位置を設定し、arrayコマンドを使用するよう設定(現在のところ英和のみ)
-     (setq sdic-eiwa-dictionary-list
-           '((sdicf-client "/usr/local/share/dict/eijiro.sdic"
-                           (strategy array)))
-           sdic-waei-dictionary-list
-           '((sdicf-client "/usr/local/share/dict/waeijiro.sdic"
-                           (strategy array))))
-     ;; saryを直接使用できるように sdicf.el 内に定義されているarrayコマンド用関数を強制的に置換
-     (fset 'sdicf-array-init 'sdicf-common-init)
-     (fset 'sdicf-array-quit 'sdicf-common-quit)
-     (fset 'sdicf-array-search
-           (lambda (sdic pattern &optional case regexp)
-             (sdicf-array-init sdic)
-             (if regexp
-                 (signal 'sdicf-invalid-method '(regexp))
-               (save-excursion
-                 (set-buffer (sdicf-get-buffer sdic))
-                 (delete-region (point-min) (point-max))
-                 (apply 'sdicf-call-process
-                        sdicf-array-command
-                        (sdicf-get-coding-system sdic)
-                        nil t nil
-                        (if case
-                            (list "-i" pattern (sdicf-get-filename sdic))
-                          (list pattern (sdicf-get-filename sdic))))
-                 (goto-char (point-min))
-                 (let (entries)
-                   (while (not (eobp)) (sdicf-search-internal))
-                   (nreverse entries))))))
-     ;; おまけ--辞書バッファ内で移動した時、常にバッファの一行目になるようにする
-     (defadvice sdic-forward-item (after sdic-forward-item-always-top activate)
-       (recenter 0))
-     (defadvice sdic-backward-item (after sdic-backward-item-always-top activate)
-       (recenter 0))))
-
-(setq sdic-default-coding-system 'utf-8-unix)
-
-;;; Font
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
+;; font
 ;; @see http//d.hatena.ne.jp/antipop/20100126/1264493522
 (when window-system
   (when (>= emacs-major-version 23)
     (set-face-attribute 'default nil
                         :family "Ricty"
-                        :height 150)
+                        :height 140)
     ))
 
+;; window opacity
+(when window-system
+  (progn
+    (set-frame-parameter nil 'alpha 85)))
 
-;;; Keybind
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
+;; keybind
 (define-key isearch-mode-map (kbd "C-k") 'isearch-edit-string)
 (define-key global-map (kbd "C-c c") 'comment-region)
 (define-key global-map (kbd "C-c u") 'uncomment-region)
 (define-key global-map (kbd "C-c r") 'replace-string)
-;; (define-key global-map (kbd "TAB") 'indent-region)
 (define-key global-map (kbd "C-c i") 'indent-region)
 (define-key global-map (kbd "C-\\") 'undo)
 (define-key global-map (kbd "M-/") 'undo-tree-redo)
 (define-key global-map (kbd "C-h") 'delete-backward-char)
-;; (define-key global-map (kbd "C-x C-b") 'electric-buffer-list)
 (define-key global-map (kbd "C-c g") 'goto-line)
 (define-key function-key-map [delete] (kbd "C-d"))
 (define-key global-map (kbd "C-m") 'newline-and-indent)
@@ -392,6 +214,46 @@
         (beginning-of-line)
       (back-to-indentation)))
   )
+
+;; color settings
+;; Black   #000000(0,0,0)       #000000(64,64,64)
+;; Red     #ff6347(255,99,71)   #ff0000(255,64,64)
+;; Green   #32cd32(0,255,0)     #00ff00(50,255,50)
+;; Yellow  #ecc142(236,193,66)  #ffff00(255,255,0)
+;; Blue    #87ceff(135,206,255) #00adff(128,162,255)
+;; Magenta #ffa2ff(255,162,255) #ff00ff(255,0,255)
+;; Cyan    #0000ff(0,255,255)   #a2ffff(162,255,255)
+;; White   #f5f5f5(225,225,225) #ffffff(255,255,255)
+
+(set-background-color "#000")
+(set-foreground-color "#fff")
+(set-cursor-color "#84ff84")
+
+(set-face-foreground 'font-lock-builtin-face "#a6e22a");
+(set-face-foreground 'font-lock-comment-delimiter-face "#75716e")
+(set-face-foreground 'font-lock-comment-face "#75716e")
+(set-face-foreground 'font-lock-constant-face "#ae81ff")
+(set-face-foreground 'font-lock-doc-face "#e6db74")
+(set-face-foreground 'font-lock-string-face "#e6db74")
+(set-face-foreground 'font-lock-function-name-face "#a6e22e")
+(set-face-foreground 'font-lock-keyword-face "#f92672")
+(set-face-foreground 'font-lock-type-face "#89bdff")
+(set-face-foreground 'font-lock-variable-name-face "#f92672")
+(set-face-foreground 'font-lock-warning-face "#fd5ff1")
+(set-face-background 'region "#49483e")
+;; (set-face-background 'hl-line "#49483e")
+(set-face-background 'highlight "#f92672")
+(set-face-foreground 'highlight "#f8f8f0")
+(set-face-background 'lazy-highlight "#49483e")
+;; (set-face-background 'anything-match "#49483e")
+(set-face-background 'isearch "#f92672")
+(set-face-foreground 'isearch "#f8f8f0")
+;; (set-face-foreground 'linum "#75716e")
+(set-face-foreground 'modeline "#000")
+(set-face-background 'modeline "#ffbf00")
+(set-face-foreground 'mode-line-inactive "#75716e")
+(set-face-background 'mode-line-inactive "#222322")
+(set-face-foreground 'minibuffer-prompt "#0f0")
 
 
 ;;; auto-install.el
@@ -1024,47 +886,8 @@
 ;;   (define-key c++-mode-map (kbd "C-c d i") 'c-doc-insert)
 ;;   )
 
-;;; Color settings
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; delete trailing whitespace automatically
+(add-hook 'before-save-hook delete-trailing-whitespace)
 
-;; Color Scheme
-;; Black   #000000(0,0,0)       #000000(64,64,64)
-;; Red     #ff6347(255,99,71)   #ff0000(255,64,64)
-;; Green   #32cd32(0,255,0)     #00ff00(50,255,50)
-;; Yellow  #ecc142(236,193,66)  #ffff00(255,255,0)
-;; Blue    #87ceff(135,206,255) #00adff(128,162,255)
-;; Magenta #ffa2ff(255,162,255) #ff00ff(255,0,255)
-;; Cyan    #0000ff(0,255,255)   #a2ffff(162,255,255)
-;; White   #f5f5f5(225,225,225) #ffffff(255,255,255)
-
-(set-background-color "#313e32")
-(set-foreground-color "#fff")
-(set-cursor-color "#84ff84")
-
-(set-face-foreground 'font-lock-builtin-face "#a6e22a");
-(set-face-foreground 'font-lock-comment-delimiter-face "#75716e")
-(set-face-foreground 'font-lock-comment-face "#75716e")
-(set-face-foreground 'font-lock-constant-face "#ae81ff")
-(set-face-foreground 'font-lock-doc-face "#e6db74")
-(set-face-foreground 'font-lock-string-face "#e6db74")
-(set-face-foreground 'font-lock-function-name-face "#a6e22e")
-(set-face-foreground 'font-lock-keyword-face "#f92672")
-(set-face-foreground 'font-lock-type-face "#89bdff")
-(set-face-foreground 'font-lock-variable-name-face "#f92672")
-(set-face-foreground 'font-lock-warning-face "#fd5ff1")
-(set-face-background 'region "#49483e")
-(set-face-background 'hl-line "#49483e")
-(set-face-background 'highlight "#f92672")
-(set-face-foreground 'highlight "#f8f8f0")
-(set-face-background 'lazy-highlight "#49483e")
-(set-face-background 'anything-match "#49483e")
-(set-face-background 'isearch "#f92672")
-(set-face-foreground 'isearch "#f8f8f0")
-(set-face-foreground 'linum "#75716e")
-(set-face-foreground 'modeline "#000")
-(set-face-background 'modeline "#ffbf00")
-(set-face-foreground 'mode-line-inactive "#75716e")
-(set-face-background 'mode-line-inactive "#222322")
-(set-face-foreground 'minibuffer-prompt "#0f0")
 
 ;; EOF ;;
