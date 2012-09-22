@@ -887,7 +887,7 @@
 ;;   )
 
 ;; delete trailing whitespace automatically
-(add-hook 'before-save-hook delete-trailing-whitespace)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 
 ;; EOF ;;
