@@ -1,7 +1,8 @@
 ;; -*- mode: emacs-lisp ; coding: utf-8 -*-
 
 ;; el-get
-(add-to-list 'load-path "~/.emacs.d/packages/el-get")
+(setq el-get-dir "~/.emacs.d/packages/")
+
 (unless (require 'el-get nil t)
   (with-current-buffer
       (url-retrieve-synchronously
@@ -11,4 +12,7 @@
 
 ;; recipe directory
 (add-to-list 'el-get-recipe-path
-             (concat (file-name-directory load-file-name) "/el-get/recipes"))
+             (concat (file-name-directory load-file-name) "/el-get/recipes/"))
+
+;; load packages config
+(load-directory-files "~/.emacs.d/config/packages/" "^.+el$")
