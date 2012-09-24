@@ -167,7 +167,7 @@ function ssh_screen(){
         screen -t $server ssh "$@"
 }
 if [ ${TERM%%-*} = screen ]; then
-    alias ssh=ssh_screen
+    # alias ssh=ssh_screen
     
     local -a shorthost
     echo $TERMCAP | grep -q -i screen
