@@ -14,7 +14,18 @@
 (load "functions/macros")
 
 ;; locale setting
-(set-locale-environment nil)
+(set-language-environment "Japanese")
+(set-language-environment-coding-systems "Japanese")
+(prefer-coding-system 'utf-8-unix)
+(set-default-coding-systems 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-clipboard-coding-system 'utf-8)
+(set-buffer-file-coding-system 'utf-8-unix)
+(setq default-buffer-file-coding-system 'utf-8)
+(setq local-coding-system 'utf-8)
+(setq file-name-coding-system 'utf-8)
+(setq default-file-name-coding-system 'utf-8)
 
 ;; hide startup message
 (setq inhibit-startup-message t)
@@ -74,7 +85,19 @@
   (when (>= emacs-major-version 23)
     (set-face-attribute 'default nil
                         :family "Ricty"
-                        :height 140)))
+                        :height 140)
+    (set-fontset-font
+     (frame-parameter nil 'font)
+     'japanese-jisx0208
+     '("Ricty" . "iso10646-1"))
+    (set-fontset-font
+     (frame-parameter nil 'font)
+     'japanese-jisx0212
+     '("Ricty" . "iso10646-1"))
+    (set-fontset-font
+     (frame-parameter nil 'font)
+     'mule-unicode-0100-24ff
+     '("Ricty" . "iso10646-1"))))
 
 ;; window opacity
 (when window-system
