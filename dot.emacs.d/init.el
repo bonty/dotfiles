@@ -55,6 +55,10 @@
   (menu-bar-mode -1))
 (tool-bar-mode -1)
 
+;; hide scrollbar
+(when window-system
+  (scroll-bar-mode -1))
+
 ;; disable backup and auto-save-default
 (setq make-backup-files -1)
 (setq delete-auto-save-files t)
