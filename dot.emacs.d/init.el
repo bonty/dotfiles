@@ -13,6 +13,26 @@
 (load "functions/functions")
 (load "functions/macros")
 
+;; system-type predicates
+;; @see http://github.com/elim/dotemacs/blob/master/init.el
+(setq darwin-p  (eq system-type 'darwin)
+      ns-p      (featurep 'ns)
+      carbon-p  (eq window-system 'mac)
+      linux-p   (eq system-type 'gnu/linux)
+      colinux-p (when linux-p
+                  (let ((file "/proc/modules"))
+                    (and
+                     (file-readable-p file)
+                     (x->bool
+                      (with-temp-buffer
+                        (insert-file-contents file)
+                        (goto-char (point-min))
+                        (re-search-forward "^cofuse\.+" nil t))))))
+      cygwin-p  (eq system-type 'cygwin)
+      nt-p      (eq system-type 'windows-nt)
+      meadow-p  (featurep 'meadow)
+      windows-p (or cygwin-p nt-p meadow-p))
+
 ;; locale setting
 (set-language-environment "Japanese")
 (set-language-environment-coding-systems "Japanese")
@@ -102,7 +122,7 @@
 ;; window opacity
 (when window-system
   (progn
-    (set-frame-parameter nil 'alpha 85)))
+    (set-frame-parameter nil 'alpha 95)))
 
 ;; keybind
 (define-key isearch-mode-map (kbd "C-k") 'isearch-edit-string)
@@ -117,6 +137,12 @@
 (define-key function-key-map [delete] (kbd "C-d"))
 (define-key global-map (kbd "C-m") 'newline-and-indent)
 (define-key global-map (kbd "C-a") 'beginning-of-indented-line)
+
+;; Command-Key and Option-Key (for Mac)
+(when darwin-p
+  (when ns-p
+    (setq ns-command-modifier (quote meta))
+    (setq ns-alternate-modifier (quote super))))
 
 (when (eq window-system 'ns)
   ;; toggle fullscreen mode
