@@ -60,7 +60,7 @@
   (scroll-bar-mode -1))
 
 ;; disable backup and auto-save-default
-(setq make-backup-files -1)
+(setq make-backup-files nil)
 (setq delete-auto-save-files t)
 
 ;; show line num and column num
