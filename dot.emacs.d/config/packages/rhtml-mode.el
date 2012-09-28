@@ -6,3 +6,5 @@
 (require 'rhtml-mode)
 (add-hook 'rhtml-mode-hook
           (lambda () (rinari-launch)))
+
+(set-face-background 'erb-face "#000")
