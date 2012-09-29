@@ -99,6 +99,11 @@ alias -g W='| wc'
 alias gomi='rm -f *~ \#*'
 alias cpan='perl -MCPAN -e shell'
 
+# rails
+alias r='rails'
+alias be='bundle exec'
+
+
 # options
 setopt append_history
 setopt auto_cd

@@ -12,6 +12,7 @@
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
+  pager = lv -c
 
 [alias]
   st = status
