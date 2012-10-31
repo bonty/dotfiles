@@ -20,3 +20,10 @@
     (mapc (lambda (file)
             (when (load file nil t)
               (message "`%s' loaded." file))) files)))
+
+(defun kill-all-buffers ()
+  "kill all buffers and save revive information"
+  (interactive)
+  (save-current-configuration)
+  (dolist (buf (buffer-list))
+    (if (not (string= "*scratch*" (buffer-name buf))) (kill-buffer buf))))

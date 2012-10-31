@@ -1,3 +1,4 @@
+
 ;; -*- mode: emacs-lisp ; coding: utf-8 -*-
 
 ;; Common Lisp exstensions for Emacs
@@ -53,7 +54,7 @@
 ;; hide menubar and toolbar
 (when (not window-system)
   (menu-bar-mode -1))
-(tool-bar-mode -1)
+;(tool-bar-mode 0)
 
 ;; hide scrollbar
 (when window-system
