@@ -7,7 +7,7 @@ export LC_CTYPE="ja_JP.UTF-8"
 # export GREP_OPTIONS="--color=auto"
 export LS_COLORS=':no=00:fi=00:di=36:ln=35:pi=33:so=32:bd=34;46:cd=34;43:ex=31:'
 export PERL5LIB=$HOME/usr/lib/perl:$PERL5LIB
-PATH=$HOME/usr/bin:/usr/local/bin:/usr/X11R6/bin:/usr/X11/bin:/usr/bin:/usr/sbin:/share/usr/bin:/sbin:/bin:${PATH}
+PATH=$HOME/.rvm/bin:$HOME/usr/bin:/usr/local/bin:/usr/X11R6/bin:/usr/X11/bin:/usr/bin:/usr/sbin:/share/usr/bin:/sbin:/bin:${PATH}
 WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
 
 if [ -e `which lv` ]; then
@@ -35,28 +35,6 @@ compinit -u
 # utf8 env
 export LV='-Ou8'
 export PERL_BADLANG=0
-
-# exit if not prompt process
-[ $#PROMPT -eq 0 -o $#TERM -eq 0 ] && return
-
-# PROMPT, RPROMPT
-autoload colors
-colors
-
-case ${UID} in
-    0)
-        PROMPT="[%{${fg[blue]}%}%n@%m%{${reset_color}%}] %{${fg[blue]}%}#%{${reset_color}%} "
-        PROMPT2="%B%{${fg[blue]}%}%_#%{${reset_color}%}%b "
-        SPROMPT="%B%{${fg[blue]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
-        RPROMPT="%{${fg[blue]}%}[%/]%{${reset_color}%}"
-        ;;
-    *)
-        PROMPT="[%n@%m] $ "
-        PROMPT2="%B%_$%b "
-        SPROMPT="%B%r is correct? [n,y,a,e]:%b "
-        RPROMPT="[%/]"
-        ;;
-esac
 
 # coloring completion
 # eval `dircolors -b`
@@ -202,4 +180,33 @@ if [ ${TERM%%-*} = screen ]; then
     }
 fi
 
-PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' formats '(%s)-[%b]'
+zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
+precmd () {
+    psvar=()
+    LANG=en_US.UTF-8 vcs_info
+    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+}
+
+# exit if not prompt process
+[ $#PROMPT -eq 0 -o $#TERM -eq 0 ] && return
+
+# PROMPT, RPROMPT
+autoload colors
+colors
+
+case ${UID} in
+    0)
+        PROMPT="[%{${fg[blue]}%}%n@%m%{${reset_color}%}] %{${fg[blue]}%}#%{${reset_color}%} "
+        PROMPT2="%B%{${fg[blue]}%}%_#%{${reset_color}%}%b "
+        SPROMPT="%B%{${fg[blue]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
+        RPROMPT="%{${fg[blue]}%}[%/]%{${reset_color}%}"
+        ;;
+    *)
+        PROMPT="[%n@%m] $ "
+        PROMPT2="%B%_$%b "
+        SPROMPT="%B%r is correct? [n,y,a,e]:%b "
+        RPROMPT="[%1(v|%F{green}%1v%f|)%~]"
+        ;;
+esac
