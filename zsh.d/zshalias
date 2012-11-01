@@ -1,6 +1,7 @@
 # zshalias
 
 alias -g W='| wc -l'
+alias -g X='| xargs'
 
 alias sl='ls'
 alias l='ls'
