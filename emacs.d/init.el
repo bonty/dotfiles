@@ -1,4 +1,3 @@
-
 ;; -*- mode: emacs-lisp ; coding: utf-8 -*-
 
 ;; Common Lisp exstensions for Emacs

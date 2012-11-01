@@ -2,6 +2,7 @@
 
 alias -g W='| wc -l'
 alias -g X='| xargs'
+alias -g P='| percol'
 
 alias sl='ls'
 alias l='ls'
