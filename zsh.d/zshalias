@@ -1,0 +1,11 @@
+# zshalias
+
+alias -g W='| wc -l'
+
+alias sl='ls'
+alias l='ls'
+
+alias gomi='rm -f *~ \#*'
+
+alias r='rails'
+alias be='bundle exec'
