@@ -6,6 +6,8 @@ alias -g P='| percol'
 
 alias sl='ls'
 alias l='ls'
+alias ll='ls -l'
+alias lh='ls -lh'
 
 alias gomi='rm -f *~ \#*'
 
