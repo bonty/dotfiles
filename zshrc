@@ -34,3 +34,15 @@ if [ ${TERM%%-*} = screen ]; then
     }
 fi
 
+# percolでヒストリ検索
+if exists percol; then
+    function percol_select_history() {
+        local tac
+        exists gtak && tac=gtac || tac=tac
+        BUFFER=$($tac $HISTFILE | sed 's/^: [0-9]*:[0-9]*;//' | percol --match-method regex --query "$LBUFFER")
+        CURSOR=$#BUFFER         # move cursor
+        zle -R -c               # refresh
+    }
+    zle -N percol_select_history
+    bindkey '^R' percol_select_history
+fi
