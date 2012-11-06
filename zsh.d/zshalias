@@ -11,3 +11,5 @@ alias gomi='rm -f *~ \#*'
 
 alias r='rails'
 alias be='bundle exec'
+
+alias c='tmux lsw P | cut -d":" -f 1 X tmux select-window -t'
