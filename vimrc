@@ -14,7 +14,7 @@ set nowrap
 set tabstop=4
 set softtabstop=4
 set autoindent
-set mouse=a
+" set mouse=a
 
 " ----------------------------------------------------
 " Emacs風操作関係( INSERT mode )
