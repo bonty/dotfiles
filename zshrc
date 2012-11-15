@@ -41,6 +41,9 @@ fi
 # @http://d.hatena.ne.jp/syohex/20111117/1321503477
 perl -wle 'do { print qq/(setenv "$_" "$ENV{$_}")/ if exists $ENV{$_} } for @ARGV' PATH > ~/.emacs.d/config/shellenv.el
 
+# source-highlightでlvをsyntax highlight
+function lvc() { src-hilite-lesspipe.sh $1 | lv -c }
+
 # percolでヒストリ検索
 functions exists() { which $1 &> /dev/null }
 
