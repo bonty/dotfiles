@@ -7,7 +7,7 @@ source ~/.zsh.d/antigen.zsh
 
 # packages
 source ~/.zsh.d/package.zsh
-source ~/.zsh.d/config/auto-fu.zsh
+# source ~/.zsh.d/config/auto-fu.zsh
 source ~/.zsh.d/config/zsh-completions.zsh
 
 # screen/tmuxでタイトルにコマンドとホスト名を表示
