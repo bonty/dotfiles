@@ -58,8 +58,8 @@
 
 ;; hide menubar and toolbar
 (when (not window-system)
-  (menu-bar-mode -1))
-  (tool-bar-mode -1)
+  (eval-safe (menu-bar-mode -1))
+  (eval-safe (tool-bar-mode -1)))
 
 ;; hide scrollbar
 (when window-system
