@@ -2,6 +2,9 @@
 
 source ~/.zsh.d/zshrc
 
+# antigen.zsh
+source ~/.zsh.d/antigen.zsh
+
 # packages
 source ~/.zsh.d/package.zsh
 source ~/.zsh.d/config/auto-fu.zsh
