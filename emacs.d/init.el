@@ -185,6 +185,9 @@
         (beginning-of-line)
       (back-to-indentation))))
 
+;; delete trailing whitespace when save buffer
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 ;; load builtins config
 (load "config/builtins")
 
