@@ -37,6 +37,10 @@ if [ ${TERM%%-*} = screen ]; then
     }
 fi
 
+# shellの$PATHをGUIのEmacsでも読めるように
+# @http://d.hatena.ne.jp/syohex/20111117/1321503477
+perl -wle 'do { print qq/(setenv "$_" "$ENV{$_}")/ if exists $ENV{$_} } for @ARGV' PATH > ~/.emacs.d/config/shellenv.el
+
 # percolでヒストリ検索
 functions exists() { which $1 &> /dev/null }
 

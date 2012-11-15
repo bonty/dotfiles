@@ -9,6 +9,12 @@
   (setq load-path (cons default-directory load-path))
   (normal-top-level-add-subdirs-to-load-path))
 
+;; load shell $PATH
+;; @see http://d.hatena.ne.jp/syohex/20111117/1321503477
+(load-file (expand-file-name "~/.emacs.d/config/shellenv.el"))
+(dolist (path (reverse (split-string (getenv "PATH") ":")))
+  (add-to-list 'exec-path path))
+
 ;; load function/macro
 (load "functions/functions")
 (load "functions/macros")
@@ -53,7 +59,7 @@
 ;; hide menubar and toolbar
 (when (not window-system)
   (menu-bar-mode -1))
-;(tool-bar-mode 0)
+  (tool-bar-mode -1)
 
 ;; hide scrollbar
 (when window-system

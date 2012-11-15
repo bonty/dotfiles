@@ -5,3 +5,4 @@ anything-c-adaptive-history
 auto-save-list
 undohist
 abbrev_defs
+emacs.d/config/shellenv.el
