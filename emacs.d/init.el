@@ -63,7 +63,8 @@
 
 ;; hide scrollbar
 (when window-system
-  (scroll-bar-mode -1))
+  (eval-safe (scroll-bar-mode -1))
+  (eval-safe (tool-bar-mode -1)))
 
 ;; disable backup and auto-save-default
 (setq make-backup-files nil)
