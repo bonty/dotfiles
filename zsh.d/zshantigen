@@ -1,0 +1,29 @@
+# zshantigen
+
+if [ ! -e $HOME/.antigen/antigen.zsh ]; then
+  git clone git://github.com/zsh-users/antigen.git ~/.antigen
+fi
+
+source ~/.antigen/antigen.zsh
+
+# oh-my-zsh libary
+antigen-lib
+
+antigen-bundles <<EOF
+autojump
+bundler
+gem
+git
+github
+osx
+rails3
+rake
+rvm
+EOF
+
+antigen-bundle zsh-users/zsh-completions src
+antigen-bundle zsh-users/zsh-syntax-highlighting
+
+antigen-theme bonty/oh-my-zsh-theme prose-custom
+
+antigen-apply
