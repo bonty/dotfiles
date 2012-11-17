@@ -26,3 +26,9 @@ antigen-bundle zsh-users/zsh-syntax-highlighting
 antigen-theme bonty/oh-my-zsh-theme prose-custom
 
 antigen-apply
+
+antigen-self-update() {
+    cd ~/.antigen
+    git pull
+    popd
+}
