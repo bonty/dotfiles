@@ -94,7 +94,7 @@ typeset -U python_path
 python_path=(# カレントディレクトリのライブラリを優先する
              ./lib
              $HOME/local/lib/python2.6/site-packages(N-/)
-             $HOME/local/lib/python2.7/site-packages(N-/))n
+             $HOME/local/lib/python2.7/site-packages(N-/))
 
 # pkg-configの設定
 ## .pcのロードパス
