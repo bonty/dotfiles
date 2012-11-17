@@ -10,7 +10,6 @@ source ~/.antigen/antigen.zsh
 antigen-lib
 
 antigen-bundles <<EOF
-autojump
 bundler
 gem
 git
