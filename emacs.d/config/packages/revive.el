@@ -9,7 +9,7 @@
 (autoload-if-found 'wipe "revive" "Wipe Emacs" t)
 
 (define-key ctl-x-map "S" 'save-current-configuration)
-(define-key ctl-x-map "F" 'resume)
+(define-key ctl-x-map "R" 'resume)
 (define-key ctl-x-map "K" 'wipe)
 
 (add-hook 'kill-emacs-hook 'save-current-configuration) ; autosave when quit Emacs
