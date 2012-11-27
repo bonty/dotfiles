@@ -3,4 +3,5 @@
 ;; (load-directory-files "config/builtins" "^.+el$")
 (load "config/builtins/view-mode")
 (load "config/builtins/linum")
+(load "config/builtins/align")
 (load "config/builtins/flymake")

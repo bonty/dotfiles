@@ -45,3 +45,35 @@
     (when indent
       (indent-line-to indent)
       (when (> offset 0) (forward-char offset)))))
+
+;; highlight ruby 1.9 hash
+(font-lock-add-keywords
+ 'ruby-mode
+ '(("\\(\\b\\sw[_a-zA-Z0-9]*:\\)\\(?:\\s-\\|$\\)" (1 font-lock-constant-face))))
+
+;; alignment setting for ruby
+(add-to-list 'align-rules-list
+             '(ruby-comma-delimiter
+               (regexp . ",\\(\\s-*\\)[^# \t\n]")
+               (repeat . t)
+               (modes  . '(ruby-mode))))
+(add-to-list 'align-rules-list
+             '(ruby-hash-literal
+               (regexp . "\\(\\s-*\\)=>\\s-*[^# \t\n]")
+               (repeat . t)
+               (modes  . '(ruby-mode))))
+(add-to-list 'align-rules-list
+             '(ruby-1.9hash-literal
+               (regexp . ":\\(\\s-?\\)")
+               ;(repeat . t)
+               (modes  . '(ruby-mode))))
+(add-to-list 'align-rules-list
+             '(ruby-assignment-literal
+               (regexp . "\\(\\s-*\\)=\\s-*[^# \t\n]")
+               (repeat . t)
+               (modes  . '(ruby-mode))))
+(add-to-list 'align-rules-list          ;TODO add to rcodetools.el
+             '(ruby-xmpfilter-mark
+               (regexp . "\\(\\s-*\\)# => [^#\t\n]")
+               (repeat . nil)
+               (modes  . '(ruby-mode))))

@@ -143,6 +143,8 @@
 
 ;; keybind
 (define-key isearch-mode-map (kbd "C-k") 'isearch-edit-string)
+(define-key global-map (kbd "C-c a") 'align)
+(define-key global-map (kbd "C-c M-a") 'align-regexp)
 (define-key global-map (kbd "C-c c") 'comment-region)
 (define-key global-map (kbd "C-c u") 'uncomment-region)
 (define-key global-map (kbd "C-c r") 'replace-string)
