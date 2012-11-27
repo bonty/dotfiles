@@ -128,7 +128,13 @@
     (set-fontset-font
      (frame-parameter nil 'font)
      'mule-unicode-0100-24ff
-     '("Ricty" . "iso10646-1"))))
+     '("Ricty" . "iso10646-1"))
+    ;; for hankaku kana
+    (set-fontset-font
+     (frame-parameter nil 'font)
+     'katakana-jisx0201
+     '("Ricty" . "iso10646-1"))
+    ))
 
 ;; window opacity
 (when window-system
