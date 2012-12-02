@@ -15,3 +15,6 @@ alias r='rails'
 alias be='bundle exec'
 
 alias c='tmux lsw P | cut -d":" -f 1 X tmux select-window -t'
+
+alias tmux='tmux -u'
+alias ta='tmux attach'
