@@ -21,7 +21,7 @@
   ff = false
 
 [pull]
-  rebase = true
+  # rebase = true
 
 [alias]
   # @see http://oli.jp/2012/git-powerup/
