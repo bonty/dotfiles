@@ -1,5 +1,6 @@
 # X / _ / X
 percol.view.PROMPT  = ur"<bold><yellow>X / _ / X</yellow></bold> %q"
+percol.encoding = 'utf_8'
 
 # Emacs like
 percol.import_keymap({

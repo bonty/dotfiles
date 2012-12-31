@@ -9,9 +9,7 @@ typeset -U path
 ##               globがマッチしなかったり存在しないパスを無視する。
 ##            -: シンボリックリンク先のパスを評価。
 ##            /: ディレクトリのみ残す。
-path=(# システム用
-      /bin(N-/)
-      # 自分用（--prefix=$HOME/localでインストールしたもの）
+path=(# 自分用（--prefix=$HOME/localでインストールしたもの）
       $HOME/local/bin(N-/)
       # 自分用（gem install --user-installでインストールしたもの）
       ## 2012-01-07
@@ -36,6 +34,7 @@ path=(# システム用
       /usr/X11R6/bin(N-/)
       /usr/X11/bin(N-/)
       /usr/bin(N-/)
+      /bin(N-/)
       /usr/games(N-/))
 
 # sudo時のパスの設定
