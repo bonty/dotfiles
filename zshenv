@@ -1,5 +1,8 @@
 # -*- sh -*-
 
+# LANG系の設定
+export LC_ALL=ja_JP.UTF-8
+
 # パスの設定
 ## 重複したパスを登録しない。
 typeset -U path
