@@ -22,6 +22,8 @@ path=(# 自分用（--prefix=$HOME/localでインストールしたもの）
       $HOME/.rbenv/bin(N-/)
       # rvm用
       $HOME/.rvm/bin(N-/)
+      # for nodebrew
+      $HOME/.nodebrew/current/bin(N-/)
       # Debian GNU/Linux用
       /var/lib/gems/*/bin(N-/)
       # MacPorts用
