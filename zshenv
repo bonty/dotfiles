@@ -207,3 +207,6 @@ for email_file in ${email_files}; do
     export EMAIL=$(cat "$email_file")
     break
 done
+
+# setting for rbenv
+eval "$(rbenv init -)"
