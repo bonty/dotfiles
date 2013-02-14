@@ -39,7 +39,9 @@ path=(# 自分用（--prefix=$HOME/localでインストールしたもの）
       /usr/X11R6/bin(N-/)
       /usr/X11/bin(N-/)
       /usr/bin(N-/)
+      /usr/sbin(N-/)
       /bin(N-/)
+      /sbin(N-/)
       /usr/games(N-/))
 
 # sudo時のパスの設定
