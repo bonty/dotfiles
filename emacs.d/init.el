@@ -139,7 +139,7 @@
 ;; window opacity
 (when window-system
   (progn
-    (set-frame-parameter nil 'alpha 95)))
+    (set-frame-parameter nil 'alpha 85)))
 
 ;; keybind
 (define-key isearch-mode-map (kbd "C-k") 'isearch-edit-string)
