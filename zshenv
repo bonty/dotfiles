@@ -21,7 +21,7 @@ path=(# 自分用（--prefix=$HOME/localでインストールしたもの）
       ## 2012-02-21
       $HOME/.rbenv/bin(N-/)
       # for rbenv
-      $HOME/.rbenv/bin(N-/)
+      $HOME/.rbenv/shims(N-/)
       # for nodebrew
       $HOME/.nodebrew/current/bin(N-/)
       # Debian GNU/Linux用
