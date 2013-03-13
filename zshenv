@@ -24,6 +24,8 @@ path=(# 自分用（--prefix=$HOME/localでインストールしたもの）
       $HOME/.rbenv/shims(N-/)
       # for nodebrew
       $HOME/.nodebrew/current/bin(N-/)
+      # rails project
+      ./bin
       # Debian GNU/Linux用
       /var/lib/gems/*/bin(N-/)
       # MacPorts用
