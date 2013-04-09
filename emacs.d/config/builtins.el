@@ -5,3 +5,4 @@
 (load "config/builtins/linum")
 (load "config/builtins/align")
 (load "config/builtins/flymake")
+(load "config/builtins/uniquify")
