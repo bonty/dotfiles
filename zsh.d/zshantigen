@@ -7,7 +7,7 @@ fi
 source ~/.antigen/antigen.zsh
 
 # oh-my-zsh libary
-antigen-lib
+antigen-use oh-my-zsh
 
 antigen-bundles <<EOF
 bundler
