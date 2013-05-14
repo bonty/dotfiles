@@ -10,15 +10,18 @@ source ~/.antigen/antigen.zsh
 antigen-use oh-my-zsh
 
 antigen-bundles <<EOF
+brew
 bundler
+capistrano
 gem
+git-flow
 git
 github
 gitfast
 osx
-rails3
+rails4
 rake
-rvm
+rbenv
 EOF
 
 antigen-bundle zsh-users/zsh-completions src
