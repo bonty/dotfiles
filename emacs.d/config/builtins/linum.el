@@ -2,8 +2,8 @@
 
 (require 'linum)
 
-(if (window-system)
-    (setq linum-format "%3d")
-  (setq linum-format "%4d "))
-  
+;; (if (window-system)
+;;     (setq linum-format "%d")
+;;   (setq linum-format "%d "))
 (global-linum-mode t)
+(setq linum-format "%d")

@@ -205,7 +205,6 @@
 
 ;; load builtins config
 (load "config/builtins")
-
 ;; load packages config
 (load "config/packages")
 
