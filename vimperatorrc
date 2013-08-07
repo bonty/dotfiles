@@ -237,6 +237,21 @@ nnoremap -u='^http://reader\.livedoor\.com/reader/' b :tombloo Link - LDR<CR>
 nnoremap -u='^http://reader\.livedoor\.com/reader/' B :tombloo! Link - LDR<CR>
 nnoremap -u='^http://reader\.livedoor\.com/reader/' e :tombloo ReBlog - LDR<CR>
 
+" multi_requester
+javascript <<EOM
+liberator.globalVariables.multi_requester_siteinfo = [
+  {
+    name: 'yahoo-transit',
+    description: 'Yahoo 路線情報',
+    url: 'http://transit.loco.yahoo.co.jp/search/result?flatlon=&from=%s&tlatlon=&to=%s&via=&shin=1&ex=1&al=1&hb=1&lb=1&sr=1&expkind=1&ym=201306&d=05&datepicker=&hh=10&m1=5&m2=0&type=1&ws=2&s=0&x=0&y=0',
+    xpath: 'id("main")',
+  },
+];
+liberator.globalVariables.multi_requester_mappings = [
+  [ ",myr", "yahoo-transit" ],
+];
+EOM
+
 " javascript
 " ======================================================================
 
