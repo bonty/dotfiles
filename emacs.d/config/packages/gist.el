@@ -1,4 +1,4 @@
 ;; -*- mode: emacs-lisp ; coding: utf-8 -*-
 
-;;(el-get 'sync '(gist))
-;;(require 'gist)
+;; (el-get 'sync '(gist))
+;; (require 'gist)
