@@ -25,7 +25,7 @@ autocmd LocationChange '^https?://(mail\.google\.com\/(mail|a)\/|(reader\.livedo
 " options
 " ======================================================================
 " GUI
-set gui=none
+set gui=tabs
 
 " ヒントの文字列をアルファベットに
 set hintchars=hjklasdfg
