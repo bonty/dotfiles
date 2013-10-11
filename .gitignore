@@ -6,3 +6,4 @@ auto-save-list
 undohist
 abbrev_defs
 emacs.d/config/shellenv.el
+.DS_Store
