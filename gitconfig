@@ -74,3 +74,7 @@
   # grep関連
   gr = grep
   gn = grep -n
+
+  # submodule
+  su = submodule update
+  sui = submodule update --init
