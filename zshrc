@@ -7,3 +7,6 @@ source ~/.zsh.d/zshantigen
 source ~/.zsh.d/zshrc
 
 source ~/.zsh.d/zshfunction
+
+# boxen env
+[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
