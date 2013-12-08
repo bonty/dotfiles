@@ -17,11 +17,6 @@ path=(# 自分用（--prefix=$HOME/localでインストールしたもの）
       # 自分用（gem install --user-installでインストールしたもの）
       ## 2012-01-07
       $HOME/.gem/ruby/*/bin(N-/)
-      # rbenv用
-      ## 2012-02-21
-      $HOME/.rbenv/bin(N-/)
-      # for rbenv
-      $HOME/.rbenv/shims(N-/)
       # for nodebrew
       $HOME/.nodebrew/current/bin(N-/)
       # rails project
