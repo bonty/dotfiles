@@ -3,7 +3,7 @@
   email = bonty.shushusha@gmail.com
 
 [core]
-  excludesfile = ~/.gitignore
+  excludesfile = /opt/boxen/config/git/gitignore
   autocrlf = input
   pager = lv -c
 
@@ -78,3 +78,9 @@
   # submodule
   su = submodule update
   sui = submodule update --init
+
+[credential]
+helper = /opt/boxen/bin/boxen-git-credential
+
+[hub]
+protocol = https
