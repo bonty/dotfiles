@@ -5,5 +5,5 @@ anything-c-adaptive-history
 auto-save-list
 undohist
 abbrev_defs
-emacs.d/config/shellenv.el
+home/.emacs.d/config/shellenv.el
 .DS_Store
