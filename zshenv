@@ -207,6 +207,9 @@ for email_file in ${email_files}; do
     break
 done
 
+# load boxen env
+[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
+
 # setting for rbenv
 eval "$(rbenv init -)"
 
