@@ -208,4 +208,8 @@
 ;; load packages config
 (load "config/packages")
 
+;; load color theme
+(load-theme 'molokai t)
+(enable-theme 'molokai)
+
 ;; EOF
