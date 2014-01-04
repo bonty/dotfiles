@@ -1,8 +1,11 @@
 *~
 *.bak
-/packages/
+*.elc
 /auto-save-list/
 /history
 /ac-comphist.dat
 /filesets-cache.el
 /undohist
+/packages/
+/elisp/el-get/
+/elisp/elpa/
