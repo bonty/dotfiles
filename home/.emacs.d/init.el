@@ -4,7 +4,8 @@
 (package-initialize)
 
 ;; init-loader
-;; First time Emacs launch, this statment will raise error.
-;; You should exec this command "M-x package-install init-loader".
+;; install init-loader if not installed
+(when (or (not (package-installed-p 'init-loader)))
+  (package-install 'init-loader))
 (require 'init-loader)
-(init-loader-load "~/.emacs.d/inits")
+(init-loader-load (concat user-emacs-directory "inits"))

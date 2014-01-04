@@ -208,8 +208,4 @@
 ;; load packages config
 ;; (load "config/packages")
 
-;; load color theme
-(setq custom-theme-directory (concat user-emacs-directory "themes"))
-(load-theme 'molokai t)
-
 ;; Eof
