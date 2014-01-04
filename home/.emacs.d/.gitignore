@@ -1,3 +1,4 @@
+*.#*
 *~
 *.bak
 *.elc
@@ -7,5 +8,4 @@
 /filesets-cache.el
 /undohist
 /packages/
-/elisp/el-get/
-/elisp/elpa/
+/elpa/

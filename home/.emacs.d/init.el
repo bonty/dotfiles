@@ -1,15 +1,5 @@
-;; load path
-(setq load-path
-      (append
-       (list
-        (expand-file-name "~/.emacs.d/")
-        (expand-file-name "~/.emacs.d/elisp/")
-        (expand-file-name "~/.emacs.d/elisp/el-get/el-get/"))
-       load-path))
-
 ;; ELPA preferences
 (require 'package)
-(setq package-user-dir "~/.emacs.d/elisp/elpa/")
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 

@@ -5,15 +5,15 @@
 
 ;; load-path
 (add-to-list 'load-path "~/.emacs.d")
-(let ((default-directory "~/.emacs.d/packages"))
-  (setq load-path (cons default-directory load-path))
-  (normal-top-level-add-subdirs-to-load-path))
+;; (let ((default-directory "~/.emacs.d/packages"))
+;;   (setq load-path (cons default-directory load-path))
+;;   (normal-top-level-add-subdirs-to-load-path))
 
 ;; load shell $PATH
 ;; @see http://d.hatena.ne.jp/syohex/20111117/1321503477
-(load-file (expand-file-name "~/.emacs.d/config/shellenv.el"))
-(dolist (path (reverse (split-string (getenv "PATH") ":")))
-  (add-to-list 'exec-path path))
+;; (load-file (expand-file-name "~/.emacs.d/config/shellenv.el"))
+;; (dolist (path (reverse (split-string (getenv "PATH") ":")))
+;;   (add-to-list 'exec-path path))
 
 ;; load function/macro
 (load "functions/functions")
@@ -206,10 +206,10 @@
 ;; load builtins config
 (load "config/builtins")
 ;; load packages config
-(load "config/packages")
+;; (load "config/packages")
 
 ;; load color theme
+(setq custom-theme-directory (concat user-emacs-directory "themes"))
 (load-theme 'molokai t)
-(enable-theme 'molokai)
 
-;; EOF
+;; Eof
