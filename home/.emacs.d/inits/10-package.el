@@ -5,9 +5,11 @@
     exec-path-from-shell
     fringe-helper
     git-gutter-fringe
+    helm
     key-chord
     magit
     point-undo
+    reverse-theme
     undo-tree
     viewer
     )
