@@ -1,0 +1,1 @@
+/Users/hkouno/src/vimperator-plugins/plugin_loader.js
