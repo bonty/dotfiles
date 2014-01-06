@@ -1,16 +1,25 @@
 (defvar package-list
   '(
-    auto-complete
-    auto-save-buffers-enhanced
-    exec-path-from-shell
+    ;; auto complete
+    auto-complete fuzzy popup
+
+    ;; edit utilities
+    ace-jump-mode
+    auto-save-buffers-enhanced point-undo undo-tree
+
     fringe-helper
-    git-gutter-fringe
+
     helm
     key-chord
-    magit
-    point-undo
+
+    ;; git
+    magit git-gutter-fringe
+
+    ;; env
+    exec-path-from-shell
+
+    ;; theme
     reverse-theme
-    undo-tree
     viewer
     )
   "A list of packages to install at launch by package.el")
