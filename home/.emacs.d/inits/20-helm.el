@@ -14,3 +14,5 @@
 
 (global-set-key (kbd "C-x b") 'my-helm)
 (global-set-key (kbd "M-x") 'helm-M-x)
+
+(define-key helm-map (kbd "C-h") 'delete-backward-char)
