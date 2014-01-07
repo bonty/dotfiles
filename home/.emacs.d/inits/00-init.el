@@ -116,7 +116,7 @@
   (when (>= emacs-major-version 23)
     (set-face-attribute 'default nil
                         :family "Ricty"
-                        :height 140)
+                        :height 130)
     (set-fontset-font
      (frame-parameter nil 'font)
      'japanese-jisx0208
