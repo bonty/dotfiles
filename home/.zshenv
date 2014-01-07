@@ -216,6 +216,9 @@ eval "$(rbenv init -)"
 # setting for plenv
 eval "$(plenv init -)"
 
+# setting for pyenv
+eval "$(pyenv init -)"
+
 # settings for RDS command line tool
 export JAVA_HOME="$(/usr/libexec/java_home)"
 if [ -d $HOME/.ec2 ]; then
