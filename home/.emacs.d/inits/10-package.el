@@ -6,6 +6,7 @@
     ;; edit utilities
     ace-jump-mode
     auto-save-buffers-enhanced point-undo undo-tree
+    open-junk-file
 
     fringe-helper
 
