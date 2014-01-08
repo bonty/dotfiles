@@ -2,6 +2,7 @@
 *~
 *.bak
 *.elc
+.mc-lists.el
 /auto-save-list/
 /history
 /ac-comphist.dat
