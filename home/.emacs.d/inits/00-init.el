@@ -162,6 +162,7 @@
 (define-key function-key-map [delete] (kbd "C-d"))
 (define-key global-map (kbd "C-m") 'newline-and-indent)
 (define-key global-map (kbd "C-a") 'beginning-of-indented-line)
+(define-key global-map (kbd "C-x C-s") 'save-buffer-with-delete-trailing-whitespace)
 
 ;; Command-Key and Option-Key (for Mac)
 (when darwin-p
@@ -172,6 +173,13 @@
 (when (eq window-system 'ns)
   ;; toggle fullscreen mode
   (define-key global-map (kbd "M-<RET>") 'ns-toggle-fullscreen))
+
+;; save buffer with deleting trailing whitespace
+(defun save-buffer-with-delete-trailing-whitespace ()
+  "save buffer with deleting trailing whitespace"
+  (interactive)
+  (delete-trailing-whitespace)
+  (save-buffer))
 
 ;; move beginning of indented line
 ;; @see http://d.hatena.ne.jp/gifnksm/20100131/1264956220
@@ -207,9 +215,6 @@
   "*Face used in hl-line")
 (setq hl-line-face 'hlline-face)
 (global-hl-line-mode)
-
-;; delete trailing whitespace when save buffer
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; load builtins config
 (load "config/builtins")
