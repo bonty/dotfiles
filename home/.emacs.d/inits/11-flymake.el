@@ -47,12 +47,8 @@
              (line (flymake-ler-line (nth (1- count) line-err-info-list)))))
       (setq count (1- count)))))
 
-;; C-c e => jump flymake error
-(defun next-flymake-error ()
-  (interactive)
-  (flymake-goto-next-error)
-  (let ((err (get-char-property (point) 'help-echo)))
-    (when err
-      (message err))))
+(defvar my/flycheck-enable-modes
+  '(ruby-mode))
 
-(global-set-key (kbd "C-c e") 'next-flymake-error)
+(dolist (mode my/flycheck-enable-modes)
+  (add-hook (intern (format "%s-hook" mode)) 'flycheck-mode))
