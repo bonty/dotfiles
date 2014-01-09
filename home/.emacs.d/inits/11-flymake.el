@@ -53,3 +53,6 @@
 
 (dolist (mode my/flycheck-enable-modes)
   (add-hook (intern (format "%s-hook" mode)) 'flycheck-mode))
+
+(global-set-key (kbd "C-c C-n") 'flycheck-tip-cycle)
+(global-set-key (kbd "C-c C-p") 'flycheck-tip-cycle-reverse)
