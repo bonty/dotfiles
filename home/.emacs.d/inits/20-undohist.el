@@ -1,11 +1,2 @@
 (require 'undohist)
 (undohist-initialize)
-
-
-
-
-
-
-
-
-
