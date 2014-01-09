@@ -156,6 +156,7 @@
 (define-key global-map (kbd "C-c r") 'replace-string)
 (define-key global-map (kbd "C-c i") 'indent-region)
 (define-key global-map (kbd "C-\\") 'undo)
+(define-key global-map (kbd "C-/") 'undo-tree-undo)
 (define-key global-map (kbd "M-/") 'undo-tree-redo)
 (define-key global-map (kbd "C-h") 'delete-backward-char)
 (define-key global-map (kbd "C-c g") 'goto-line)

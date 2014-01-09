@@ -5,8 +5,11 @@
 
     ;; edit utilities
     ace-jump-mode
-    auto-save-buffers-enhanced point-undo undo-tree
+    auto-save-buffers-enhanced 
     open-junk-file expand-region multiple-cursors smartrep
+
+    ;; undo
+    point-undo undo-tree undohist
 
     fringe-helper
 
