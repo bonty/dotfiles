@@ -1,5 +1,6 @@
 (require 'fringe-helper)
 (require 'flymake)
+(require 'flycheck-tip)
 
 ;; disable default warning face
 (set-face-background 'flymake-errline nil)

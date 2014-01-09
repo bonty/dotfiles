@@ -7,7 +7,7 @@
     ace-jump-mode
     auto-save-buffers-enhanced 
     open-junk-file expand-region multiple-cursors smartrep
-    flycheck
+    flycheck flycheck-tip
 
     ;; undo
     point-undo undo-tree undohist
