@@ -199,6 +199,18 @@
             current-point)))
         (beginning-of-line)
       (back-to-indentation))))
+(defface hlline-face
+  '((((class color)
+      (background dark))
+     (:background "dark slate gray"))
+    (((class color)
+      (background light))
+     (:background "#98FB98"))
+    (t
+     ()))
+  "*Face used in hl-line")
+(setq hl-line-face 'hlline-face)
+(global-hl-line-mode)
 
 ;; delete trailing whitespace when save buffer
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
