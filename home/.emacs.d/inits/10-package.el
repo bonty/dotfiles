@@ -19,6 +19,9 @@
     ;; git
     magit git-gutter-fringe
 
+    ;; ruby
+    rspec-mode ruby-block ruby-electric
+
     ;; env
     exec-path-from-shell
 
