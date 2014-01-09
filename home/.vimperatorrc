@@ -135,7 +135,7 @@ command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
 " ======================================================================
 " plugin_loader.js
 let g:plugin_loader_roots = "~/src/vimperator-plugins/ ~/Documents/repos/vimperator-plugins/"
-let g:plugin_loader_plugins = "_libly,appendAnchor,auto_detect_link,auto_word_select_mode,caret-hint,copy,direct_bookmark,feedSomeKeys_3,hatenaStar,multi_requester,pino,sbmcommentsviewer,tombloo,walk-input,stella,opener,statusline-toolbar,migemo_completion,lo,auto-bookmark,slideshare"
+let g:plugin_loader_plugins = "_libly,appendAnchor,auto_detect_link,auto-focus-frame,auto_word_select_mode,caret-hint,copy,direct_bookmark,feedSomeKeys_3,hatenaStar,multi_requester,pino,sbmcommentsviewer,tombloo,walk-input,stella,opener,statusline-toolbar,migemo_completion,lo,auto-bookmark,slideshare"
 
 " caret-hint
 let g:caret_hint_key = "i"
