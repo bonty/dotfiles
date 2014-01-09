@@ -6,7 +6,7 @@
 (setq auto-mode-alist
       (append '(("\\(Rake\\|Gem\\|Guard\\|Cap\\|Vagrant\\)file$" . ruby-mode)) auto-mode-alist))
 (setq interpreter-mode-alist (append '(("ruby" . ruby-mode))
-                                     Interpreter-Mode-Alist))
+                                     interpreter-mode-alist))
 
 ;; rspec-mode
 (require 'rspec-mode)
