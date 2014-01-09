@@ -4,7 +4,7 @@
 (require 'cl nil t)
 
 ;; load-path
-(add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path user-emacs-directory)
 ;; (let ((default-directory "~/.emacs.d/packages"))
 ;;   (setq load-path (cons default-directory load-path))
 ;;   (normal-top-level-add-subdirs-to-load-path))
@@ -96,6 +96,12 @@
 ;; enable iswitchb mode
 (iswitchb-mode t)
 
+;; completion ignore case
+(setq completion-ignore-case t)
+
+;; auto revert buffer
+(global-auto-revert-mode t)
+
 ;; show newline code
 (setq eol-mnemonic-dos "(CRLF)")
 (setq eol-mnemonic-mac "(CR)")
@@ -172,33 +178,23 @@
 (defun beginning-of-indented-line (current-point)
   "move beginning of indented line"
   (interactive "d")
-  (when (>= emacs-major-version 23)
-      (let ((vhead-pos (save-excursion (progn (beginning-of-visual-line) (point))))
-            (head-pos (save-excursion (progn (beginning-of-line) (point)))))
-        (cond
-         ;; when current pos is first visual line
-         ((eq vhead-pos head-pos)
-          (if (string-match
-               "^[ \t]+$"
-               (buffer-substring-no-properties vhead-pos current-point))
-              (beginning-of-visual-line)
-            (back-to-indentation)))
-         ;; when current pos is head of second visual line
-         ((eq vhead-pos current-point)
-          (backward-char)
-          (beginning-of-visual-indented-line (point)))
-         ;; when current pos is second visual line
-         (t (beginning-of-visual-line)))))
+  (let ((vhead-pos (save-excursion (progn (beginning-of-visual-line) (point))))
+        (head-pos (save-excursion (progn (beginning-of-line) (point)))))
+    (cond
+     ;; when current pos is first visual line
+     ((eq vhead-pos head-pos)
+      (if (string-match
+           "^[ \t]+$"
+           (buffer-substring-no-properties vhead-pos current-point))
+          (beginning-of-visual-line)
+        (back-to-indentation)))
+     ;; when current pos is head of second visual line
+     ((eq vhead-pos current-point)
+      (backward-char)
+      (beginning-of-visual-indented-line (point)))
+     ;; when current pos is second visual line
+     (t (beginning-of-visual-line)))))
 
-  (when (< emacs-major-version 23)
-    (if (string-match
-         "^[ \t]+$"
-         (save-excursion
-           (buffer-substring-no-properties
-            (progn (beginning-of-line) (point))
-            current-point)))
-        (beginning-of-line)
-      (back-to-indentation))))
 (defface hlline-face
   '((((class color)
       (background dark))
