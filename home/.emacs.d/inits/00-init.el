@@ -168,8 +168,10 @@
 ;; Command-Key and Option-Key (for Mac)
 (when darwin-p
   (when ns-p
-    (setq ns-command-modifier (quote meta))
-    (setq ns-alternate-modifier (quote super))))
+    (setq ns-command-modifier meta)
+    (setq ns-alternate-modifier super)
+    (setq ns-right-command-modifier hyper)))
+
 
 (when (eq window-system 'ns)
   ;; toggle fullscreen mode
