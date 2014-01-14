@@ -9,6 +9,12 @@
     open-junk-file expand-region multiple-cursors smartrep
     flycheck flycheck-tip
 
+    ;; buffer utils
+    popwin
+
+    ;; direx
+    direx
+
     ;; undo
     point-undo undo-tree undohist
 
