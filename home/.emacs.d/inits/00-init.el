@@ -16,8 +16,15 @@
 ;;   (add-to-list 'exec-path path))
 
 ;; load function/macro
-(load "functions/functions")
-(load "functions/macros")
+
+;; (load "functions/functions")
+;; (load "functions/macros")
+(defun x->bool (elt) (not (not elt)))
+
+(defmacro eval-safe (&rest body)
+  `(condition-case err
+       (progn ,@body)
+     (error (message "[eval-safe] %s" err))))
 
 ;; system-type predicates
 ;; @see http://github.com/elim/dotemacs/blob/master/init.el
@@ -147,35 +154,12 @@
   (progn
     (set-frame-parameter nil 'alpha 85)))
 
-;; keybind
-(define-key isearch-mode-map (kbd "C-k") 'isearch-edit-string)
-(define-key global-map (kbd "C-c a") 'align)
-(define-key global-map (kbd "C-c M-a") 'align-regexp)
-(define-key global-map (kbd "C-c c") 'comment-region)
-(define-key global-map (kbd "C-c u") 'uncomment-region)
-(define-key global-map (kbd "C-c r") 'replace-string)
-(define-key global-map (kbd "C-c i") 'indent-region)
-(define-key global-map (kbd "C-\\") 'undo)
-(define-key global-map (kbd "C-/") 'undo-tree-undo)
-(define-key global-map (kbd "M-/") 'undo-tree-redo)
-(define-key global-map (kbd "C-h") 'delete-backward-char)
-(define-key global-map (kbd "C-c g") 'goto-line)
-(define-key function-key-map [delete] (kbd "C-d"))
-(define-key global-map (kbd "C-m") 'newline-and-indent)
-(define-key global-map (kbd "C-a") 'beginning-of-indented-line)
-(define-key global-map (kbd "C-x C-s") 'save-buffer-with-delete-trailing-whitespace)
-
 ;; Command-Key and Option-Key (for Mac)
 (when darwin-p
   (when ns-p
-    (setq ns-command-modifier meta)
-    (setq ns-alternate-modifier super)
-    (setq ns-right-command-modifier hyper)))
-
-
-(when (eq window-system 'ns)
-  ;; toggle fullscreen mode
-  (define-key global-map (kbd "M-<RET>") 'ns-toggle-fullscreen))
+    (setq ns-command-modifier 'meta)
+    (setq ns-alternate-modifier 'super)
+    (setq ns-right-command-modifier 'hyper)))
 
 ;; save buffer with deleting trailing whitespace
 (defun save-buffer-with-delete-trailing-whitespace ()

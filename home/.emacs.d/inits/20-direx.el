@@ -32,6 +32,3 @@
                   t)))
     (unless result
       (direx:jump-to-directory-other-window))))
-
-(global-set-key (kbd "C-x C-j") 'direx:jump-to-project-directory)
-(define-key direx:direx-mode-map (kbd "TAB") 'direx:maybe-find-node)
