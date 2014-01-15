@@ -152,7 +152,7 @@
 ;; window opacity
 (when window-system
   (progn
-    (set-frame-parameter nil 'alpha 85)))
+    (set-frame-parameter nil 'alpha 75)))
 
 ;; Command-Key and Option-Key (for Mac)
 (when darwin-p
@@ -160,6 +160,10 @@
     (setq ns-command-modifier 'meta)
     (setq ns-alternate-modifier 'super)
     (setq ns-right-command-modifier 'hyper)))
+
+(when darwin-p
+  (require 'ls-lisp)
+  (setq ls-lisp-use-insert-directory-program nil))
 
 ;; save buffer with deleting trailing whitespace
 (defun save-buffer-with-delete-trailing-whitespace ()

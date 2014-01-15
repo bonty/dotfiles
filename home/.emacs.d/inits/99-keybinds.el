@@ -22,7 +22,6 @@
 
 ;; direx
 (define-key global-map (kbd "C-x C-j") 'direx:jump-to-project-directory)
-(define-key direx:direx-mode-map (kbd "TAB") 'direx:maybe-find-node)
 
 ;; expand-region
 (global-set-key (kbd "C-,") 'er/expand-region)
@@ -32,14 +31,5 @@
 (global-set-key (kbd "C-x b") 'my-helm)
 (global-set-key (kbd "M-x") 'helm-M-x)
 
-(define-key helm-map (kbd "C-h") 'delete-backward-char)
-
 ;; multiple-cursors
 (global-set-key (kbd "<C-M-return>") 'mc/edit-lines)
-
-;; smartrep
-(smartrep-define-key
- global-map "C-." '(("C-n" . 'mc/mark-next-like-this)
-                    ("C-p" . 'mc/mark-previous-like-this)
-                    ("*" . 'mc/mark-all-like-this)))
-

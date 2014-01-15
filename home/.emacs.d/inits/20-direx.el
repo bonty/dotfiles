@@ -32,3 +32,5 @@
                   t)))
     (unless result
       (direx:jump-to-directory-other-window))))
+
+(define-key direx:direx-mode-map (kbd "TAB") 'direx:maybe-find-item)
