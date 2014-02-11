@@ -30,10 +30,13 @@
     magit git-gutter-fringe+
 
     ;; ruby
-    rspec-mode ruby-block ruby-electric
+    rspec-mode ruby-block ruby-end
 
     ;; yaml
     yaml-mode
+
+    ;; markdown
+    markdown-mode
 
     ;; env
     exec-path-from-shell

@@ -11,6 +11,21 @@
 ;; rspec-mode
 (require 'rspec-mode)
 
+;; ruby-end
+(require 'ruby-end)
+(add-hook 'ruby-mode-hook
+          '(lambda ()
+             (abbrev-mode 1)
+             (electric-pair-mode t)
+             (electric-layout-mode t)
+             (electric-indent-mode t)
+             ))
+
+;; ruby-block
+(require 'ruby-block)
+(ruby-block-mode t)
+(setq ruby-block-highlight-toggle t)
+
 ;; Indent setting
 (setq ruby-deep-indent-paren-style nil)
 (defadvice ruby-indent-line (after unindent-closing-paren activate)
