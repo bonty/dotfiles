@@ -24,7 +24,7 @@
     key-chord
 
     ;; git
-    magit git-gutter-fringe
+    magit git-gutter-fringe+
 
     ;; ruby
     rspec-mode ruby-block ruby-electric
