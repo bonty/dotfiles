@@ -15,5 +15,3 @@
                    helm-c-source-mac-spotlight
                    helm-c-source-buffer-not-found)
         :buffer "*my helm*"))
-
-(define-key helm-map (kbd "C-h") 'delete-backward-char)
