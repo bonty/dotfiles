@@ -5,8 +5,11 @@
 
     ;; edit utilities
     ace-jump-mode
-    auto-save-buffers-enhanced 
-    open-junk-file expand-region multiple-cursors smartrep
+    auto-save-buffers-enhanced
+    expand-region multiple-cursors smartrep
+
+    open-junk-file
+
     flycheck flycheck-tip
 
     ;; buffer utils
@@ -16,7 +19,7 @@
     direx
 
     ;; undo
-    point-undo undo-tree undohist
+    undo-tree
 
     fringe-helper
 
@@ -28,6 +31,9 @@
 
     ;; ruby
     rspec-mode ruby-block ruby-electric
+
+    ;; yaml
+    yaml-mode
 
     ;; env
     exec-path-from-shell
