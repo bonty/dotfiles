@@ -1,9 +1,9 @@
 {
     "LAYOUTS": "----------------------",
     "layouts": [
+        "fullscreen",
         "tall",
         "wide",
-        "fullscreen",
         "column"
     ],
 
