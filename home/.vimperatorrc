@@ -25,7 +25,7 @@ set! dom.popup_maximum=9999
 " options
 " ======================================================================
 " GUI
-set gui=tabs
+set gui=none,tabs
 
 " ヒントの文字列をアルファベットに
 set hintchars=hjklasdfg
