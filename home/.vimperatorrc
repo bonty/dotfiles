@@ -130,6 +130,7 @@ nnoremap i caret-mode
 " ======================================================================
 " autocmd VimperatorEnter .* <args> を lazy コマンドとして登録
 command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
+command clip echo RIL.addCurrent() !== false ? 'Success' : 'Failed (or alread clipped?)'
 
 " Plugins
 " ======================================================================
