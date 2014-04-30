@@ -19,8 +19,8 @@ set! browser.urlbar.maxRichResults=20
 set! dom.popup_maximum=9999
 
 " Gmail/LDR/Fastladder/OpenFL/はてブでは新規タブをバックグラウンドで開く
-autocmd LocationChange '^(?!https?://(mail\.google\.com\/(mail|a)\/|(reader\.livedoor\.com|fastladder\.com|0\.0\.0\.0\:3000)/reader/|b\.hatena\.ne\.jp/(?!(entry|articles|guide))))' :set! browser.tabs.loadDivertedInBackground=false
-autocmd LocationChange '^https?://(mail\.google\.com\/(mail|a)\/|(reader\.livedoor\.com|fastladder\.com|0\.0\.0\.0\:3000)/reader/|b\.hatena\.ne\.jp/(?!(entry|articles|guide)))' :set! browser.tabs.loadDivertedInBackground=true
+" autocmd LocationChange '^(?!https?://(mail\.google\.com\/(mail|a)\/|(reader\.livedoor\.com|fastladder\.com|0\.0\.0\.0\:3000)/reader/|b\.hatena\.ne\.jp/(?!(entry|articles|guide))))' :set! browser.tabs.loadDivertedInBackground=false
+" autocmd LocationChange '^https?://(mail\.google\.com\/(mail|a)\/|(reader\.livedoor\.com|fastladder\.com|0\.0\.0\.0\:3000)/reader/|b\.hatena\.ne\.jp/(?!(entry|articles|guide)))' :set! browser.tabs.loadDivertedInBackground=true
 
 " options
 " ======================================================================
@@ -279,7 +279,7 @@ EOM
 js <<EOM
 let (original = liberator.echomsg)
   liberator.echomsg = function (msg) {
-    const REAC = RegExp('@chrome://liberator/content/autocommands\\.js:\\d+');
+    const REAC = RegExp('-> liberator://template/chrome://liberator/content/as\\.js:\\d+');
     if (Error().stack.split(/\n/).some(RegExp.prototype.test.bind(REAC)) && /Executing .* Auto commands for .*/.test(msg))
       liberator.log(msg);
     else
