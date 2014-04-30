@@ -231,7 +231,7 @@ addLocalMappings(
 EOM
 
 " feedSomeKeys_3.js
-lazy fmaps -u='^https?://mail\.google\.com/(mail|a)/' c j k n p o u e x s r a # [ ] z ? gi gs gt gd ga gc
+lazy fmaps -u='^https?://mail\.google\.com/(mail|a)/' c j k n p o u e x s r a # [ ] z ? I U gi gs gt gd ga gc gk gl *a *n *r *u *s *t
 " lazy fmaps -u='^https?://www\.google\.com/calendar/' c e j k n p r t d w m x a <BS> ?
 lazy fmaps -u='^http://b\.hatena\.ne\.jp/(?!(entry|articles|guide))' j k o,oj e a,b
 lazy fmaps -e=vkeydown -u='^http://www\.tumblr\.com/' j k r,h q p n L,l <S-e>
