@@ -21,6 +21,8 @@ path=(# 自分用（--prefix=$HOME/localでインストールしたもの）
       $HOME/.nodebrew/current/bin(N-/)
       # rails project
       ./bin
+      # for android development
+      /Applications/android-sdk/sdk/platform-tools(N-/)
       # Debian GNU/Linux用
       /var/lib/gems/*/bin(N-/)
       # MacPorts用
@@ -222,7 +224,7 @@ eval "$(pyenv init -)"
 # settings for RDS command line tool
 export JAVA_HOME="$(/usr/libexec/java_home)"
 if [ -d $HOME/.ec2 ]; then
-  export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec3/pkcs8-*.pem | /usr/bin/head -1)"
+  export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec2/pkcs8-*.pem | /usr/bin/head -1)"
   export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem | /usr/bin/head -1)"
 fi
 export AWS_RDS_HOME="/usr/local/Cellar/rds-command-line-tools/1.14.001/libexec"
