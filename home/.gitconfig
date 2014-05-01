@@ -72,8 +72,7 @@
   # mergeの際にconflictが起きたファイルをadd
   add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
   # grep関連
-  gr = grep
-  gn = grep -n
+  gr = grep -n -p --color --heading --break
 
   # submodule
   su = submodule update
