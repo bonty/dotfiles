@@ -104,4 +104,6 @@ cask install vagrant
 cask install virtualbox
 cask install vlc
 
+cask alfred link
+
 cleanup
