@@ -78,6 +78,9 @@
   su = submodule update
   sui = submodule update --init
 
+  # other
+  fixup = commit --amend -C HEAD
+
 [credential]
 helper = /opt/boxen/bin/boxen-git-credential
 
