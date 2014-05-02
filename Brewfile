@@ -46,13 +46,6 @@ install jq
 install autojump
 install rmtrash
 
-# aws
-install awscli
-install ec2-ami-tools
-install ec2-api-tools
-install elb-tools
-install rds-command-line-tools
-
 # ruby
 install rbenv
 install --HEAD ruby-build
