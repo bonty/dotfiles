@@ -4,18 +4,19 @@ upgrade
 tap phinze/homebrew-cask
 tap sanemat/font
 
-# gnu utils
-install xz
-install binutils
-install coreutils
-install findutils
-
 # utils
 install autoconf
 install automake
 install openssl
 install readline
+install nkf
 install --HEAD cmigemo
+
+# gnu utils
+install xz
+install binutils
+install coreutils
+install findutils
 
 # shell
 install zsh --disable-etcdir
@@ -25,8 +26,9 @@ install source-highlight
 # emacs
 install emacs --use-git-head --japanese
 
-# mosh
+# ssh
 install mobile-shell
+install csshx
 
 # git
 install git
@@ -34,9 +36,13 @@ install git-flow
 install tig
 install hub
 
+# hg
+install mercurial
+
 # command line tools
 install lv
 install wget
+install jq
 install autojump
 install rmtrash
 
@@ -89,6 +95,7 @@ cask install genymotion
 cask install google-chrome
 cask install google-japanese-ime
 cask install hipchat
+cask install hyperswitch
 cask install istat-menus
 cask install iterm2
 cask install java
