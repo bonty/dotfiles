@@ -43,7 +43,7 @@ install mercurial
 install lv
 install wget
 install jq
-install autojump
+install z
 install rmtrash
 
 # ruby
@@ -97,6 +97,7 @@ cask install league-of-legends
 cask install pckeyboardhack
 cask install reflector
 cask install sequel-pro
+cask install skype
 cask install sourcetree
 cask install spotify
 cask install steam
