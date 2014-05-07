@@ -12,13 +12,3 @@ plenv install-cpanm
 plenv exec cpanm App::dropboxapi
 
 plenv rehash
-
-
-
-
-
-
-
-
-
-
