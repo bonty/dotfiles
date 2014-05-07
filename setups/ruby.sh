@@ -10,6 +10,6 @@ rbenv exec gem install homesick
 rbenv rehash
 
 # setup homesick
-rbenv exec homesick bonty/dotfiles
-rbenv exec homesick pull dotefiles
+rbenv exec homesick clone bonty/dotfiles
+rbenv exec homesick pull dotfiles
 yes | rbenv exec homesick symlink dotfiles
