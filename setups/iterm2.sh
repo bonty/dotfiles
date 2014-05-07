@@ -72,7 +72,7 @@ SELECTION_COLOR_2='0.8353000283241272'
 SELECTION_COLOR_3='0.70980000495910645'
 
 # setup color
-defaults write -app iTerm 'custom color presets' -dict-add \"$NAME\" \
+defaults write -app iTerm 'custom color presets' -dict-add "$NAME" \
 "{
   \"Ansi 0 Color\" = {
     \"Red Component\" = \"$ANSI_0_COLOR_1\";
