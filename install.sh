@@ -15,4 +15,4 @@ fi
 brew bundle
 
 # setup with shell scripts
-find $CURRENT_DIR/setups -name "*.sh" | xargs sh
+find $CURRENT_DIR/setups -name "*.sh" | xargs -I S sh S
