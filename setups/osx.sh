@@ -145,14 +145,14 @@ defaults write com.apple.Mail DisableSendAnimations -bool true
 echo "Disable Dashboard"
 defaults write com.apple.dashboard mcx-disabled -boolean true
 
-echo "Reset Launchpad"
-[ -e ~/Library/Application\ Support/Dock/*.db ] && rm ~/Library/Application\ Support/Dock/*.db
+# echo "Reset Launchpad"
+# [ -e ~/Library/Application\ Support/Dock/*.db ] && rm ~/Library/Application\ Support/Dock/*.db
 
 echo "Show the ~/Library folder"
 chflags nohidden ~/Library
 
-echo "Add iOS Simulator to Launchpad"
-ln -s /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app /Applications/iOS\ Simulator.app
+# echo "Add iOS Simulator to Launchpad"
+# ln -s /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app /Applications/iOS\ Simulator.app
 
 echo "Kill affected applications"
 for app in Safari Finder Dock Mail SystemUIServer; do killall "$app" >/dev/null 2>&1; done
