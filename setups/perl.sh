@@ -3,7 +3,7 @@
 # install 5.18.2
 plenv install 5.18.2
 plenv global 5.18.2
-plenv rehash && rehash
+plenv rehash
 
 # install cpanm
 plenv install-cpanm

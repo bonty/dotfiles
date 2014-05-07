@@ -3,7 +3,7 @@
 # install 2.1.1
 rbenv install 2.1.1
 rbenv global 2.1.1
-rbenv rehash && rehash
+rbenv rehash
 
 # install homesick
 rbenv exec gem install homesick
