@@ -24,7 +24,7 @@
 /usr/libexec/PlistBuddy -c "Set :\"New Bookmarks\":0:\"Transparency\" 0.224709" ~/Library/Preferences/com.googlecode.iterm2.plist
 
 # config clipboard
-/usr/libexec/PlistBuddy -c "Set :\"PasetFromClipboard\" false" ~/Library/Preferences/com.googlecode.iterm2.plist
+/usr/libexec/PlistBuddy -c "Set :\"PasteFromClipboard\" false" ~/Library/Preferences/com.googlecode.iterm2.plist
 /usr/libexec/PlistBuddy -c "Set :\"AllowClipboardAccess\" true" ~/Library/Preferences/com.googlecode.iterm2.plist
 
 # apparence
