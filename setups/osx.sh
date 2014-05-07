@@ -19,8 +19,7 @@ echo "Disable menu bar transparency"
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
 
 echo "Show remaining battery time; hide percentage"
-defaults write com.apple.menuextra.battery ShowPercent -string "NO"
-defaults write com.apple.menuextra.battery ShowTime -string "YES"
+defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 
 echo "Allow quitting Finder via ⌘ + Q; doing so will also hide desktop icons"
 defaults write com.apple.finder QuitMenuItem -bool true
