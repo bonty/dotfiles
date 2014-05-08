@@ -212,4 +212,9 @@
 ;; load packages config
 ;; (load "config/packages")
 
+;; launch server when not launched
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+
 ;; Eof
