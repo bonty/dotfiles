@@ -188,7 +188,7 @@ fi
 
 # エディタの設定
 ## vimを使う。
-export EDITOR=vim
+export EDITOR=emacsclient
 ## vimがなくてもvimでviを起動する。
 if ! type vim > /dev/null 2>&1; then
     alias vim=vi
