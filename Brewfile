@@ -21,6 +21,7 @@ install findutils
 # shell
 install zsh --disable-etcdir
 install tmux
+install reattach-to-user-namespace
 install source-highlight
 
 # emacs
