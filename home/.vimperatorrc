@@ -237,6 +237,7 @@ lazy fmaps -u='^https?://mail\.google\.com/(mail|a)/' c j k n p o u e x s r a # 
 lazy fmaps -u='^http://b\.hatena\.ne\.jp/(?!(entry|articles|guide))' j k o,oj e a,b
 lazy fmaps -e=vkeydown -u='^http://www\.tumblr\.com/' j k r,h q p n L,l <S-e>
 lazy fmaps -u='^http://reader\.livedoor\.com/reader/' j k s a p v z <S-z> ,r,r < > o,vj J,<Space> K,<S-Space> q w g
+lazy fmaps -u='www\.feedly\.com' g h m a e t c d p l s n b n p o v V m s S D e t d c / r ? 1 2 3 4 5 6 7 8 9 <Enter>
 nnoremap -u='^http://reader\.livedoor\.com/reader/' b :tombloo Link - LDR<CR>
 nnoremap -u='^http://reader\.livedoor\.com/reader/' B :tombloo! Link - LDR<CR>
 nnoremap -u='^http://reader\.livedoor\.com/reader/' e :tombloo ReBlog - LDR<CR>
