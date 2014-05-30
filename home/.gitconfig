@@ -3,7 +3,6 @@
   email = bonty.shushusha@gmail.com
 
 [core]
-  excludesfile = /opt/boxen/config/git/gitignore
   autocrlf = input
   pager = lv -c
 
@@ -80,9 +79,6 @@
 
   # other
   fixup = commit --amend -C HEAD
-
-[credential]
-helper = /opt/boxen/bin/boxen-git-credential
 
 [hub]
 protocol = https
