@@ -46,6 +46,7 @@ install wget
 install jq
 install z
 install rmtrash
+install tree
 
 # ruby
 install rbenv
