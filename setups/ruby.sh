@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# install 2.1.1
-rbenv install 2.1.1
-rbenv global 2.1.1
+# install 2.1.2
+rbenv install 2.1.2
+rbenv global 2.1.2
 rbenv rehash
 
 # install homesick
