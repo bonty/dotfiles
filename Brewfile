@@ -70,6 +70,7 @@ install redis
 install ant
 install android-sdk
 install android-ndk
+install gradle
 
 # font
 install ricty
