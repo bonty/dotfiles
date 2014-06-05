@@ -66,6 +66,8 @@ install mysql
 install memcached
 install redis
 
+# android
+install ant
 install android-sdk
 install android-ndk
 
