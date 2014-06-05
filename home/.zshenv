@@ -228,6 +228,9 @@ export AWS_RDS_HOME="/usr/local/Cellar/rds-command-line-tools/1.14.001/libexec"
 
 # settings for cocos2d-x
 export ANDROID_HOME="/usr/local/opt/android-sdk"
+export NDK_ROOT="/usr/local/opt/android-ndk"
+export ANDROID_SDK_ROOT="/usr/local/opt/android-sdk"
+export ANT_ROOT="/usr/local/bin"
 if [ -e $HOME/.profile ]; then
     source $HOME/.profile
 fi
