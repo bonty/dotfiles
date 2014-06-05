@@ -77,6 +77,7 @@ install ricty
 
 # cask
 install brew-cask
+cask install adobe-air
 cask install adobe-creative-cloud
 cask install adobe-reader
 cask install alfred
