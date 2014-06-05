@@ -221,7 +221,13 @@ eval "$(pyenv init -)"
 # settings for RDS command line tool
 export JAVA_HOME="$(/usr/libexec/java_home)"
 if [ -d $HOME/.ec2 ]; then
-  export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec2/pkcs8-*.pem | /usr/bin/head -1)"
-  export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem | /usr/bin/head -1)"
+    export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec2/pkcs8-*.pem | /usr/bin/head -1)"
+    export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem | /usr/bin/head -1)"
 fi
 export AWS_RDS_HOME="/usr/local/Cellar/rds-command-line-tools/1.14.001/libexec"
+
+# settings for cocos2d-x
+export ANDROID_HOME="/usr/local/opt/android-sdk"
+if [ -e $HOME/.profile ]; then
+    source $HOME/.profile
+fi
