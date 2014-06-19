@@ -11,4 +11,15 @@ pyenv exec pip install percol --allow-external percol --allow-unverified percol
 # install awscli
 pyenv exec pip install awscli
 
+# install pygments
+pyenv exec pip install pygments
+
 pyenv rehash
+
+
+
+
+
+
+
+

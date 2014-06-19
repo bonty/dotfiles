@@ -75,6 +75,9 @@ install gradle
 # font
 install ricty
 
+# docker
+install docker
+
 # cask
 install brew-cask
 cask install adobe-air
