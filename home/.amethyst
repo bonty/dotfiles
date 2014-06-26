@@ -189,7 +189,8 @@
         "com.apple.iphonesimulator",
         "com.apple.systempreferences",
         "com.twitter.twitter-mac",
-        "com.realmacsoftware.clear.mac"
+        "com.realmacsoftware.clear.mac",
+        "com.yourcompany.genymotion"
     ],
     "ignore-menu-bar": "false",
     "float-small-windows": true,
