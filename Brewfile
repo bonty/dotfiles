@@ -90,6 +90,7 @@ cask install appcleaner
 cask install bettertouchtool
 cask install box-sync
 cask install charles
+cask install coteditor
 cask install dropbox
 cask install firefox
 cask install flash
@@ -104,6 +105,7 @@ cask install iterm2
 cask install java
 cask install keyremap4macbook
 cask install league-of-legends
+cask install lightpaper
 cask install pckeyboardhack
 cask install reflector
 cask install sequel-pro
