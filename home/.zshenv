@@ -234,3 +234,6 @@ export ANT_ROOT="/usr/local/bin"
 if [ -e $HOME/.profile ]; then
     source $HOME/.profile
 fi
+
+# for homebrew-cask
+HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/usr/local/Caskroom"
