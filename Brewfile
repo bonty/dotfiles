@@ -106,8 +106,8 @@ cask install java
 cask install keyremap4macbook
 cask install league-of-legends
 cask install lightpaper
-cask install pckeyboardhack
 cask install reflector
+cask install seil
 cask install sequel-pro
 cask install skype
 cask install sourcetree
