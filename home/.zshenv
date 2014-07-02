@@ -236,4 +236,4 @@ if [ -e $HOME/.profile ]; then
 fi
 
 # for homebrew-cask
-HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/usr/local/Caskroom"
+export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/usr/local/Caskroom"
