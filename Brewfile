@@ -103,7 +103,7 @@ cask install hyperswitch
 cask install istat-menus
 cask install iterm2
 cask install java
-cask install keyremap4macbook
+cask install karabiner
 cask install league-of-legends
 cask install lightpaper
 cask install reflector
