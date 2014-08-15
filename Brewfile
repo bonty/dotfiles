@@ -78,6 +78,10 @@ install ricty
 # docker
 install docker
 
+# aws
+install awscli
+install aws-elasticbeanstalk
+
 # cask
 install brew-cask
 cask install adobe-air

@@ -14,6 +14,9 @@ pyenv exec pip install awscli
 # install pygments
 pyenv exec pip install pygments
 
+# install boto for aws
+pyenv exec pip install boto
+
 pyenv rehash
 
 
