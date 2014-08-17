@@ -91,6 +91,7 @@ cask install alfred
 cask install amethyst
 cask install android-studio
 cask install appcleaner
+cask install atom
 cask install bettertouchtool
 cask install box-sync
 cask install charles
