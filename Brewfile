@@ -106,6 +106,7 @@ cask install flip4mac
 cask install genymotion
 cask install google-chrome
 cask install google-japanese-ime
+cask install gyazo
 cask install hipchat
 cask install hyperswitch
 cask install istat-menus
