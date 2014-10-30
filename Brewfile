@@ -123,6 +123,7 @@ cask install unity3d
 cask install vagrant
 cask install virtualbox
 cask install vlc
+cask install zeroxed
 
 cask alfred link
 
