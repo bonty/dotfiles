@@ -28,9 +28,10 @@
   st = status
   sh = show
   so = remote show origin
-  ft = fetch
+  ft = fetch -p
   up = pull --rebase
   rbm = rebase master      # masterへのrebase
+  rbd = rebase develop
   ad = add
   ci = commit
   cam = commit -a --amend  # 直前のcommitを修正
