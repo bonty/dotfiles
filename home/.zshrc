@@ -7,3 +7,6 @@ source ~/.zsh.d/zshantigen
 source ~/.zsh.d/zshrc
 
 source ~/.zsh.d/zshfunction
+
+# added by travis gem
+[ -f /Users/hkouno/.travis/travis.sh ] && source /Users/hkouno/.travis/travis.sh
