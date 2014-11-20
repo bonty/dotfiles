@@ -122,7 +122,7 @@ cask install sourcetree
 cask install spotify
 cask install steam
 cask install texturepacker
-cask install unity3d
+cask install unity
 cask install vagrant
 cask install virtualbox
 cask install vlc
