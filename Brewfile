@@ -82,6 +82,9 @@ install docker
 install awscli
 install aws-elasticbeanstalk
 
+# xctool
+install xctool
+
 # cask
 install brew-cask
 cask install adobe-air
