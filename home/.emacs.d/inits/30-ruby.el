@@ -8,9 +8,6 @@
 (setq interpreter-mode-alist (append '(("ruby" . ruby-mode))
                                      interpreter-mode-alist))
 
-;; do not insert magic comment
-(setq ruby-insert-encoding-magnnic-comment nil)
-
 ;; rspec-mode
 (require 'rspec-mode)
 
@@ -77,3 +74,6 @@
                (regexp . "\\(\\s-*\\)# => [^#\t\n]")
                (repeat . nil)
                (modes  . '(ruby-mode))))
+
+;; do not insert magic comment
+(setq ruby-insert-encoding-magic-comment nil)
