@@ -35,8 +35,14 @@
     ;; yaml
     yaml-mode
 
+    ;; coffee-script
+    coffee-mode
+
     ;; markdown
     markdown-mode
+
+    ;; dockerfile
+    dockerfile-mode
 
     ;; env
     exec-path-from-shell
