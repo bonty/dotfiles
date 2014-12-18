@@ -63,6 +63,7 @@
         "docker",
         "ec2-api-tools",
         "emacs --use-git-head --japanese",
+        "fdupes"
         "findutils",
         "fontconfig",
         "fontforge",
