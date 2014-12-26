@@ -62,7 +62,7 @@
         "dnsmasq",
         "docker",
         "ec2-api-tools",
-        "emacs --use-git-head --japanese",
+        "emacs --use-git-head --japanese --with-x11",
         "fdupes"
         "findutils",
         "fontconfig",
