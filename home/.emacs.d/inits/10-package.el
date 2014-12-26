@@ -44,6 +44,9 @@
     ;; dockerfile
     dockerfile-mode
 
+    ;; groovy(for gradle)
+    groovy-mode
+
     ;; env
     exec-path-from-shell
 
