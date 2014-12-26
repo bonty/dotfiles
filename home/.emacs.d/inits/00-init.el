@@ -4,7 +4,9 @@
 (require 'cl nil t)
 
 ;; load-path
-(add-to-list 'load-path user-emacs-directory)
+(dolist (dir '("inits" "functions" "elpa" "config"))
+  (add-to-list 'load-path (concat user-emacs-directory dir)))
+;; (add-to-list 'load-path user-emacs-directory)
 ;; (let ((default-directory "~/.emacs.d/packages"))
 ;;   (setq load-path (cons default-directory load-path))
 ;;   (normal-top-level-add-subdirs-to-load-path))
@@ -208,7 +210,7 @@
 (global-hl-line-mode)
 
 ;; load builtins config
-(load "config/builtins")
+(load "builtins")
 ;; load packages config
 ;; (load "config/packages")
 
