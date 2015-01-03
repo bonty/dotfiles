@@ -47,6 +47,9 @@
     ;; groovy(for gradle)
     groovy-mode
 
+    ;; lua
+    lua-mode
+
     ;; env
     exec-path-from-shell
 
