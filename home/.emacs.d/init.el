@@ -1,11 +1,40 @@
-;; ELPA preferences
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(package-initialize)
+;; enable to test temporary .emacs
+;; usage: emacs -q -l ~/path/to/init.el
+(when load-file-name
+  (setq user-emacs-directory (file-name-directory load-file-name)))
 
-;; init-loader
-;; install init-loader if not installed
-(when (or (not (package-installed-p 'init-loader)))
-  (package-install 'init-loader))
-(require 'init-loader)
-(init-loader-load (concat user-emacs-directory "inits"))
+;; separate installed directory by emacs-version
+(let ((versioned-dir (locate-user-emacs-file (concat "el-get/" emacs-version))))
+  (setq-default el-get-dir (expand-file-name versioned-dir "el-get")
+		package-user-dir (expand-file-name versioned-dir "elpa")))
+
+;; el-get install
+(add-to-list 'load-path (expand-file-name "el-get" el-get-dir))
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+
+;; add self-recipe path
+(add-to-list 'el-get-recipe-path (locate-user-emacs-file "recipes"))
+
+;; lock package versions
+(el-get-bundle tarao/el-get-lock
+  (el-get-lock))
+
+;; byte compile bundle config
+(el-get-bundle tarao/with-eval-after-load-feature-el)
+
+;; install init-loader
+(el-get-bundle! emacs-jp/init-loader
+  (custom-set-variables
+   '(init-loader-show-log-after-init 'error-only)
+   '(init-loader-byte-compile t))
+
+  (init-loader-load (locate-user-emacs-file "init-loader"))
+
+  ;; hide compilation results
+  (let ((win (get-buffer-window "*Compile-Log*")))
+    (when win (delete-window win))))
