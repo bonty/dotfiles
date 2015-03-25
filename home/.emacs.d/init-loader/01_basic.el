@@ -8,8 +8,9 @@
 (setq inhibit-startup-screen t)
 
 ;; ignore case at dabbrev
-(setq dabbrev-case-fold-search t)
-(setq dabbrev-case-replace nil)
+(custom-set-variables
+ '(dabbrev-case-fold-search t)
+ '(dabbrev-case-replace nil))
 
 ;; ignore case at read file/buffer
 (setq read-file-name-completion-ignore-case t)
@@ -32,7 +33,7 @@
 (delete-selection-mode t)
 
 ;; indent
-(setq default-tab-width 2)
+(setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
 (setq indent-line-function 'indent-relative-maybe)
 
@@ -44,10 +45,11 @@
 
 ;; highlight
 (show-paren-mode t)
-(setq show-paren-ring-bell-on-mismatch t)
+(custom-set-variables
+ '(show-paren-ring-bell-on-mismatch t))
 (setq transient-mark-mode t)
 (setq search-highlight t)
-(setq isearch-lazy-highlight-initial-delay 0)
+(setq lazy-highlight-initial-delay 0)
 (setq query-replace-highlight t)
 
 ;; increase GC threshold
