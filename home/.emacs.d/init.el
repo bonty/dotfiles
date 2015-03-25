@@ -25,13 +25,12 @@
   (el-get-lock))
 
 ;; byte compile bundle config
-(el-get-bundle tarao/with-eval-after-load-feature-el)
+(el-get-bundle with-eval-after-load-feature)
 
 ;; install init-loader
 (el-get-bundle! emacs-jp/init-loader
-  (custom-set-variables
-   '(init-loader-show-log-after-init 'error-only)
-   '(init-loader-byte-compile t))
+  (setq-default init-loader-show-log-after-init t
+                init-loader-byte-compile t)
 
   (init-loader-load (locate-user-emacs-file "init-loader"))
 

@@ -4,60 +4,54 @@
 (set-language-environment "Japanese")
 (prefer-coding-system 'utf-8-unix)
 
-;; customize variables
-(custom-set-variables
+;; do not show startup screen
+(setq inhibit-startup-screen t)
 
- ;; do not show startup screen
- '(inhibit-startup-screen t)
+;; ignore case at dabbrev
+(setq dabbrev-case-fold-search t)
+(setq dabbrev-case-replace nil)
 
- ;; remove scratch header message
- '(initial-scratch-message nil)
+;; ignore case at read file/buffer
+(setq read-file-name-completion-ignore-case t)
+(setq read-buffer-completion-ignore-case t)
 
- ;; ignore case at dabbrev
- '(dabbrev-case-fold-search t)
- '(dabbrev-case-replace nil)
+;; remove menu bar and tool bar
+(menu-bar-mode -1)
+(tool-bar-mode -1)
 
- ;; ignore case at read file/buffer
- '(read-file-name-completion-ignore-case t)
- '(read-buffer-completion-ignore-case t)
+;; show line/column number
+(line-number-mode t)
+(column-number-mode t)
 
- ;; remove menu bar and tool bar
- '(menu-bar-mode nil)
- '(tool-bar-mode nil)
+;; do not create backup files
+(setq make-backup-files nil)
+(setq delete-auto-save-files t)
+(setq create-lockfiles nil)
 
- ;; do not create backup files
- '(make-backup-files nil)
- '(delete-auto-save-files t)
- '(create-lockfiles nil)
+;; delete
+(delete-selection-mode t)
 
- ;; show line/column number
- '(line-number-mode t)
- '(column-number-mode t)
+;; indent
+(setq default-tab-width 2)
+(setq-default indent-tabs-mode nil)
+(setq indent-line-function 'indent-relative-maybe)
 
- ;; delete
- '(delete-selection-mode t)
+;; visit symbolic link
+(setq find-file-visit-truename t)
 
- ;; indent
- '(indent-tabs-mode nil)
- '(indent-line-function 'indent-relative-maybe)
+;; comment style
+(setq comment-style 'multi-line)
 
- ;; visit symbolic link
- '(find-file-visit-truename t)
+;; highlight
+(show-paren-mode t)
+(setq show-paren-ring-bell-on-mismatch t)
+(setq transient-mark-mode t)
+(setq search-highlight t)
+(setq isearch-lazy-highlight-initial-delay 0)
+(setq query-replace-highlight t)
 
- ;; comment style
- '(comment-style 'multi-line)
-
- ;; highlight
- '(show-paren-mode t)
- '(show-paren-ring-bell-on-mismatch t)
- '(transient-mark-mode t)
- '(search-highlight t)
- '(isearch-lazy-highlight-initial-delay 0)
- '(query-replace-highlight t)
-
- ;; increase GC threshold
- '(gc-cons-threshold (* gc-cons-threshold 10))
- )
+;; increase GC threshold
+(setq gc-cons-threshold (* 128 1024 1024))
 
 ;; yes/no -> y/n
 (defalias 'yes-or-no-p 'y-or-n-p)
