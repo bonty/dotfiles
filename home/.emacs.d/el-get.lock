@@ -3,5 +3,4 @@
         (with-eval-after-load-feature :checksum "0b38651a5f0dafdfe04bd0032eb5ff803e99460b")
         (el-get-lock :checksum "046ffb568c6964ea30813338234aea2d60a5c632")))
 (setq el-get-lock-locked-packages 'nil)
-(setq el-get-lock-unlocked-packages
-      '(reverse-theme))
+(setq el-get-lock-unlocked-packages 'nil)
