@@ -9,11 +9,13 @@
 		package-user-dir (expand-file-name versioned-dir "elpa")))
 
 ;; el-get install
-(add-to-list 'load-path (expand-file-name "el-get" el-get-dir))
-(unless (require 'el-get nil 'noerror)
+(setq-default el-get-emacswiki-base-url
+              "http://raw.github.com/emacsmirror/emacswiki.org/master/")
+(add-to-list 'load-path (expand-file-name "bundle" el-get-dir))
+(unless (require 'bundle nil 'noerror)
   (with-current-buffer
       (url-retrieve-synchronously
-       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
+       "http://raw.github.com/tarao/bundle-el/master/bundle-install.el")
     (goto-char (point-max))
     (eval-print-last-sexp)))
 
@@ -21,14 +23,14 @@
 (add-to-list 'el-get-recipe-path (locate-user-emacs-file "recipes"))
 
 ;; lock package versions
-(el-get-bundle tarao/el-get-lock
+(bundle tarao/el-get-lock
   (el-get-lock))
 
 ;; byte compile bundle config
-(el-get-bundle with-eval-after-load-feature)
+(bundle with-eval-after-load-feature)
 
 ;; install init-loader
-(el-get-bundle! emacs-jp/init-loader
+(bundle! emacs-jp/init-loader
   (setq-default init-loader-show-log-after-init t
                 init-loader-byte-compile t)
 
