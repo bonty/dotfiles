@@ -4,9 +4,6 @@
 (set-language-environment "Japanese")
 (prefer-coding-system 'utf-8-unix)
 
-;; color basic config files
-(require 'generic-x)
-
 ;; customize variables
 (custom-set-variables
 
@@ -57,10 +54,6 @@
  '(search-highlight t)
  '(isearch-lazy-highlight-initial-delay 0)
  '(query-replace-highlight t)
- '(global-font-lock-mode t)
-
- ;; auto revert buffer
- '(global-auto-revert-mode t)
 
  ;; increase GC threshold
  '(gc-cons-threshold (* gc-cons-threshold 10))
