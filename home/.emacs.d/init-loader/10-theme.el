@@ -1,2 +1,4 @@
+(el-get-lock-unlock 'reverse-theme)
 (el-get-bundle reverse-theme
-  (load-theme 'reverse t))
+  (with-eval-after-load-feature 'reverse-theme
+    (load-theme 'reverse t)))
