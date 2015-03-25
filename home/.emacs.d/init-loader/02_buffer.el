@@ -5,3 +5,10 @@
 
 ;; automatically revert buffer
 (global-auto-revert-mode t)
+
+;; save buffer with deleting trailing whitespace
+(defun save-buffer-with-delete-trailing-whitespace ()
+  "save buffer with deleting trailing whitespace"
+  (interactive)
+  (delete-trailing-whitespace)
+  (save-buffer))
