@@ -19,6 +19,7 @@
 
 ;; undo
 (el-get-bundle undo-tree :type git :url "http://www.dr-qubit.org/git/undo-tree.git")
+(el-get-bundle m2ym/undohist-el :name undohist)
 
 ;; cursor
 ;; (el-get-bundle winterTTr/ace-jump-mode)
@@ -27,12 +28,13 @@
 (el-get-bundle capitaomorte/autopair)
 
 ;; region
-;; (el-get-bundle expand-region)
+(el-get-bundle expand-region)
 
 ;; buffer utils
 (el-get-bundle m2ym/popwin-el :name popwin)
 ;; (el-get-bundle lukhas/buffer-move)
 (el-get-bundle kentaro/auto-save-buffers-enhanced)
+(el-get-bundle recentf-ext)
 
 ;; dired
 ;; (el-get-bundle m2ym/direx-el :name direx)
