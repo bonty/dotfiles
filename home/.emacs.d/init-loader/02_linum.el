@@ -6,3 +6,10 @@
     (propertize (format (format "%%%dd " w) line) 'face 'linum)))
 
 (setq linum-format 'linum-format-func)
+
+(defvar my/linum-disabled-modes
+  '(magit-mode))
+
+(dolist (mode my/linum-disabled-modes)
+  (add-hook (intern (format "%s-hook" mode))
+            (lambda () (linum-mode -1))))
