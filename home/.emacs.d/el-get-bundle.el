@@ -21,6 +21,10 @@
 (el-get-bundle undo-tree :type git :url "http://www.dr-qubit.org/git/undo-tree.git")
 (el-get-bundle m2ym/undohist-el :name undohist)
 
+;; search
+(el-get-bundle syohex/emacs-anzu :name anzu)
+(el-get-bundle ace-isearch)
+
 ;; cursor
 ;; (el-get-bundle winterTTr/ace-jump-mode)
 
