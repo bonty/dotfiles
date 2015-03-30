@@ -25,6 +25,7 @@
 ;; (el-get-bundle winterTTr/ace-jump-mode)
 
 ;; paren
+(el-get-bundle rainbow-delimiters)
 (el-get-bundle capitaomorte/autopair)
 
 ;; region
@@ -82,6 +83,16 @@
 
 ;; lua
 (el-get-bundle lua-mode)
+
+;; csharp
+(el-get-bundle josteink/csharp-mode)
+(el-get-bundle OmniSharp/omnisharp-emacs)
+
+;; shell
+(el-get-bundle syohex/emacs-quickrun :name quickrun)
+
+;; document
+(el-get-bundle dash-at-point)
 
 ;; auto-complete plugins
 (el-get-bundle zk-phi/ac-c-headers)
