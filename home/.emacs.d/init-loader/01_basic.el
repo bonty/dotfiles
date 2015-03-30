@@ -52,6 +52,7 @@
 (setq search-highlight t)
 (setq lazy-highlight-initial-delay 0)
 (setq query-replace-highlight t)
+(global-hl-line-mode 1)
 
 ;; increase GC threshold
 (setq gc-cons-threshold (* 128 1024 1024))
