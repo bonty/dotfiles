@@ -1,9 +1,0 @@
-(setq el-get-lock-package-versions
-      '((init-loader :checksum "1f28a0b801cbb08aa9b47fd15ceab243a2bc064c")
-        (helm-swoop :checksum "6c58f121db50963d037018fb66af1060dae987e4")
-        (helm :checksum "7c314791f137def91ca85777c4406720e46e8b0b")
-        (migemo :checksum "53dc01ab31b26f7685bcbbe788ccbd29f8a799ab")
-        (with-eval-after-load-feature :checksum "0b38651a5f0dafdfe04bd0032eb5ff803e99460b")
-        (el-get-lock :checksum "046ffb568c6964ea30813338234aea2d60a5c632")))
-(setq el-get-lock-locked-packages 'nil)
-(setq el-get-lock-unlocked-packages 'nil)

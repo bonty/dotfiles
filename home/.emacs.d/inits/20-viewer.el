@@ -1,5 +1,0 @@
-(require 'viewer)
-(viewer-stay-in-setup)
-(setq viewer-modeline-color-unwritable "tomato")
-(setq viewer-modeline-color-view "orange")
-(viewer-change-modeline-color-setup)
