@@ -6,6 +6,9 @@
 ;; el-get bundle
 (load (concat user-emacs-directory "el-get-bundle.el"))
 
+;; load environment variables
+(exec-path-from-shell-initialize)
+
 ;; loading theme
 (load-theme 'reverse t t)
 (enable-theme 'reverse)

@@ -30,7 +30,7 @@
 ;; (el-get-bundle expand-region)
 
 ;; buffer utils
-;; (el-get-bundle m2ym/popwin-el :name popwin)
+(el-get-bundle m2ym/popwin-el :name popwin)
 ;; (el-get-bundle lukhas/buffer-move)
 (el-get-bundle kentaro/auto-save-buffers-enhanced)
 
@@ -50,7 +50,9 @@
 ;; helm
 (el-get-bundle helm)
 (el-get-bundle helm-descbinds)
+(el-get-bundle helm-migemo)
 (el-get-bundle helm-swoop)
+(el-get-bundle helm-ls-git)
 
 ;; flycheck
 (el-get-bundle flycheck)
