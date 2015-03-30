@@ -5,7 +5,8 @@
 (dolist (hook '(emacs-lisp-mode-hook
                 lisp-interaction-mode-hook
                 eval-expression-minibuffer-setup-hook))
-  (add-hook hook 'eldoc-mode))
+  (add-hook hook 'eldoc-mode)
+  (add-hook hook 'rainbow-delimiters-mode))
 
 (with-eval-after-load 'eldoc
   (set-face-attribute 'eldoc-highlight-function-argument nil
