@@ -51,10 +51,6 @@
 
 ;; helm
 (el-get-bundle helm)
-(el-get-bundle helm-descbinds)
-(el-get-bundle helm-migemo)
-(el-get-bundle helm-swoop)
-(el-get-bundle helm-ls-git)
 
 ;; flycheck
 (el-get-bundle flycheck)
@@ -71,7 +67,8 @@
 ;; yaml
 (el-get-bundle yaml-mode)
 
-;; coffee-script
+;; javascript
+(el-get-bundle js2-mode)
 (el-get-bundle coffee-mode)
 
 ;; markdown
@@ -81,7 +78,17 @@
 (el-get-bundle dockerfile-mode)
 
 ;; groovy(for gradle)
-(el-get-bundle groovy-mode)
+(el-get-bundle groovy-emacs-mode)
 
 ;; lua
 (el-get-bundle lua-mode)
+
+;; auto-complete plugins
+(el-get-bundle zk-phi/ac-c-headers)
+(el-get-bundle dgutov/robe)
+
+;; helm plugins
+(el-get-bundle helm-descbinds)
+(el-get-bundle helm-migemo)
+(el-get-bundle helm-swoop)
+(el-get-bundle helm-ls-git)
