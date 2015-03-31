@@ -3,7 +3,7 @@ upgrade
 
 tap phinze/homebrew-cask
 tap sanemat/font
-tap bonty/bonty
+tap bonty/omnisharpserver
 
 # utils
 install autoconf
