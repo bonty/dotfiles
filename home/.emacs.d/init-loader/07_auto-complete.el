@@ -2,7 +2,8 @@
 (ac-config-default)
 
 (defvar my/auto-complete-enabled-modes
-  '(git-commit-mode
+  '(csharp-mode
+    git-commit-mode
     coffee-mode
     markdown-mode
     fundamental-mode
