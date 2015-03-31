@@ -3,6 +3,7 @@ upgrade
 
 tap phinze/homebrew-cask
 tap sanemat/font
+tap bonty/bonty
 
 # utils
 install autoconf
@@ -84,6 +85,9 @@ install aws-elasticbeanstalk
 
 # xctool
 install xctool
+
+# omnisharp-server
+install omnisharp-server
 
 # cask
 install brew-cask

@@ -1,4 +1,0 @@
-(:name viewer
-       :description "Viewer mode for Emacs."
-       :type emacswiki
-       :features viewer)
