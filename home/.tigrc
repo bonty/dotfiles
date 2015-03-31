@@ -1,5 +1,10 @@
 # .tigrc
 
+# show commit hash on main view
+set main-view = id date author commit-title:graph=yes,refs=yes
+
+set line-graphics = ascii
+
 # open commit at github
 # @see http://blog.kyanny.me/entry/2012/07/22/033134
 bind main o !@hub browse -- commit/%(commit)
