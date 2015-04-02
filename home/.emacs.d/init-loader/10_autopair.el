@@ -1,11 +1,9 @@
 (defvar my/autopair-enabled-modes
-  '(emacs-lisp-mode
-    c-mode
+  '(c-mode
     c++-mode
     java-mode
     groovy-mode
     python-mode
-    ruby-mode
     sh-mode
     js2-mode
     cmake-mode
