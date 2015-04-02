@@ -12,6 +12,10 @@ install openssl
 install readline
 install nkf
 install --HEAD cmigemo
+install lnav
+
+# weechat
+install weechat --with-ruby --with-python --with-perl
 
 # gnu utils
 install xz
