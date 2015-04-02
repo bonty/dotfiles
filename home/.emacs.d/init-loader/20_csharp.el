@@ -9,6 +9,7 @@
   (c-set-offset 'case-label '+)
   (c-set-offset 'arglist-intro '+)
   (c-set-offset 'arglist-close 0)
-  (omnisharp-mode))
+  (omnisharp-mode)
+  (add-to-list 'ac-sources ac-source-omnisharp))
 
 (add-hook 'csharp-mode-hook 'my/csharp-mode-hook)
