@@ -68,6 +68,7 @@
 ;; ruby
 (el-get-bundle ruby-block)
 (el-get-bundle ruby-end)
+(el-get-bundle inf-ruby)
 
 ;; yaml
 (el-get-bundle yaml-mode)
