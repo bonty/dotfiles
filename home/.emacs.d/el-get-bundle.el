@@ -108,3 +108,4 @@
 (el-get-bundle helm-migemo)
 (el-get-bundle helm-swoop)
 (el-get-bundle helm-ls-git)
+(el-get-bundle helm-git-grep)
