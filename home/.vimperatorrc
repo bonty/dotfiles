@@ -28,7 +28,7 @@ set! dom.popup_maximum=9999
 set gui=none,tabs
 
 " ヒントの文字列をアルファベットに
-set hintchars=hjklasdfg
+set hintchars=aoeuidhtns
 
 " /,? 検索結果をハイライト
 set hlsearch
