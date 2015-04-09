@@ -343,6 +343,8 @@ style -name toolbarbutton-feed-icon chrome://* #liberator-customize-toolbar > #f
 " ex mode時IMEをOFF
 style -name commandline-ime chrome://* #liberator-commandline-command input { ime-mode: inactive; }
 
+colorscheme abyss
+
 echo 'get smart!'
 
 " vim: set ft=vimperator:
