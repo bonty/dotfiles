@@ -18,10 +18,6 @@ set! browser.urlbar.maxRichResults=20
 " ポップアップ許可数を拡張 cf.http://la.ma.la/blog/diary_200611171115.htm
 set! dom.popup_maximum=9999
 
-" Gmail/LDR/Fastladder/OpenFL/はてブでは新規タブをバックグラウンドで開く
-" autocmd LocationChange '^(?!https?://(mail\.google\.com\/(mail|a)\/|(reader\.livedoor\.com|fastladder\.com|0\.0\.0\.0\:3000)/reader/|b\.hatena\.ne\.jp/(?!(entry|articles|guide))))' :set! browser.tabs.loadDivertedInBackground=false
-" autocmd LocationChange '^https?://(mail\.google\.com\/(mail|a)\/|(reader\.livedoor\.com|fastladder\.com|0\.0\.0\.0\:3000)/reader/|b\.hatena\.ne\.jp/(?!(entry|articles|guide)))' :set! browser.tabs.loadDivertedInBackground=true
-
 " options
 " ======================================================================
 " GUI
@@ -42,6 +38,9 @@ set focuscontent
 " Beep設定
 set visualbell
 hi Bell display: none;
+
+" IME off at command mode
+style! -name=commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
 
 " add strings for hitting]]/[[
 set nextpattern+=次ページ,次のページ,\b次.*,\b→,old
@@ -287,35 +286,6 @@ let (original = liberator.echomsg)
     else
       original.apply(liberator, arguments);
   };
-EOM
-
-" ステータスバーにfeedボタンを表示
-js <<EOM
-(function(){
- var feedPanel = document.createElement('statusbarpanel');
- var feedButton = document.getElementById('feed-button');
- feedPanel.setAttribute('id','feed-panel-clone');
- feedPanel.appendChild(feedButton.cloneNode(true));
- feedButton.parentNode.removeChild(feedButton);
- document.getElementById('status-bar').insertBefore(feedPanel,document.getElementById('security-button'));
-})();
-EOM
-
-" Firebug
-" cf.http://d.hatena.ne.jp/zentoo/20111009/1318148524
-" firebug inspect mode hint
-js <<EOM
-hints.addMode('n', 'firebug inspect hint', function(elem){
-    Firebug.toggleBar(true);
-    Firebug.chrome.select(elem);
-}, function() '//*');
-EOM
-" contenteditable hint
-js <<EOM
-hints.addMode('e', 'contenteditable hint', function(elem){
-    elem.setAttribute("contenteditable", true);
-    elem.focus();
-}, function() '//*');
 EOM
 
 " qmarks
