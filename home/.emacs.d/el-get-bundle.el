@@ -23,7 +23,6 @@
 
 ;; search
 (el-get-bundle syohex/emacs-anzu :name anzu)
-(el-get-bundle ace-isearch)
 
 ;; cursor
 ;; (el-get-bundle winterTTr/ace-jump-mode)
