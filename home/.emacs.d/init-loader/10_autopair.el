@@ -2,10 +2,8 @@
   '(c-mode
     c++-mode
     java-mode
-    groovy-mode
     python-mode
     sh-mode
-    js2-mode
     cmake-mode
     coffee-mode
     lua-mode))
