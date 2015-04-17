@@ -4,6 +4,3 @@
  '(anzu-mode-lighter "")
  '(anzu-deactivate-region t)
  '(anzu-search-threshold 1000))
-
-;; ace-isearch
-(global-ace-isearch-mode 1)
