@@ -7,6 +7,7 @@
 
 ;; coffee script
 (custom-set-variables
+ '(js2-basic-offset 2)
  '(coffee-tab-width 2))
 
 (with-eval-after-load 'coffee-mode
