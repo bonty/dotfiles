@@ -75,7 +75,7 @@
   gr = grep -n -p --color --heading --break
 
   # submodule
-  su = submodule update
+	su = submodule update --recursive
   sui = submodule update --init
 
   # other
