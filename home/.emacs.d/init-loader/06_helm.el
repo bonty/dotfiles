@@ -25,20 +25,6 @@
   (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
   (define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action))
 
-;; (require 'helm-migemo)
-;; (eval-after-load "helm-migemo"
-;;   '(defun helm-compile-source--candidates-in-buffer (source)
-;;      (helm-aif (assoc 'candidates-in-buffer source)
-;;          (append source
-;;                  `((candidates
-;;                     . ,(or (cdr it)
-;;                            (lambda ()
-;;                              ;; Do not use `source' because other plugins
-;;                              ;; (such as helm-migemo) may change it
-;;                              (helm-candidates-in-buffer (helm-get-current-source)))))
-;;                    (volatile) (match identity)))
-;;        source)))
-
 (with-eval-after-load 'helm-swoop
   (define-key helm-swoop-map (kbd "C-r") 'helm-previous-line)
   (define-key helm-swoop-map (kbd "C-s") 'helm-next-line))

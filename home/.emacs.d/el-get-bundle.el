@@ -48,9 +48,6 @@
 ;; (el-get-bundle syohex/emacs-dired-k :name dired-k)
 ;; (el-get-bundle dired-hacks)
 
-;; migemo
-;; (el-get-bundle emacs-jp/migemo)
-
 ;; auto-complete
 (el-get-bundle auto-complete/popup-el :name popup)
 (el-get-bundle auto-complete/fuzzy-el :name fuzzy)
@@ -107,7 +104,6 @@
 
 ;; helm plugins
 (el-get-bundle helm-descbinds)
-;; (el-get-bundle helm-migemo)
 (el-get-bundle helm-swoop)
 (el-get-bundle helm-ls-git)
 (el-get-bundle helm-git-grep)
