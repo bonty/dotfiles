@@ -43,6 +43,8 @@ set previouspattern+=prev, 前ページ,前のページ,\b前.*,\b→,new
 " Mappings
 " ======================================================================
 " map at dvorak
+nnoremap <C-w> <ESC>
+
 nnoremap h 5j
 nnoremap t 5k
 nnoremap H <C-d>
@@ -63,8 +65,8 @@ nnoremap . b
 nnoremap b n
 nnoremap B N
 
-nnoremap y t
-nnoremap Y T
+nnoremap o t
+nnoremap O o
 
 nnoremap U :undo<Space>
 
@@ -73,8 +75,8 @@ nnoremap <C-r> :restart<CR>
 nnoremap <BS> H
 
 " ex mode で C-n/p
-cnoremap <C-n> <Tab>
-cnoremap <C-p> <S-Tab>
+cnoremap <C-h> <Tab>
+cnoremap <C-t> <S-Tab>
 
 " ++/-- numbers in URL
 noremap ++ <C-a>
@@ -132,8 +134,7 @@ nnoremap ma :mr alc<Space>
 nnoremap mt :mr googletrans-ja<Space>
 
 " copy.js
-nnoremap c y
-nnoremap C :copy<space>
+nnoremap Y :copy<space>
 js <<EOM
 liberator.globalVariables.copy_templates = [
   { label: 'titleAndURL',    value: '%TITLE% %URL%' },
