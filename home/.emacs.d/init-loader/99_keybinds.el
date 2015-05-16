@@ -50,8 +50,8 @@
 (global-set-key (kbd "C-n") 'forward-char)
 
 (global-set-key (kbd "M-d") 'backward-word)
-(global-set-key (kbd "M-h") 'scroll-down-command)
-(global-set-key (kbd "M-t") 'scroll-up-command)
+(global-set-key (kbd "M-h") 'scroll-up-command)
+(global-set-key (kbd "M-t") 'scroll-down-command)
 (global-set-key (kbd "M-n") 'forward-word)
 
 (global-set-key (kbd "C-a") 'my/beginning-of-indented-line)
