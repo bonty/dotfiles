@@ -12,5 +12,5 @@
   (set-face-background 'magit-diff-hunk-header "black")
   (set-face-background 'magit-section-title "black"))
 
-(global-set-key (kbd "M-g M-g") 'magit-status)
+(global-set-key (kbd "C-x m") 'magit-status)
 (global-set-key (kbd "C-x v l") 'magit-log)

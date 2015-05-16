@@ -16,9 +16,10 @@
   (helm-descbinds-mode)
 
   (global-set-key (kbd "C-x b") 'helm-mini)
+  (global-set-key (kbd "C-x C-b") 'helm-mini)
   (global-set-key (kbd "M-x") 'helm-M-x)
-  (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-  (define-key helm-map (kbd "C-h") 'delete-backward-char))
+  (global-set-key (kbd "M-p") 'helm-show-kill-ring)
+  (define-key helm-map (kbd "C-b") 'delete-backward-char))
 
 (with-eval-after-load 'helm-files
   (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)

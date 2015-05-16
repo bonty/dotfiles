@@ -27,16 +27,33 @@
      ;; when current pos is second visual line
      (t (beginning-of-visual-line)))))
 
+;; meta key
+(global-set-key (kbd "C-w") 'ESC-prefix)
+
 ;; edit
-(global-set-key (kbd "C-h") 'delete-backward-char)
-(global-set-key (kbd "C-m") 'newline-and-indent)
-(global-set-key (kbd "C-j") 'newline)
+(global-set-key (kbd "C-b") 'delete-backward-char)
+(global-set-key (kbd "C-f") 'delete-char)
+(global-set-key (kbd "M-f") 'kill-word)
+
+(global-set-key (kbd "C-y") 'kill-region)
+(global-set-key (kbd "C-p") 'yank)
+
 (global-set-key (kbd "C-c r") 'replace-string)
 
 (global-set-key (kbd "C-c a") 'align)
 (global-set-key (kbd "C-c M-a") 'align-regexp)
 
 ;; cursor move
+(global-set-key (kbd "C-d") 'backward-char)
+(global-set-key (kbd "C-h") 'next-line)
+(global-set-key (kbd "C-t") 'previous-line)
+(global-set-key (kbd "C-n") 'forward-char)
+
+(global-set-key (kbd "M-d") 'backward-word)
+(global-set-key (kbd "M-h") 'scroll-down-command)
+(global-set-key (kbd "M-t") 'scroll-up-command)
+(global-set-key (kbd "M-n") 'forward-word)
+
 (global-set-key (kbd "C-a") 'my/beginning-of-indented-line)
 (global-set-key (kbd "C-c g") 'goto-line)
 
@@ -49,5 +66,5 @@
 (global-set-key (kbd "C-c i") 'indent-region)
 
 ;; expand-region
-(global-set-key (kbd "C-,") 'er/expand-region)
-(global-set-key (kbd "C-M-,") 'er/contract-region)
+(global-set-key (kbd "C-v") 'er/expand-region)
+(global-set-key (kbd "M-v") 'er/contract-region)
