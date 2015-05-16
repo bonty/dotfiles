@@ -4,19 +4,13 @@
 " ======================================================================
 " ダウンロードマネージャを表示しない
 set! browser.download.manager.showWhenStarting=false
+set! browser.download.manager.retention=1
 
 " 最後のタブを閉じたときに Firefox を終了しない
 set! browser.tabs.closeWindowWithLastTab=false
 
 " ページのアクセスキーを無効化
 set! ui.key.generalAccessKey=0
-
-" Awesomebarの補完対象にBookmarkletを含める&件数を変更
-set! browser.urlbar.filter.javascript=false
-set! browser.urlbar.maxRichResults=20
-
-" ポップアップ許可数を拡張 cf.http://la.ma.la/blog/diary_200611171115.htm
-set! dom.popup_maximum=9999
 
 " options
 " ======================================================================
@@ -37,7 +31,7 @@ set focuscontent
 
 " Beep設定
 set visualbell
-hi Bell display: none;
+hi Bell display:none
 
 " IME off at command mode
 style! -name=commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
@@ -48,62 +42,35 @@ set previouspattern+=prev, 前ページ,前のページ,\b前.*,\b→,new
 
 " Mappings
 " ======================================================================
-" OSのキーバインドを再現
-inoremap <C-f> <Right>
-inoremap <C-b> <Left>
-inoremap <C-p> <Up>
-inoremap <C-n> <Down>
-inoremap <C-h> <BS>
-inoremap <C-d> <DEL>
-cnoremap <C-f> <Right>
-cnoremap <C-b> <Left>
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
-cnoremap <C-h> <BS>
-cnoremap <C-d> <DEL>
+" map at dvorak
+nnoremap h 5j
+nnoremap t 5k
+nnoremap H <C-d>
+nnoremap T <C-u>
 
-nnoremap <C-i> <Tab>
-nnoremap <C-[> <ESC>
+nnoremap d <C-p>
+nnoremap n <C-n>
+nnoremap D H
+nnoremap N L
+nnoremap <C-d> :tabmove! -1<CR>
+nnoremap <C-n> :tabmove! +1<CR>
 
-" undo一覧から開く
-nnoremap U :undo<Space>
+nnoremap e D
+nnoremap E d
 
-" ブラウザ再起動
-nnoremap <C-r> :restart<CR>
-
-" j/k でページダウン/アップ
-nnoremap j 3j
-nnoremap k 3k
-
-" 上のディレクトリに移動
-nnoremap <BS> gu
-nnoremap <C-BS> gU
-
-" タブ順序変更
-nnoremap <C-h> :tabmove! -1<CR>
-nnoremap <C-l> :tabmove! +1<CR>
-
-" h/l で タブ移動
-nnoremap h <C-p>
-nnoremap l <C-n>
-
-" J/K をC-d/u互換に
-nnoremap J <C-d>
-nnoremap K <C-u>
-
-" タブを閉じたら左のタブを表示
-nnoremap d D
-nnoremap D d
-
-" buffer
 nnoremap . b
 
-" search
-noremap <M-f> /
+nnoremap b n
+nnoremap B N
 
-" qmark
-nnoremap m :qmark<Space>
-nnoremap M :qmarks<CR>
+nnoremap y t
+nnoremap Y T
+
+nnoremap U :undo<Space>
+
+nnoremap <C-r> :restart<CR>
+
+nnoremap <BS> H
 
 " ex mode で C-n/p
 cnoremap <C-n> <Tab>
@@ -113,17 +80,30 @@ cnoremap <C-p> <S-Tab>
 noremap ++ <C-a>
 noremap -- <C-x>
 
-" ! でページのCSSをon/off
-nnoremap ! :set invum<CR>
+" i で caret-mode
+nnoremap i caret-mode
 
 " visual modeで選択したテキストを検索
 vnoremap P y<Esc><Esc>P
 
-" ex modeでC-jを無効化
-cnoremap <C-j> <Nop>
 
-" i で caret-mode
-nnoremap i caret-mode
+" " OSのキーバインドを再現
+" inoremap <C-f> <Right>
+" inoremap <C-b> <Left>
+" inoremap <C-p> <Up>
+" inoremap <C-n> <Down>
+" inoremap <C-h> <BS>
+" inoremap <C-d> <DEL>
+" cnoremap <C-f> <Right>
+" cnoremap <C-b> <Left>
+" cnoremap <C-p> <Up>
+" cnoremap <C-n> <Down>
+" cnoremap <C-h> <BS>
+" cnoremap <C-d> <DEL>
+
+" nnoremap <C-i> <Tab>
+" nnoremap <C-[> <ESC>
+
 
 " command
 " ======================================================================
@@ -135,50 +115,30 @@ command clip echo RIL.addCurrent() !== false ? 'Success' : 'Failed (or alread cl
 " ======================================================================
 " plugin_loader.js
 let g:plugin_loader_roots = "~/src/vimperator-plugins/ ~/Documents/repos/vimperator-plugins/"
-let g:plugin_loader_plugins = "_libly,appendAnchor,auto_detect_link,auto-focus-frame,auto_word_select_mode,caret-hint,copy,direct_bookmark,feedSomeKeys_3,hatenaStar,multi_requester,pino,sbmcommentsviewer,tombloo,walk-input,stella,opener,statusline-toolbar,migemo_completion,lo,auto-bookmark,slideshare"
-
-" caret-hint
-let g:caret_hint_key = "i"
-let g:caret_hint_tail_key = "I"
-let g:caret_hint_select_key = "v"
-let g:caret_hint_select_tail_key = "V"
-let g:caret_hint_swap_key = "s"
+let g:plugin_loader_plugins = "_libly,appendAnchor,auto_detect_link,auto-focus-frame,copy,feedSomeKeys_3,multi_requester,sbmcommentsviewer,walk-input,stella,opener"
 
 " appendAnchor.js
 let g:auto_append_anchor = "true"
 let g:auto_append_anchor_once = "true"
 
 " sbmcommentsviewer.js
-let g:def_sbm_format = "id,tags,comment,timestamp"
+let g:def_sbm_format = "id,comment"
 let g:def_sbms = "h"
-nnoremap b :viewSBMComments<CR>
-color sbmcommentsviewer
-
-" direct_bookmark.js
-let g:direct_sbm_use_servicesy_tag = "hd"
-let g:direct_sbm_use_services_by_post = "hd"
-" let g:direct_sbm_is_normalize = "false"
-let g:direct_sbm_is_use_migemo = "true"
-nnoremap B :bentry<CR>
-map a :sbm<Space>
-lazy :btags
+nnoremap v :viewSBMComments<CR>
 
 " multi_requester
-nnoremap ,m :mr<Space>
+nnoremap mu :mr<Space>
 nnoremap ma :mr alc<Space>
 nnoremap mt :mr googletrans-ja<Space>
-nnoremap mT :mr googletrans-ja<CR>
 
 " copy.js
-nnoremap c :copy<space>
+nnoremap c y
+nnoremap C :copy<space>
 js <<EOM
 liberator.globalVariables.copy_templates = [
   { label: 'titleAndURL',    value: '%TITLE% %URL%' },
-  { label: 'title',          value: '%TITLE%' },
-  { label: 'url',            value: '%URL%' },
   { label: 'markdown',       value: '[%TITLE%](%URL% "%TITLE%")' },
-  { label: 'markdownsel',    value: '[%SEL%](%URL% "%TITLE%")' },
-  { label: 'htmlblockquote', value: '<blockquote cite="%URL%" title="%TITLE%">%HTMLSEL%</blockquote>' }
+  { label: 'markdownsel',    value: '[%SEL%](%URL% "%TITLE%")' }
 ];
 EOM
 
@@ -235,30 +195,7 @@ lazy fmaps -u='^https?://mail\.google\.com/(mail|a)/' c j k n p o u e x s r a # 
 " lazy fmaps -u='^https?://www\.google\.com/calendar/' c e j k n p r t d w m x a <BS> ?
 lazy fmaps -u='^http://b\.hatena\.ne\.jp/(?!(entry|articles|guide))' j k o,oj e a,b
 lazy fmaps -e=vkeydown -u='^http://www\.tumblr\.com/' j k r,h q p n L,l <S-e>
-lazy fmaps -u='^http://reader\.livedoor\.com/reader/' j k s a p v z <S-z> ,r,r < > o,vj J,<Space> K,<S-Space> q w g
 lazy fmaps -u='www\.feedly\.com' g h m a e t c d p l s n b n p o v V m s S D e t d c / r ? 1 2 3 4 5 6 7 8 9 <Enter>
-nnoremap -u='^http://reader\.livedoor\.com/reader/' b :tombloo Link - LDR<CR>
-nnoremap -u='^http://reader\.livedoor\.com/reader/' B :tombloo! Link - LDR<CR>
-nnoremap -u='^http://reader\.livedoor\.com/reader/' e :tombloo ReBlog - LDR<CR>
-
-" multi_requester
-javascript <<EOM
-liberator.globalVariables.multi_requester_siteinfo = [
-  {
-    name: 'yahoo-transit',
-    description: 'Yahoo 路線情報',
-    url: 'http://transit.loco.yahoo.co.jp/search/result?flatlon=&from=%s&tlatlon=&to=%s&via=&shin=1&ex=1&al=1&hb=1&lb=1&sr=1&expkind=1&ym=201306&d=05&datepicker=&hh=10&m1=5&m2=0&type=1&ws=2&s=0&x=0&y=0',
-    xpath: 'id("main")',
-  },
-];
-liberator.globalVariables.multi_requester_mappings = [
-  [ ",myr", "yahoo-transit" ],
-];
-EOM
-
-" slideshare
-nnoremap -urls=www\\.slideshare\\.net n :slideshare next<CR>
-nnoremap -urls=www\\.slideshare\\.net p :slideshare prev<CR>
 
 " javascript
 " ======================================================================
@@ -291,30 +228,14 @@ EOM
 " qmarks
 " ======================================================================
 silent qmark c http://www.google.com/calendar/
-silent qmark d http://delicious.com/bonty.shushusha
 silent qmark g https://mail.google.com/
 silent qmark f http://www.facebook.com/
-silent qmark h http://b.hatena.ne.jp/bonty_shushusha/
-silent qmark l http://reader.livedoor.com/reader/
-silent qmark m http://maps.google.co.jp/
-silent qmark n http://www.nicovideo.jp/
-silent qmark p http://www.flickr.com/
-silent qmark t http://twitter.com/
-silent qmark y http://jp.youtube.com/
-silent qmark T http://www.tumblr.com/dashboard
 
 " style
 " ======================================================================
 color hint
-
-" toolbarbutton
-style -name toolbarbutton-feed-icon chrome://* #liberator-customize-toolbar > #feed-button { -moz-appearance: none !important; }
-
-" ex mode時IMEをOFF
-style -name commandline-ime chrome://* #liberator-commandline-command input { ime-mode: inactive; }
-
 colorscheme abyss
 
-echo 'get smart!'
-
-" vim: set ft=vimperator:
+hi Hint font-family: Arial; font-size: 21px; font-weight: bold; text-shadow: -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black, 1px 1px 2px black; color: #33cccc;
+hi HintElem color: gray; background-color: #a1e4e6;
+hi HintActive color: black; background-color: #ff8700;
