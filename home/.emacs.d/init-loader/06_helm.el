@@ -19,7 +19,9 @@
   (global-set-key (kbd "C-x C-b") 'helm-mini)
   (global-set-key (kbd "M-x") 'helm-M-x)
   (global-set-key (kbd "M-p") 'helm-show-kill-ring)
-  (define-key helm-map (kbd "C-b") 'delete-backward-char))
+  (define-key helm-map (kbd "C-b") 'delete-backward-char)
+  (define-key helm-map (kbd "C-h") 'helm-next-line)
+  (define-key helm-map (kbd "C-t") 'helm-previous-line))
 
 (with-eval-after-load 'helm-files
   (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
