@@ -32,7 +32,7 @@
 /usr/libexec/PlistBuddy -c "Set :\"TabViewType\" 1" ~/Library/Preferences/com.googlecode.iterm2.plist
 /usr/libexec/PlistBuddy -c "Set :\"HideTab\" false" ~/Library/Preferences/com.googlecode.iterm2.plist
 
-THEMEDIR=`dirname $0`/../themes/iterm2/
+THEMEDIR=`dirname $0`/../files/iterm2/
 
 cd $THEMEDIR
 
