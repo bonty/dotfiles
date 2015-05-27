@@ -1,4 +1,4 @@
-W<?xml version="1.0"?>
+<?xml version="1.0"?>
 <root>
   <item>
     <name>Config for Apple Keyboard</name>
@@ -45,13 +45,13 @@ W<?xml version="1.0"?>
     <item>
       <name>Control+F to Forward Delete</name>
       <identifier>private.emacsmode_controlF</identifier>
-      <not>{{EMACS_MODE_IGNORE_APPS}}</not>
+      <not>{{EMACS_MODE_IGNORE_APPS}}, FIREFOX</not>
       <autogen>__KeyToKey__ KeyCode::Y, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_CONTROL, KeyCode::FORWARD_DELETE</autogen>
     </item>
     <item>
       <name>Command+F to Option+Forward Delete</name>
       <identifier>private.emacsmode_commandF</identifier>
-      <not>{{EMACS_MODE_IGNORE_APPS}}</not>
+      <not>{{EMACS_MODE_IGNORE_APPS}}, FIREFOX</not>
       <modifier_not>
         ModifierFlag::CONTROL_L, ModifierFlag::CONTROL_R,
         ModifierFlag::OPTION_L,  ModifierFlag::OPTION_R,
@@ -65,13 +65,13 @@ W<?xml version="1.0"?>
     <item>
       <name>Control+B to Delete</name>
       <identifier>private.emacsmode_controlB</identifier>
-      <not>{{EMACS_MODE_IGNORE_APPS}}</not>
+      <not>{{EMACS_MODE_IGNORE_APPS}}, FIREFOX</not>
       <autogen>__KeyToKey__ KeyCode::N, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_CONTROL, KeyCode::DELETE</autogen>
     </item>
     <item>
       <name>Control+DHTN to Left/Down/Up/Right</name>
       <identifier>private.emacsmode_controlDHTN</identifier>
-      <not>{{EMACS_MODE_IGNORE_APPS}}</not>
+      <not>{{EMACS_MODE_IGNORE_APPS}}, FIREFOX</not>
       <autogen>__KeyToKey__ KeyCode::H, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_CONTROL, KeyCode::CURSOR_LEFT</autogen>
       <autogen>__KeyToKey__ KeyCode::J, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_CONTROL, KeyCode::CURSOR_DOWN</autogen>
       <autogen>__KeyToKey__ KeyCode::K, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_CONTROL, KeyCode::CURSOR_UP</autogen>
@@ -80,7 +80,7 @@ W<?xml version="1.0"?>
     <item>
       <name>Command+HT to PageDown/PageUp</name>
       <identifier>private.emacsmode_commandHT</identifier>
-      <not>{{EMACS_MODE_IGNORE_APPS}}</not>
+      <not>{{EMACS_MODE_IGNORE_APPS}}, FIREFOX</not>
       <modifier_not>
         ModifierFlag::CONTROL_L, ModifierFlag::CONTROL_R,
         ModifierFlag::OPTION_L,  ModifierFlag::OPTION_R,
@@ -91,7 +91,7 @@ W<?xml version="1.0"?>
     <item>
       <name>Command+DN to Option+Left/Right</name>
       <identifier>private.emacsmode_commandDN</identifier>
-      <not>{{EMACS_MODE_IGNORE_APPS}}</not>
+      <not>{{EMACS_MODE_IGNORE_APPS}}, FIREFOX</not>
       <modifier_not>
         ModifierFlag::CONTROL_L, ModifierFlag::CONTROL_R,
         ModifierFlag::OPTION_L,  ModifierFlag::OPTION_R,
@@ -110,7 +110,7 @@ W<?xml version="1.0"?>
     <item>
       <name>Control+AE to Command+Left/Right</name>
       <identifier>private.emacsmode_controlAE</identifier>
-      <not>{{EMACS_MODE_IGNORE_APPS}}</not>
+      <not>{{EMACS_MODE_IGNORE_APPS}}, FIREFOX</not>
       <modifier_not>
         ModifierFlag::COMMAND_L, ModifierFlag::COMMAND_R,
         ModifierFlag::OPTION_L,  ModifierFlag::OPTION_R,
@@ -129,7 +129,7 @@ W<?xml version="1.0"?>
     <item>
       <name>Control+P to Command+V</name>
       <identifier>private.emacsmode_controlP</identifier>
-      <not>{{EMACS_MODE_IGNORE_APPS}}</not>
+      <not>{{EMACS_MODE_IGNORE_APPS}}, FIREFOX</not>
       <modifier_not>
         ModifierFlag::COMMAND_L, ModifierFlag::COMMAND_R,
         ModifierFlag::OPTION_L,  ModifierFlag::OPTION_R,
@@ -144,7 +144,7 @@ W<?xml version="1.0"?>
     <item>
       <name>Control+Y to Command+X</name>
       <identifier>private.emacsmode_controlY</identifier>
-      <not>{{EMACS_MODE_IGNORE_APPS}}</not>
+      <not>{{EMACS_MODE_IGNORE_APPS}}, FIREFOX</not>
       <modifier_not>
         ModifierFlag::COMMAND_L, ModifierFlag::COMMAND_R,
         ModifierFlag::OPTION_L,  ModifierFlag::OPTION_R,
@@ -159,7 +159,7 @@ W<?xml version="1.0"?>
     <item>
       <name>Command+Y to Command+C</name>
       <identifier>private.emacsmode_commandY</identifier>
-      <not>{{EMACS_MODE_IGNORE_APPS}}</not>
+      <not>{{EMACS_MODE_IGNORE_APPS}}, FIREFOX</not>
       <modifier_not>
         ModifierFlag::CONTROL_L, ModifierFlag::CONTROL_R,
         ModifierFlag::OPTION_L,  ModifierFlag::OPTION_R,
@@ -180,7 +180,7 @@ W<?xml version="1.0"?>
         ModifierFlag::SHIFT_L,   ModifierFlag::SHIFT_R,
       </modifier_not>
       <block>
-        <not>{{EMACS_MODE_IGNORE_APPS}}, DICTIONARY</not>
+        <not>{{EMACS_MODE_IGNORE_APPS}}, FIREFOX, DICTIONARY</not>
         <autogen>
           __KeyToKey__
           KeyCode::V, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_CONTROL,
@@ -202,7 +202,7 @@ W<?xml version="1.0"?>
     <item>
       <name>Command+&lt; to Home / Command+&gt; to End</name>
       <identifier>private.emacsmode_commandLtGt</identifier>
-      <not>{{EMACS_MODE_IGNORE_APPS}}</not>
+      <not>{{EMACS_MODE_IGNORE_APPS}}, FIREFOX</not>
       <modifier_not>
         ModifierFlag::OPTION_L, ModifierFlag::OPTION_R,
         ModifierFlag::CONTROL_L, ModifierFlag::CONTROL_R,
@@ -221,7 +221,7 @@ W<?xml version="1.0"?>
     <item>
       <name>Control+/ to Command+Z</name>
       <identifier>private.emacsmode_controlSlash</identifier>
-      <not>{{EMACS_MODE_IGNORE_APPS}}</not>
+      <not>{{EMACS_MODE_IGNORE_APPS}}, FIREFOX</not>
       <modifier_not>
         ModifierFlag::COMMAND_L, ModifierFlag::COMMAND_R,
         ModifierFlag::OPTION_L,  ModifierFlag::OPTION_R,
@@ -235,7 +235,7 @@ W<?xml version="1.0"?>
     <item>
       <name>Control+S to Command+F</name>
       <identifier>private.emacsmode_controlS</identifier>
-      <not>{{EMACS_MODE_IGNORE_APPS}}</not>
+      <not>{{EMACS_MODE_IGNORE_APPS}}, FIREFOX</not>
       <modifier_not>
         ModifierFlag::COMMAND_L, ModifierFlag::COMMAND_R,
         ModifierFlag::OPTION_L,  ModifierFlag::OPTION_R,
