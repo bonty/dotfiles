@@ -43,8 +43,6 @@ set previouspattern+=prev, 前ページ,前のページ,\b前.*,\b→,new
 " Mappings
 " ======================================================================
 " map at dvorak
-nnoremap <C-w> <ESC>
-
 nnoremap h 5j
 nnoremap t 5k
 nnoremap H <C-d>
@@ -89,22 +87,19 @@ nnoremap i caret-mode
 vnoremap P y<Esc><Esc>P
 
 
-" " OSのキーバインドを再現
-" inoremap <C-f> <Right>
-" inoremap <C-b> <Left>
-" inoremap <C-p> <Up>
-" inoremap <C-n> <Down>
-" inoremap <C-h> <BS>
-" inoremap <C-d> <DEL>
-" cnoremap <C-f> <Right>
-" cnoremap <C-b> <Left>
-" cnoremap <C-p> <Up>
-" cnoremap <C-n> <Down>
-" cnoremap <C-h> <BS>
-" cnoremap <C-d> <DEL>
-
-" nnoremap <C-i> <Tab>
-" nnoremap <C-[> <ESC>
+" OSのキーバインドを再現
+inoremap <C-n> <Right>
+inoremap <C-d> <Left>
+inoremap <C-t> <Up>
+inoremap <C-h> <Down>
+inoremap <C-b> <BS>
+inoremap <C-f> <DEL>
+cnoremap <C-n> <Right>
+cnoremap <C-d> <Left>
+cnoremap <C-t> <Up>
+cnoremap <C-h> <Down>
+cnoremap <C-b> <BS>
+cnoremap <C-f> <DEL>
 
 
 " command
