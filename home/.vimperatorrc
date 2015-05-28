@@ -96,8 +96,6 @@ inoremap <C-b> <BS>
 inoremap <C-f> <DEL>
 cnoremap <C-n> <Right>
 cnoremap <C-d> <Left>
-cnoremap <C-t> <Up>
-cnoremap <C-h> <Down>
 cnoremap <C-b> <BS>
 cnoremap <C-f> <DEL>
 
