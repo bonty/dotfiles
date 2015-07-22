@@ -18,7 +18,7 @@ set! ui.key.generalAccessKey=0
 set gui=none,tabs
 
 " ヒントの文字列をアルファベットに
-set hintchars=aoeuidhtns
+set hintchars=hjklasdfg
 
 " /,? 検索結果をハイライト
 set hlsearch
@@ -42,39 +42,68 @@ set previouspattern+=prev, 前ページ,前のページ,\b前.*,\b→,new
 
 " Mappings
 " ======================================================================
-" map at dvorak
-nnoremap h 5j
-nnoremap t 5k
-nnoremap H <C-d>
-nnoremap T <C-u>
+" OSのキーバインドを再現
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
+inoremap <C-p> <Up>
+inoremap <C-n> <Down>
+inoremap <C-h> <BS>
+inoremap <C-d> <DEL>
+cnoremap <C-f> <Right>
+cnoremap <C-b> <Left>
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+cnoremap <C-h> <BS>
+cnoremap <C-d> <DEL>
 
-nnoremap d <C-p>
-nnoremap n <C-n>
-nnoremap D H
-nnoremap N L
-nnoremap <C-d> :tabmove! -1<CR>
-nnoremap <C-n> :tabmove! +1<CR>
+nnoremap <C-i> <Tab>
+nnoremap <C-[> <ESC>
 
-nnoremap e D
-nnoremap E d
+nnoremap <C-m> <ESC>
 
-nnoremap . b
-
-nnoremap b n
-nnoremap B N
-
-nnoremap o t
-nnoremap O o
-
+" undo一覧から開く
 nnoremap U :undo<Space>
 
+" ブラウザ再起動
 nnoremap <C-r> :restart<CR>
 
-nnoremap <BS> H
+" j/k でページダウン/アップ
+nnoremap j 3j
+nnoremap k 3k
+
+" 上のディレクトリに移動
+nnoremap <BS> gu
+nnoremap <C-BS> gU
+
+" タブ順序変更
+nnoremap <C-h> :tabmove! -1<CR>
+nnoremap <C-l> :tabmove! +1<CR>
+
+" h/l で タブ移動
+nnoremap h <C-p>
+nnoremap l <C-n>
+
+" J/K をC-d/u互換に
+nnoremap J <C-d>
+nnoremap K <C-u>
+
+" タブを閉じたら左のタブを表示
+nnoremap d D
+nnoremap D d
+
+" buffer
+nnoremap . b
+
+" search
+noremap <M-f> /
+
+" qmark
+nnoremap m :qmark<Space>
+nnoremap M :qmarks<CR>
 
 " ex mode で C-n/p
-cnoremap <C-h> <Tab>
-cnoremap <C-t> <S-Tab>
+cnoremap <C-n> <Tab>
+cnoremap <C-p> <S-Tab>
 
 " ++/-- numbers in URL
 noremap ++ <C-a>
@@ -86,19 +115,8 @@ nnoremap i caret-mode
 " visual modeで選択したテキストを検索
 vnoremap P y<Esc><Esc>P
 
-
-" OSのキーバインドを再現
-inoremap <C-n> <Right>
-inoremap <C-d> <Left>
-inoremap <C-t> <Up>
-inoremap <C-h> <Down>
-inoremap <C-b> <BS>
-inoremap <C-f> <DEL>
-cnoremap <C-n> <Right>
-cnoremap <C-d> <Left>
-cnoremap <C-b> <BS>
-cnoremap <C-f> <DEL>
-
+" ex modeでC-jを無効化
+cnoremap <C-j> <Nop>
 
 " command
 " ======================================================================
@@ -112,6 +130,13 @@ command clip echo RIL.addCurrent() !== false ? 'Success' : 'Failed (or alread cl
 let g:plugin_loader_roots = "~/src/vimperator-plugins/ ~/Documents/repos/vimperator-plugins/"
 let g:plugin_loader_plugins = "_libly,appendAnchor,auto_detect_link,auto-focus-frame,copy,feedSomeKeys_3,multi_requester,sbmcommentsviewer,walk-input,stella,opener"
 
+" caret-hint
+let g:caret_hint_key = "i"
+let g:caret_hint_tail_key = "I"
+let g:caret_hint_select_key = "v"
+let g:caret_hint_select_tail_key = "V"
+let g:caret_hint_swap_key = "s"
+
 " appendAnchor.js
 let g:auto_append_anchor = "true"
 let g:auto_append_anchor_once = "true"
@@ -119,15 +144,15 @@ let g:auto_append_anchor_once = "true"
 " sbmcommentsviewer.js
 let g:def_sbm_format = "id,comment"
 let g:def_sbms = "h"
-nnoremap v :viewSBMComments<CR>
+nnoremap b :viewSBMComments<CR>
 
 " multi_requester
-nnoremap mu :mr<Space>
+nnoremap ,m :mr<Space>
 nnoremap ma :mr alc<Space>
 nnoremap mt :mr googletrans-ja<Space>
 
 " copy.js
-nnoremap Y :copy<space>
+nnoremap c :copy<space>
 js <<EOM
 liberator.globalVariables.copy_templates = [
   { label: 'titleAndURL',    value: '%TITLE% %URL%' },

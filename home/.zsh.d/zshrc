@@ -228,11 +228,3 @@ fi
 function precmd () {
     z --add "$(pwd -P)"
 }
-
-bindkey '^B' backward-delete-char
-bindkey '^F' delete-char-or-list
-bindkey '^P' yank
-bindkey '^D' backward-char
-bindkey '^H' down-line-or-history
-bindkey '^T' up-line-or-history
-bindkey '^N' forward-char
