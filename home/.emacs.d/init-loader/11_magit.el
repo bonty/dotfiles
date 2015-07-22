@@ -14,3 +14,5 @@
 
 (global-set-key (kbd "C-x m") 'magit-status)
 (global-set-key (kbd "C-x v l") 'magit-log)
+
+(add-hook 'git-commit-mode-hook (setq auto-fill-mode nil))
