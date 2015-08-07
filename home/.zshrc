@@ -12,8 +12,9 @@ source ~/.zsh.d/zshfunction
 [ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
 
 # Add environment variable COCOS_TEMPLATES_ROOT for cocos2d-x
-export COCOS_TEMPLATES_ROOT=/Users/hkouno/src/cocos2d-x/templates
-export PATH=$COCOS_TEMPLATES_ROOT:$PATH
+export COCOS_CONSOLE_ROOT=${HOME}/src/cocos2d-x/tools/cocos2d-console/bin
+export COCOS_TEMPLATES_ROOT=${HOME}/src/cocos2d-x/templates
+export PATH=$COCOS_CONSOLE_ROOT:$COCOS_TEMPLATES_ROOT:$PATH
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
