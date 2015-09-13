@@ -11,6 +11,8 @@ if [ ! `which brew` ]; then
   ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 fi
 
+brew tap Homebrew/brewdler
+
 # install software with homebrew
 brew bundle
 
