@@ -16,7 +16,7 @@ install automake
 install binutils
 install brew-cask
 install cask
-install --HEAD cmigemo
+install cmigemo
 install coreutils
 install csshx
 install dex2jar
