@@ -6,6 +6,8 @@ CURRENT_DIR=`dirname $0`
 
 cd $CURRENT_DIR
 
+xcode-select --install
+
 # install homebrew if not installed
 if [ ! `which brew` ]; then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
