@@ -20,3 +20,5 @@ brew bundle
 
 # setup with shell scripts
 find $CURRENT_DIR/setups -name "*.sh" | xargs -I S sh S
+
+yes | /usr/local/bin/mackup restore
