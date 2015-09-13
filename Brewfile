@@ -13,6 +13,7 @@ install ant
 install apktool
 install autoconf
 install automake
+install aws-elasticache
 install binutils
 install brew-cask
 install cask
@@ -28,6 +29,7 @@ install fdupes
 install findutils
 install git
 install git-flow
+install gnu-sed
 install gradle
 install hub
 install jad
@@ -46,6 +48,7 @@ install openssl
 install packer
 install perl-build
 install plenv
+install pyenv
 install rbenv
 install rbenv-gem-rehash
 install rbenv-gemset
@@ -68,6 +71,7 @@ install xz
 install z
 install zsh --disable-etcdir
 
+cask install 0xed
 cask install adobe-air
 cask install adobe-creative-cloud
 cask install adobe-reader
@@ -77,6 +81,7 @@ cask install android-studio
 cask install appcleaner
 cask install atom
 cask install bettertouchtool
+cask install blender
 cask install box-sync
 cask install charles
 cask install chefdk
@@ -92,15 +97,13 @@ cask install google-cloud-sdk
 cask install google-japanese-ime
 cask install heroku-toolbelt
 cask install gyazo
-cask install hipchat
-cask install hyperswitch
 cask install istat-menus
 cask install iterm2
 cask install java
 cask install karabiner
+cask install kindle
 cask install league-of-legends
 cask install libreoffice
-cask install reflector
 cask install seil
 cask install sequel-pro
 cask install skype
