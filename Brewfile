@@ -1,121 +1,142 @@
-update
-upgrade
-
-tap bonty/omnisharpserver
-tap caskroom/cask
-tap homebrew/binary
-tap macoshita/custom
-tap sanemat/font
-
-install android-ndk
-install android-sdk
-install ant
-install apktool
-install autoconf
-install automake
-install aws-elasticache
-install binutils
-install brew-cask
-install cask
-install cmigemo
-install coreutils
-install csshx
-install dex2jar
-install dnsmasq
-install docker
-install ec2-api-tools
-install emacs --use-git-head --japanese
-install fdupes
-install findutils
-install git
-install git-flow
-install gnu-sed
-install gradle
-install hub
-install jad
-install jq
-install lnav
-install lv
-install memcached
-install mercurial
-install mobile-shell
-install mono
-install mysql
-install nkf
-install node
-install omnisharp-server
-install openssl
-install packer
-install perl-build
-install plenv
-install pyenv
-install rbenv
-install rbenv-gem-rehash
-install rbenv-gemset
-install readline
-install reattach-to-user-namespace
-install redis
-install ricty
-install rmtrash
-install ruby-build
-install source-highlight
-install sqlcipher
-install terraform
-install tig
-install tmux-patched
-install tree
-install wget
-install xcproj
-install xctool
-install xz
-install z
-install zsh --disable-etcdir
-
-cask install 0xed
-cask install adobe-air
-cask install adobe-creative-cloud
-cask install adobe-reader
-cask install alfred
-cask install amethyst
-cask install android-studio
-cask install appcleaner
-cask install atom
-cask install bettertouchtool
-cask install blender
-cask install box-sync
-cask install charles
-cask install chefdk
-cask install coteditor
-cask install crashlytics
-cask install dropbox
-cask install firefox
-cask install flash
-cask install flip4mac
-cask install genymotion
-cask install google-chrome
-cask install google-cloud-sdk
-cask install google-japanese-ime
-cask install heroku-toolbelt
-cask install gyazo
-cask install istat-menus
-cask install iterm2
-cask install java
-cask install karabiner
-cask install kindle
-cask install league-of-legends
-cask install libreoffice
-cask install seil
-cask install sequel-pro
-cask install skype
-cask install sourcetree
-cask install spotify
-cask install steam
-cask install td-agent
-cask install texturepacker
-cask install unity
-cask install vagrant
-cask install virtualbox
-cask install vlc
-cask install wireshark
-
-cleanup
+tap 'bonty/omnisharpserver'
+tap 'caskroom/cask'
+tap 'homebrew/binary'
+tap 'homebrew/brewdler'
+tap 'macoshita/custom'
+tap 'sanemat/font'
+cask 'java'
+brew 'android-sdk'
+brew 'android-ndk'
+brew 'ant'
+brew 'apktool'
+brew 'autoconf'
+brew 'xz'
+brew 'automake'
+brew 'ec2-api-tools'
+brew 'aws-elasticache'
+brew 'binutils'
+brew 'bison'
+brew 'pkg-config'
+brew 'gettext'
+brew 'libffi'
+brew 'glib'
+brew 'libtasn1'
+brew 'gmp'
+brew 'nettle'
+brew 'gnutls'
+brew 'libgpg-error'
+brew 'libgcrypt'
+brew 'bitlbee'
+brew 'boost'
+brew 'emacs', args: ['with-x11', 'use-git-head', 'japanese']
+brew 'cask'
+brew 'cmake'
+brew 'nkf'
+brew 'pcre'
+brew 'git'
+brew 'cmigemo'
+brew 'coreutils'
+brew 'csshx'
+brew 'dex2jar'
+brew 'dnsmasq'
+brew 'docker'
+brew 'fdupes'
+brew 'findutils'
+brew 'libpng'
+brew 'freetype'
+brew 'fontconfig'
+brew 'jpeg'
+brew 'libtiff'
+brew 'fontforge', args: ['with-python']
+brew 'gdbm'
+brew 'git-flow'
+brew 'gnu-sed'
+brew 'gradle'
+brew 'hub'
+brew 'jq'
+brew 'openssl'
+brew 'libevent'
+brew 'llvm'
+brew 'readline'
+brew 'lnav'
+brew 'lv'
+brew 'mackup'
+brew 'memcached'
+brew 'mercurial'
+brew 'protobuf'
+brew 'mobile-shell'
+brew 'mono'
+brew 'mysql'
+brew 'node'
+brew 'perl-build'
+brew 'plenv'
+brew 'pyenv'
+brew 'rbenv'
+brew 'rbenv-gem-rehash'
+brew 'rbenv-gemset'
+brew 'reattach-to-user-namespace'
+brew 'redis'
+brew 'rmtrash'
+brew 'ruby-build'
+brew 'source-highlight'
+brew 'sqlcipher'
+brew 'terraform'
+brew 'texinfo'
+brew 'tig'
+brew 'tree'
+brew 'weechat', args: ['with-ruby', 'with-python', 'with-perl']
+brew 'wget'
+brew 'xcproj'
+brew 'xctool'
+brew 'z'
+brew 'zsh', args: ['disable-etcdir']
+brew 'bonty/omnisharpserver/omnisharp-server'
+brew 'caskroom/cask/brew-cask'
+brew 'homebrew/binary/jad'
+brew 'macoshita/custom/tmux-patched'
+brew 'sanemat/font/ricty'
+cask '0xed'
+cask 'adobe-air'
+cask 'adobe-creative-cloud'
+cask 'adobe-reader'
+cask 'alfred'
+cask 'amethyst'
+cask 'android-studio'
+cask 'appcleaner'
+cask 'atom'
+cask 'bettertouchtool'
+cask 'blender'
+cask 'box-sync'
+cask 'charles'
+cask 'chefdk'
+cask 'coteditor'
+cask 'crashlytics'
+cask 'dropbox'
+cask 'firefox'
+cask 'flash'
+cask 'flip4mac'
+cask 'genymotion'
+cask 'google-chrome'
+cask 'google-cloud-sdk'
+cask 'google-japanese-ime'
+cask 'heroku-toolbelt'
+cask 'istat-menus'
+cask 'iterm2'
+cask 'karabiner'
+cask 'kindle'
+cask 'league-of-legends'
+cask 'libreoffice'
+cask 'reflector'
+cask 'seil'
+cask 'sequel-pro'
+cask 'skype'
+cask 'sourcetree'
+cask 'spotify'
+cask 'steam'
+cask 'td-agent'
+cask 'texturepacker'
+cask 'unity'
+cask 'vagrant'
+cask 'virtualbox'
+cask 'vlc'
+cask 'wireshark'
