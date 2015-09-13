@@ -115,6 +115,4 @@ cask install virtualbox
 cask install vlc
 cask install wireshark
 
-cask alfred link
-
 cleanup
