@@ -44,7 +44,7 @@ install node
 install omnisharp-server
 install openssl
 install packer
-install --HEAD perl-build
+install perl-build
 install plenv
 install rbenv
 install rbenv-gem-rehash
@@ -54,7 +54,7 @@ install reattach-to-user-namespace
 install redis
 install ricty
 install rmtrash
-install --HEAD ruby-build
+install ruby-build
 install source-highlight
 install sqlcipher
 install terraform
