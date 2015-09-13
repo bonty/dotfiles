@@ -1,5 +1,6 @@
 #!/bin/sh
 
+export PATH=/usr/local/bin:$PATH
 export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/usr/local/Caskroom"
 
 CURRENT_DIR=`dirname $0`
