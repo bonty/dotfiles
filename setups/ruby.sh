@@ -1,11 +1,9 @@
 #!/bin/sh
 
-# install 2.1.2
-rbenv install 2.1.2
-rbenv global 2.1.2
+rbenv install 2.2.3
+rbenv global 2.2.3
 rbenv rehash
 
-# install homesick
 rbenv exec gem install homesick
 rbenv rehash
 
