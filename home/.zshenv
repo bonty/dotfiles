@@ -35,6 +35,7 @@ path=(# 自分用（--prefix=$HOME/localでインストールしたもの）
       /cygdrive/c/meadow/bin(N-/)
       # システム用
       /usr/local/bin(N-/)
+      /usr/local/sbin(N-/)
       /usr/X11R6/bin(N-/)
       /usr/X11/bin(N-/)
       /usr/bin(N-/)
