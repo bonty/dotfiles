@@ -35,7 +35,7 @@ brew 'freetype'
 brew 'fontconfig'
 brew 'pixman'
 brew 'cairo'
-brew 'emacs'
+brew 'emacs', args: ['with-gnutls']
 brew 'cask'
 brew 'cmake'
 brew 'nkf'
