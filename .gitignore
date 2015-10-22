@@ -6,6 +6,7 @@ auto-save-list
 undohist
 abbrev_defs
 home/.emacs.d/config/shellenv.el
+home/.emacs.d/recentf
 home/.vimperator/info
 home/.vimperator/plugins
 .DS_Store
