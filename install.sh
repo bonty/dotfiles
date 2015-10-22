@@ -19,6 +19,9 @@ brew tap Homebrew/brewdler
 # install software with homebrew
 brew bundle
 
+# this is required emacs compiling flycheck
+brew link --force texinfo
+
 # setup with shell scripts
 find $CURRENT_DIR/setups -name "*.sh" | xargs -I S sh S
 
