@@ -16,8 +16,5 @@ export COCOS_CONSOLE_ROOT=${HOME}/src/cocos2d-x/tools/cocos2d-console/bin
 export COCOS_TEMPLATES_ROOT=${HOME}/src/cocos2d-x/templates
 export PATH=$COCOS_CONSOLE_ROOT:$COCOS_TEMPLATES_ROOT:$PATH
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
 # added by google cloud sdk installed by homebrew
-[ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc ] && source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+[ -f /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc ] && source /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc

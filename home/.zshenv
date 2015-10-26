@@ -23,6 +23,8 @@ path=(# 自分用（--prefix=$HOME/localでインストールしたもの）
       ./bin
       # for android development
       /Applications/android-sdk/sdk/platform-tools(N-/)
+      # heroku
+      /usr/local/heroku/bin(N-/)
       # Debian GNU/Linux用
       /var/lib/gems/*/bin(N-/)
       # MacPorts用
