@@ -234,7 +234,8 @@ EOM
 " autocmd 駆動時のエコーをやめる
 " cf.http://vimperator.g.hatena.ne.jp/nokturnalmortum/20110616/1308191737
 js <<EOM
-let (original = liberator.echomsg)
+(function() {
+  let original = liberator.echomsg;
   liberator.echomsg = function (msg) {
     const REAC = RegExp('-> liberator://template/chrome://liberator/content/as\\.js:\\d+');
     if (Error().stack.split(/\n/).some(RegExp.prototype.test.bind(REAC)) && /Executing .* Auto commands for .*/.test(msg))
@@ -242,6 +243,7 @@ let (original = liberator.echomsg)
     else
       original.apply(liberator, arguments);
   };
+})();
 EOM
 
 " qmarks
