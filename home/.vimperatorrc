@@ -248,9 +248,10 @@ EOM
 
 " qmarks
 " ======================================================================
-silent qmark c http://www.google.com/calendar/
+silent qmark c https://calendar.google.com/calendar/
 silent qmark g https://mail.google.com/
-silent qmark f http://www.facebook.com/
+silent qmark f https://www.facebook.com/
+silent qmark m https://www.messenger.com/
 
 " style
 " ======================================================================
