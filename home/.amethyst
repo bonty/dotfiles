@@ -190,7 +190,8 @@
         "com.apple.systempreferences",
         "com.twitter.twitter-mac",
         "com.realmacsoftware.clear.mac",
-        "com.yourcompany.genymotion"
+        "com.yourcompany.genymotion",
+        "com.agilebits.onepassword4"
     ],
     "ignore-menu-bar": "false",
     "float-small-windows": true,
