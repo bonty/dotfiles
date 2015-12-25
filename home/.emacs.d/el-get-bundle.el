@@ -60,6 +60,11 @@
 
 ;; helm
 (el-get-bundle helm)
+(el-get-bundle helm-descbinds)
+(el-get-bundle helm-swoop)
+(el-get-bundle helm-ls-git)
+(el-get-bundle helm-git-grep)
+(el-get-bundle helm-ag)
 
 ;; flycheck
 (el-get-bundle flycheck)
@@ -106,12 +111,6 @@
 ;; auto-complete plugins
 (el-get-bundle zk-phi/ac-c-headers)
 (el-get-bundle dgutov/robe)
-
-;; helm plugins
-(el-get-bundle helm-descbinds)
-(el-get-bundle helm-swoop)
-(el-get-bundle helm-ls-git)
-(el-get-bundle helm-git-grep)
 
 ;; open-junk-file
 (el-get-bundle open-junk-file)

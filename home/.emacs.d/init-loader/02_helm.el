@@ -3,21 +3,15 @@
  '(helm-input-idle-delay 0)
  '(helm-exit-idle-delay 0)
  '(helm-candidate-number-limit 500)
- '(helm-boring-file-regexp-list '("~$"))
- '(helm-mini-default-sources '(helm-source-buffers-list
-                               helm-source-recentf
-                               helm-source-files-in-current-dir
-                               helm-source-mac-spotlight
-                               helm-source-buffer-not-found)))
-
-(helm-mode t)
+ '(helm-ag-insert-at-point 'symbol))
 
 (with-eval-after-load 'helm
   (helm-descbinds-mode)
 
-  (global-set-key (kbd "C-x b") 'helm-mini)
-  (global-set-key (kbd "M-x") 'helm-M-x)
-  (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+  (define-key helm-map (kbd "C-p") #'helm-previous-line)
+  (define-key helm-map (kbd "C-n") #'helm-next-line)
+  (define-key helm-map (kbd "C-M-p") #'helm-previous-source)
+  (define-key helm-map (kbd "C-M-n") #'helm-next-source)
   (define-key helm-map (kbd "C-h") 'delete-backward-char))
 
 (with-eval-after-load 'helm-files
