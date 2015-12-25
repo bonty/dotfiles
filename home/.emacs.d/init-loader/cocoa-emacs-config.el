@@ -1,5 +1,6 @@
 ;; general
 (scroll-bar-mode -1)
+(tool-bar-mode -1)
 (set-frame-parameter nil 'alpha 85)
 
 ;; Mac modifier key setting

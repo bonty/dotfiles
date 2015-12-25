@@ -1,4 +1,4 @@
-(require 'cl-lib)
+;; fontlock general filetype
 (require 'generic-x)
 
 ;; encoding
@@ -8,17 +8,39 @@
 ;; basic coloring
 (global-font-lock-mode t)
 
-;; do not show startup screen
-(setq inhibit-startup-screen t)
-
-;; ignore case at dabbrev
+;; customize variables
 (custom-set-variables
- '(dabbrev-case-fold-search t)
- '(dabbrev-case-replace nil))
+ '(package-enable-at-startup nil)
+ '(large-file-warning-threshold (* 25 1024 1024))
 
-;; ignore case at read file/buffer
-(setq read-file-name-completion-ignore-case t)
-(setq read-buffer-completion-ignore-case t)
+ ;; don't show startup screen
+ '(inhibit-startup-screen t)
+
+ ;; ignore case at dabbrev
+ '(dabbrev-case-fold-search t)
+ '(dabbrev-case-replace nil)
+
+ ;; ignore case at read file/buffer
+ '(read-file-name-completion-ignore-case t)
+ '(read-buffer-completion-ignore-case t)
+
+ ;; do not create backup files
+ '(make-backup-files nil)
+ '(delete-auto-save-files t)
+ '(create-lockfiles nil)
+
+ ;; comment style
+ '(comment-style 'multi-line)
+ )
+
+;; disable horizontal scroll bar
+(setq-default horizontal-scroll-bar nil)
+
+;; increase GC threshold
+(setq-default gc-cons-threshold (* gc-cons-threshold 10))
+
+;; faster echo stroke
+(setq-default echo-keystrokes 0.1)
 
 ;; remove menu bar
 (menu-bar-mode -1)
@@ -27,22 +49,21 @@
 (line-number-mode t)
 (column-number-mode t)
 
-;; do not create backup files
-(setq make-backup-files nil)
-(setq delete-auto-save-files t)
-(setq create-lockfiles nil)
-
 ;; delete
 (delete-selection-mode t)
 
 ;; which func
 (which-function-mode t)
+(setq-default which-func-unknown "")
 
 ;; visit symbolic link
-(setq find-file-visit-truename t)
+(setq-default find-file-visit-truename t)
 
-;; comment style
-(setq comment-style 'multi-line)
+;; invisible mouse cursor when editing text
+(setq-default make-pointer-invisible t)
+
+;; fill column limit 80
+(setq-default fill-column 80)
 
 ;; highlight
 (show-paren-mode t)
@@ -54,11 +75,9 @@
 (setq query-replace-highlight t)
 (global-hl-line-mode 1)
 
-;; increase GC threshold
-(setq gc-cons-threshold (* 128 1024 1024))
-
 ;; yes/no -> y/n
 (defalias 'yes-or-no-p 'y-or-n-p)
+(setq-default use-dialog-box nil)
 
 ;; run server
 (require 'server)
