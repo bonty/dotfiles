@@ -11,12 +11,6 @@
 ;; el-get bundle
 (load (concat user-emacs-directory "el-get-bundle.el"))
 
-;; load environment variables
-;; don't check .zshrc
-(custom-set-variables
- '(exec-path-from-shell-check-startup-files nil))
-(exec-path-from-shell-copy-envs '("PATH"))
-
 ;; loading theme
 (load-theme 'reverse t t)
 (enable-theme 'reverse)

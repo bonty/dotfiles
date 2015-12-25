@@ -1,24 +1,29 @@
 ;; el-get install
 (add-to-list 'load-path (locate-user-emacs-file "el-get/el-get"))
-(unless (require 'bundle nil 'noerror)
+(unless (require 'el-get nil 'noerror)
   (with-current-buffer
       (url-retrieve-synchronously
        "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
     (goto-char (point-max))
     (eval-print-last-sexp)))
 
-;; add self-recipe path
-(add-to-list 'el-get-recipe-path (locate-user-emacs-file "recipes"))
-
 ;; basic packages
 (el-get-bundle emacs-jp/init-loader)
 (el-get-bundle purcell/exec-path-from-shell)
 
+;; load environment variables first
+;; do this first because it cause flycheck install error
+;; @see: http://blog.daich.org/2015/03/27/el-get-flycheck/
+(custom-set-variables
+ '(exec-path-from-shell-check-startup-files nil))
+(exec-path-from-shell-copy-envs '("PATH"))
+
+;; theme
 (el-get-bundle syohex/emacs-reverse-theme :name reverse-theme
   (add-to-list 'custom-theme-load-path default-directory))
 
 ;; undo
-(el-get-bundle undo-tree :type git :url "http://www.dr-qubit.org/git/undo-tree.git")
+(el-get-bundle undo-tree)
 (el-get-bundle m2ym/undohist-el :name undohist)
 
 ;; newline
