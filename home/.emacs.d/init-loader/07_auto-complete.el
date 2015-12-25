@@ -7,6 +7,7 @@
     coffee-mode
     markdown-mode
     fundamental-mode
+    org-mode
     text-mode))
 
 (dolist (mode my/auto-complete-enabled-modes)
