@@ -3,6 +3,14 @@
 (custom-set-variables
  '(uniquify-buffer-name-style 'post-forward-angle-brackets))
 
+;; use ibuffer
+(defalias 'list-buffers 'ibuffer)
+(with-eval-after-load 'bs
+  (fset 'bs-message-without-log 'ignore))
+
+(global-set-key (kbd "M-]") 'bs-cycle-next)
+(global-set-key (kbd "M-[") 'bs-cycle-previous)
+
 ;; automatically revert buffer
 (global-auto-revert-mode t)
 
