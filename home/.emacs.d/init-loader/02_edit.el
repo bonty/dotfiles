@@ -1,34 +1,40 @@
-;; use regexp search as default
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "C-r") 'isearch-backward-regexp)
-(global-set-key (kbd "M-%") 'anzu-query-replace-regexp)
-(global-set-key (kbd "ESC M-%") 'anzu-query-replace-at-cursor)
-(global-set-key (kbd "C-x %") 'anzu-replace-at-cursor-thing)
+;; comment binding
+(global-set-key (kbd "C-c c") 'comment-region)
+(global-set-key (kbd "C-c u") 'uncomment-region)
 
-;; indent
-(setq-default tab-width 2)
-(setq-default indent-tabs-mode nil)
-(setq indent-line-function 'indent-relative-maybe)
+;; indent binding
+(global-set-key (kbd "C-c i") 'indent-region)
 
-;; electric-mode
-(custom-set-variables
- '(electric-indent-mode nil))
+;; move beginning of indented line
+;; @see http://d.hatena.ne.jp/gifnksm/20100131/1264956220
+(defun my/beginning-of-indented-line (current-point)
+  "move beginning of indented line"
+  (interactive "d")
+  (let ((vhead-pos (save-excursion (progn (beginning-of-visual-line) (point))))
+        (head-pos (save-excursion (progn (beginning-of-line) (point)))))
+    (cond
+     ;; when current pos is first visual line
+     ((eq vhead-pos head-pos)
+      (if (string-match
+           "^[ \t]+$"
+           (buffer-substring-no-properties vhead-pos current-point))
+          (beginning-of-visual-line)
+        (back-to-indentation)))
+     ;; when current pos is head of second visual line
+     ((eq vhead-pos current-point)
+      (backward-char)
+      (beginning-of-visual-indented-line (point)))
+     ;; when current pos is second visual line
+     (t (beginning-of-visual-line)))))
 
-(defvar my/electric-pair-enable-modes
-  '(c-mode
-    c++-mode
-    csharp-mode
-    java-mode
-    python-mode
-    ruby-mode
-    sh-mode
-    js-mode
-    js2-mode
-    css-mode
-    cmake-mode
-    coffee-mode
-    cperl-mode
-    markdown-mode))
+(global-set-key (kbd "C-a") 'my/beginning-of-indented-line)
 
-(dolist (mode my/electric-pair-enable-modes)
-  (add-hook (intern (format "%s-hook" mode)) 'electric-pair-local-mode))
+;; go to line
+(global-set-key (kbd "C-c g") 'goto-line)
+
+;; smart newline
+(global-set-key (kbd "<RET>") 'smart-newline)
+
+;; expand-region
+(global-set-key (kbd "C-.") 'er/expand-region)
+(global-set-key (kbd "C-,") 'er/contract-region)

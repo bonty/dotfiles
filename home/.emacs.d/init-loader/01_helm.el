@@ -21,3 +21,10 @@
 (with-eval-after-load 'helm-swoop
   (define-key helm-swoop-map (kbd "C-r") 'helm-previous-line)
   (define-key helm-swoop-map (kbd "C-s") 'helm-next-line))
+
+;; helm binding
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x C-i") 'helm-imenu)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x b") 'helm-mini)

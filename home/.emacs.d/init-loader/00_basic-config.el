@@ -5,7 +5,7 @@
 (set-language-environment "Japanese")
 (prefer-coding-system 'utf-8-unix)
 
-;; basic coloring
+;; Basic coloring
 (global-font-lock-mode t)
 
 ;; customize variables
@@ -83,3 +83,9 @@
 (require 'server)
 (unless (server-running-p)
   (server-start))
+
+;; smartrep
+(require 'smartrep)
+(custom-set-variables
+ '(smartrep-mode-line-active-bg nil)
+ '(smartrep-mode-line-string-activated "<<< SmartRep >>>"))

@@ -3,7 +3,7 @@
               undo-strong-limit 900000)
 
 (custom-set-variables
- '(undohist-ignored-files '("COMMIT_EDITMSG" "PULLREQ_EDITMSG")))
+ '(undohist-ignored-files '("COMMIT_EDITMSG" "MERGE_MSG" "PULLREQ_EDITMSG")))
 
 (require 'undohist)
 (undohist-initialize)

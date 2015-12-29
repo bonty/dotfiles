@@ -1,10 +1,25 @@
+;; c/c++
 (add-to-list 'auto-mode-alist '("\\.h$" . c++-mode))
 
 (with-eval-after-load 'cc-mode
-  (define-key c-mode-map (kbd "C-c t") 'ff-find-other-file)
-  (define-key c++-mode-map (kbd "C-c t") 'ff-find-other-file)
+  (define-key c-mode-map (kbd "C-c C-t") 'ff-find-other-file)
+  (define-key c++-mode-map (kbd "C-c C-t") 'ff-find-other-file)
 
   (require 'ac-c-headers))
+
+(defun my/c-mode-hook ()
+  (c-set-style "stroustrup")
+  (setq tab-width 4)
+  (setq c-basic-offset tab-width)
+
+  (c-set-offset 'member-init-intro 0)
+  (c-set-offset 'inline-open 0)
+
+  (add-to-list 'ac-sources 'ac-source-c-headers)
+  (add-to-list 'ac-sources 'ac-source-c-header-symbols t))
+
+(add-hook 'c-mode-hook 'my/c-mode-hook)
+(add-hook 'c++-mode-hook 'my/c-mode-hook)
 
 ;; enum class indentation
 ;; @see: http://stackoverflow.com/questions/6497374/emacs-cc-mode-indentation-problem-with-c0x-enum-class
@@ -52,17 +67,3 @@
                  (inside-lambda-function-p (c-langelem-pos langelem)))
             0                           ; no additional indent
           ad-do-it)))                   ; default behavior
-
-(defun my/c-mode-hook ()
-  (c-set-style "stroustrup")
-  (setq tab-width 4)
-  (setq c-basic-offset tab-width)
-
-  (c-set-offset 'member-init-intro 0)
-  (c-set-offset 'inline-open 0)
-
-  (add-to-list 'ac-sources 'ac-source-c-headers)
-  (add-to-list 'ac-sources 'ac-source-c-header-symbols t))
-
-(add-hook 'c-mode-hook 'my/c-mode-hook)
-(add-hook 'c++-mode-hook 'my/c-mode-hook)

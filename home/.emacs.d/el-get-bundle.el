@@ -18,40 +18,14 @@
  '(exec-path-from-shell-check-startup-files nil))
 (exec-path-from-shell-copy-envs '("PATH"))
 
+;; library
+(el-get-bundle dash)
+
+(add-to-list 'load-path (locate-user-emacs-file "el-get/dash"))
+
 ;; theme
 (el-get-bundle syohex/emacs-reverse-theme :name reverse-theme
   (add-to-list 'custom-theme-load-path default-directory))
-
-;; undo
-(el-get-bundle undo-tree)
-(el-get-bundle m2ym/undohist-el :name undohist)
-
-;; newline
-(el-get-bundle smart-newline)
-
-;; search
-(el-get-bundle syohex/emacs-anzu :name anzu)
-
-;; cursor
-;; (el-get-bundle winterTTr/ace-jump-mode)
-
-;; paren
-(el-get-bundle rainbow-delimiters)
-(el-get-bundle capitaomorte/autopair)
-
-;; region
-(el-get-bundle expand-region)
-
-;; buffer utils
-(el-get-bundle m2ym/popwin-el :name popwin)
-;; (el-get-bundle lukhas/buffer-move)
-(el-get-bundle kentaro/auto-save-buffers-enhanced)
-(el-get-bundle recentf-ext)
-
-;; dired
-;; (el-get-bundle m2ym/direx-el :name direx)
-;; (el-get-bundle syohex/emacs-dired-k :name dired-k)
-;; (el-get-bundle dired-hacks)
 
 ;; auto-complete
 (el-get-bundle auto-complete/popup-el :name popup)
@@ -61,23 +35,80 @@
 ;; helm
 (el-get-bundle helm)
 (el-get-bundle helm-descbinds)
-(el-get-bundle helm-swoop)
-(el-get-bundle helm-ls-git)
-(el-get-bundle helm-git-grep)
 (el-get-bundle helm-ag)
+(el-get-bundle helm-git-grep)
+(el-get-bundle helm-ls-git)
+(el-get-bundle helm-swoop)
+
+;; smartrep
+(el-get-bundle smartrep)
+
+;; key-chord
+(el-get-bundle key-chord)
+
+;; linum
+(el-get-bundle linum-off)
+
+;; search
+(el-get-bundle syohex/emacs-anzu :name anzu)
+
+;; undo
+(el-get-bundle undo-tree)
+(el-get-bundle m2ym/undohist-el :name undohist)
+
+;; smart newline
+(el-get-bundle smart-newline)
+
+;; cursor movement
+;; (el-get-bundle winterTTr/ace-jump-mode)
+
+;; paren
+(el-get-bundle Fuco1/smartparens)
+(el-get-bundle rainbow-delimiters)
+
+;; region
+(el-get-bundle expand-region)
+;; (el-get-bundle multiple-cursors)
+
+;; buffer
+(el-get-bundle emacs-jp/elscreen)
+(el-get-bundle m2ym/popwin-el :name popwin)
+(el-get-bundle kentaro/auto-save-buffers-enhanced)
+(el-get-bundle lukhas/buffer-move)
+(el-get-bundle recentf-ext)
+
+;; dired
+(el-get-bundle syohex/emacs-dired-k :name dired-k)
+;; (el-get-bundle dired-hacks)
 
 ;; flycheck
 (el-get-bundle flycheck)
+(el-get-bundle flycheck-pos-tip)
+
+;; snippet
+(el-get-bundle yasnippet)
 
 ;; git
 (el-get-bundle magit)
-(el-get-bundle syohex/emacs-git-gutter :name git-gutter)
+(el-get-bundle git-gutter-fringe+)
 
-;; major mode
+;; open-junk-file
+(el-get-bundle open-junk-file)
+
 ;; ruby
 (el-get-bundle ruby-block)
 (el-get-bundle ruby-end)
 (el-get-bundle inf-ruby)
+(el-get-bundle dgutov/robe)
+
+;; c
+(el-get-bundle zk-phi/ac-c-headers)
+
+;; elisp
+(el-get-bundle elisp-slime-nav)
+
+;; markdown
+(el-get-bundle markdown-mode)
 
 ;; yaml
 (el-get-bundle yaml-mode)
@@ -85,9 +116,6 @@
 ;; javascript
 (el-get-bundle js2-mode)
 (el-get-bundle coffee-mode)
-
-;; markdown
-(el-get-bundle markdown-mode)
 
 ;; dockerfile
 (el-get-bundle dockerfile-mode)
@@ -98,19 +126,8 @@
 ;; lua
 (el-get-bundle lua-mode)
 
-;; csharp
-(el-get-bundle josteink/csharp-mode)
-(el-get-bundle OmniSharp/omnisharp-emacs)
-
 ;; shell
-(el-get-bundle syohex/emacs-quickrun :name quickrun)
+;; (el-get-bundle syohex/emacs-quickrun :name quickrun)
 
 ;; document
-(el-get-bundle dash-at-point)
-
-;; auto-complete plugins
-(el-get-bundle zk-phi/ac-c-headers)
-(el-get-bundle dgutov/robe)
-
-;; open-junk-file
-(el-get-bundle open-junk-file)
+;; (el-get-bundle dash-at-point)
