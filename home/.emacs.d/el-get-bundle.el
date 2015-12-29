@@ -107,12 +107,9 @@
 ;; yaml
 (el-get-bundle yaml-mode)
 
-;; ;; javascript
-;; (el-get-bundle js2-mode)
-;; (el-get-bundle coffee-mode)
-
-;; ;; markdown
-;; (el-get-bundle markdown-mode)
+;; javascript
+(el-get-bundle js2-mode)
+(el-get-bundle coffee-mode)
 
 ;; ;; dockerfile
 ;; (el-get-bundle dockerfile-mode)
