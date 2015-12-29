@@ -76,6 +76,7 @@
 
 ;; flycheck
 (el-get-bundle flycheck)
+(el-get-bundle flycheck-pos-tip)
 
 ;; ;; git
 ;; (el-get-bundle magit)
