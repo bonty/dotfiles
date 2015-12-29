@@ -97,6 +97,9 @@
 (el-get-bundle flycheck)
 (el-get-bundle flycheck-pos-tip)
 
+;; snippet
+(el-get-bundle yasnippet)
+
 ;; git
 (el-get-bundle magit)
 (el-get-bundle git-gutter-fringe+)
