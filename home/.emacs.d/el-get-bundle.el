@@ -101,6 +101,9 @@
 ;; elisp
 (el-get-bundle elisp-slime-nav)
 
+;; markdown
+(el-get-bundle markdown-mode)
+
 ;; ;; yaml
 ;; (el-get-bundle yaml-mode)
 
