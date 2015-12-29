@@ -42,9 +42,6 @@
 (el-get-bundle helm-ls-git)
 (el-get-bundle helm-swoop)
 
-;; auto save buffers
-(el-get-bundle kentaro/auto-save-buffers-enhanced)
-
 ;; search
 (el-get-bundle syohex/emacs-anzu :name anzu)
 
@@ -67,6 +64,7 @@
 
 ;; buffer
 (el-get-bundle m2ym/popwin-el :name popwin)
+(el-get-bundle kentaro/auto-save-buffers-enhanced)
 (el-get-bundle lukhas/buffer-move)
 (el-get-bundle recentf-ext)
 
