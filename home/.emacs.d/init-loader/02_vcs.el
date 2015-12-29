@@ -5,6 +5,7 @@
 (global-set-key (kbd "C-x v p") 'git-gutter+-stage-hunks)
 (global-set-key (kbd "C-x v =") 'git-gutter+-popup-hunk)
 (global-set-key (kbd "C-x v r") 'git-gutter+-revert-hunk)
+(global-set-key (kbd "C-x v U") 'git-gutter+-unstage-whole-buffer)
 
 ;; magit
 (custom-set-variables
