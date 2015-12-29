@@ -98,6 +98,9 @@
 (el-get-bundle inf-ruby)
 (el-get-bundle dgutov/robe)
 
+;; c
+(el-get-bundle zk-phi/ac-c-headers)
+
 ;; elisp
 (el-get-bundle elisp-slime-nav)
 
@@ -111,14 +114,14 @@
 (el-get-bundle js2-mode)
 (el-get-bundle coffee-mode)
 
-;; ;; dockerfile
-;; (el-get-bundle dockerfile-mode)
+;; dockerfile
+(el-get-bundle dockerfile-mode)
 
-;; ;; groovy(for gradle)
-;; (el-get-bundle groovy-emacs-mode)
+;; groovy(for gradle)
+(el-get-bundle groovy-emacs-mode)
 
-;; ;; lua
-;; (el-get-bundle lua-mode)
+;; lua
+(el-get-bundle lua-mode)
 
 ;; ;; csharp
 ;; (el-get-bundle josteink/csharp-mode)
@@ -127,8 +130,5 @@
 ;; ;; shell
 ;; (el-get-bundle syohex/emacs-quickrun :name quickrun)
 
-;; ;; document
+;; document
 ;; (el-get-bundle dash-at-point)
-
-;; ;; auto-complete plugins
-;; (el-get-bundle zk-phi/ac-c-headers)
