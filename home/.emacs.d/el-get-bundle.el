@@ -43,6 +43,9 @@
 ;; smartrep
 (el-get-bundle smartrep)
 
+;; key-chord
+(el-get-bundle key-chord)
+
 ;; linum
 (el-get-bundle linum-off)
 
