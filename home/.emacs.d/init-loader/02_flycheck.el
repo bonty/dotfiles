@@ -14,6 +14,6 @@
 (with-eval-after-load 'flycheck
   (smartrep-define-key
       flycheck-mode-map "C-c" '(("p" . 'flycheck-previous-error)
-				("n" . 'flycheck-next-error))))
+                                ("n" . 'flycheck-next-error))))
 
 (global-set-key (kbd "C-c C-l") 'my/flycheck-list-errors)
