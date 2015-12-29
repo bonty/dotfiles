@@ -98,11 +98,8 @@
 (el-get-bundle inf-ruby)
 (el-get-bundle dgutov/robe)
 
-;; ;; major mode
-;; ;; ruby
-;; (el-get-bundle ruby-block)
-;; (el-get-bundle ruby-end)
-;; (el-get-bundle inf-ruby)
+;; elisp
+(el-get-bundle elisp-slime-nav)
 
 ;; ;; yaml
 ;; (el-get-bundle yaml-mode)
