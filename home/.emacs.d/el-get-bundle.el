@@ -92,6 +92,12 @@
 ;; open-junk-file
 (el-get-bundle open-junk-file)
 
+;; ruby
+(el-get-bundle ruby-block)
+(el-get-bundle ruby-end)
+(el-get-bundle inf-ruby)
+(el-get-bundle dgutov/robe)
+
 ;; ;; major mode
 ;; ;; ruby
 ;; (el-get-bundle ruby-block)
@@ -129,5 +135,3 @@
 
 ;; ;; auto-complete plugins
 ;; (el-get-bundle zk-phi/ac-c-headers)
-;; (el-get-bundle dgutov/robe)
-

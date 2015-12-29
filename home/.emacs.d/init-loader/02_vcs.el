@@ -33,7 +33,7 @@
   (advice-add 'magit-log :around 'my/magit-advice-fullscreen)
   (define-key magit-status-mode-map (kbd "q") 'my/magit-quit-session))
 
-(global-set-key (kbd "M-g M-g") 'magit-status)
+(global-set-key (kbd "C-c m") 'magit-status)
 
 ;; git-commit-mode
 (defun my/git-commit-mode-hook ()

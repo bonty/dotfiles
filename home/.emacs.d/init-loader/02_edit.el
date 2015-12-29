@@ -33,7 +33,7 @@
 (global-set-key (kbd "C-c g") 'goto-line)
 
 ;; smart newline
-(smart-newline-mode 1)
+(global-set-key (kbd "<RET>") 'smart-newline)
 
 ;; expand-region
 (global-set-key (kbd "C-.") 'er/expand-region)
