@@ -27,8 +27,6 @@
 (el-get-bundle syohex/emacs-reverse-theme :name reverse-theme
   (add-to-list 'custom-theme-load-path default-directory))
 
-
-
 ;; auto-complete
 (el-get-bundle auto-complete/popup-el :name popup)
 (el-get-bundle auto-complete/fuzzy-el :name fuzzy)
@@ -41,6 +39,9 @@
 (el-get-bundle helm-git-grep)
 (el-get-bundle helm-ls-git)
 (el-get-bundle helm-swoop)
+
+;; linum
+(el-get-bundle linum-off)
 
 ;; search
 (el-get-bundle syohex/emacs-anzu :name anzu)
@@ -63,6 +64,7 @@
 (el-get-bundle expand-region)
 
 ;; buffer
+(el-get-bundle emacs-jp/elscreen)
 (el-get-bundle m2ym/popwin-el :name popwin)
 (el-get-bundle kentaro/auto-save-buffers-enhanced)
 (el-get-bundle lukhas/buffer-move)
