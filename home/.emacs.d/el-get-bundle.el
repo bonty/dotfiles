@@ -89,6 +89,9 @@
 (el-get-bundle magit)
 (el-get-bundle git-gutter-fringe+)
 
+;; open-junk-file
+(el-get-bundle open-junk-file)
+
 ;; ;; major mode
 ;; ;; ruby
 ;; (el-get-bundle ruby-block)
@@ -128,5 +131,3 @@
 ;; (el-get-bundle zk-phi/ac-c-headers)
 ;; (el-get-bundle dgutov/robe)
 
-;; ;; open-junk-file
-;; (el-get-bundle open-junk-file)
