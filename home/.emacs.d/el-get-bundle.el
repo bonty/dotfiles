@@ -78,9 +78,9 @@
 (el-get-bundle flycheck)
 (el-get-bundle flycheck-pos-tip)
 
-;; ;; git
-;; (el-get-bundle magit)
-;; (el-get-bundle syohex/emacs-git-gutter :name git-gutter)
+;; git
+(el-get-bundle magit)
+(el-get-bundle git-gutter-fringe+)
 
 ;; ;; major mode
 ;; ;; ruby

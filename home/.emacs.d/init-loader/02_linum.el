@@ -1,6 +1,16 @@
 ;; linum
 (require 'linum-off)
 
+(custom-set-variables
+ '(linum-disabled-modes-list
+   '(eshell-mode
+     wl-summary-mode
+     compilation-mode
+     dired-mode
+     doc-view-mode
+     image-mode
+     )))
+
 (global-linum-mode t)
 
 ;; place right side
