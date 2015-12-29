@@ -126,11 +126,7 @@
 ;; lua
 (el-get-bundle lua-mode)
 
-;; ;; csharp
-;; (el-get-bundle josteink/csharp-mode)
-;; (el-get-bundle OmniSharp/omnisharp-emacs)
-
-;; ;; shell
+;; shell
 ;; (el-get-bundle syohex/emacs-quickrun :name quickrun)
 
 ;; document
