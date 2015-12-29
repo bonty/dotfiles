@@ -104,8 +104,8 @@
 ;; markdown
 (el-get-bundle markdown-mode)
 
-;; ;; yaml
-;; (el-get-bundle yaml-mode)
+;; yaml
+(el-get-bundle yaml-mode)
 
 ;; ;; javascript
 ;; (el-get-bundle js2-mode)
