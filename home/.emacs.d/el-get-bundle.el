@@ -72,8 +72,8 @@
 ;; smart newline
 (el-get-bundle smart-newline)
 
-;; ;; cursor
-;; ;; (el-get-bundle winterTTr/ace-jump-mode)
+;; cursor movement
+;; (el-get-bundle winterTTr/ace-jump-mode)
 
 ;; paren
 (el-get-bundle Fuco1/smartparens)

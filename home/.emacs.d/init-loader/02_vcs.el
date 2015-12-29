@@ -7,6 +7,10 @@
 (global-set-key (kbd "C-x v r") 'git-gutter+-revert-hunk)
 (global-set-key (kbd "C-x v U") 'git-gutter+-unstage-whole-buffer)
 
+(smartrep-define-key
+    global-map "C-x" '(("p" . 'git-gutter+-previous-hunk)
+                       ("n" . 'git-gutter+-next-hunk)))
+
 ;; magit
 (custom-set-variables
  '(git-commit-fill-column 80)

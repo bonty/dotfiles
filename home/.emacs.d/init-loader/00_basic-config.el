@@ -83,3 +83,9 @@
 (require 'server)
 (unless (server-running-p)
   (server-start))
+
+;; smartrep
+(require 'smartrep)
+(custom-set-variables
+ '(smartrep-mode-line-active-bg nil)
+ '(smartrep-mode-line-string-activated "<<< SmartRep >>>"))
