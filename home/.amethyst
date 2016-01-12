@@ -191,6 +191,7 @@
         "com.twitter.twitter-mac",
         "com.realmacsoftware.clear.mac",
         "com.yourcompany.genymotion",
+        "com.yourcompany.player",
         "com.agilebits.onepassword4"
     ],
     "ignore-menu-bar": "false",
