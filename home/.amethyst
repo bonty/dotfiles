@@ -117,11 +117,11 @@
     },
     "focus-ccw": {
         "mod": "mod1",
-        "key": "j"
+        "key": "k"
     },
     "focus-cw": {
         "mod": "mod1",
-        "key": "k"
+        "key": "j"
     },
     "swap-ccw": {
         "mod": "mod2",
