@@ -126,6 +126,9 @@
 ;; lua
 (el-get-bundle lua-mode)
 
+;; nginx.conf
+(el-get-bundle nginx-mode)
+
 ;; shell
 ;; (el-get-bundle syohex/emacs-quickrun :name quickrun)
 
