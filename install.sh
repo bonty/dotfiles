@@ -1,5 +1,9 @@
 #!/bin/sh
 
+#
+# YOU DO NOT NEED TO INVOKE THIS SCRIPT SUDO.
+#
+
 export PATH=/usr/local/bin:$PATH
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
