@@ -1,9 +1,11 @@
 #!/bin/sh
 
-pyenv install 2.7.8
-pyenv global 2.7.8
+pyenv install 2.7.11
+pyenv global 2.7.11
 pyenv rehash
 
+# TODO: use requirements.txt
+# pyenv exec pip install -r requirements.txt
 pyenv exec pip install percol --allow-external percol --allow-unverified percol
 pyenv exec pip install pygments
 pyenv exec pip install awscli

@@ -6,6 +6,7 @@ plenv rehash
 
 plenv install-cpanm
 
+# TODO: use carton
 plenv exec cpanm App::dropboxapi
 
 plenv rehash

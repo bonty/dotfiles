@@ -5,6 +5,8 @@ rbenv global 2.2.3
 rbenv rehash
 
 rbenv exec gem install bundler
+
+# TODO: use bundler to install packages
 rbenv exec gem install homesick
 rbenv exec gem install ec2ssh
 rbenv rehash
