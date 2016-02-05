@@ -43,6 +43,7 @@
   bm = branch --merged
   bn = branch --no-merged
   delete-merged-branches = !git branch --merged | grep -Ev '\\*|master|develop|staging' | xargs -I % git branch -d %
+  dmb = delete-merged-branches
 
   # log
   wc = whatchanged
