@@ -213,13 +213,13 @@ for email_file in ${email_files}; do
 done
 
 # setting for rbenv
-eval "$(rbenv init -)"
+eval "$(rbenv init - --no-rehash)"
 
 # setting for plenv
-eval "$(plenv init -)"
+eval "$(plenv init - --no-rehash)"
 
 # setting for pyenv
-eval "$(pyenv init -)"
+eval "$(pyenv init - --no-rehash)"
 
 # settings for RDS command line tool
 export JAVA_HOME="$(/usr/libexec/java_home)"
