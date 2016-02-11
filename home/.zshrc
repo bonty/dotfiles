@@ -1,6 +1,6 @@
 # .zshrc
 
-source ~/.zsh.d/zshantigen
+source ~/.zsh.d/zplug
 
 # zshおすすめ設定
 # @see http://www.clear-code.com/blog/2011/9/5.html
