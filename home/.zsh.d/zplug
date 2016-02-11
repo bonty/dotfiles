@@ -6,7 +6,7 @@ source ~/.zplug/zplug
 
 zplug "b4b4r07/zplug"
 
-zplug "~/.zsh.d", from:local, nice: 1
+zplug "~/.zsh.d", from:local
 
 zplug "plugins/brew",       from:oh-my-zsh
 zplug "plugins/bundler",    from:oh-my-zsh
