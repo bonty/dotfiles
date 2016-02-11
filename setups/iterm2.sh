@@ -20,9 +20,6 @@
 /usr/libexec/PlistBuddy -c "Set :\"New Bookmarks\":0:\"Normal Font\" \"Ricty-Regular 13\"" ~/Library/Preferences/com.googlecode.iterm2.plist
 /usr/libexec/PlistBuddy -c "Set :\"New Bookmarks\":0:\"Non Ascii Font\" \"Ricty-Regular 13\"" ~/Library/Preferences/com.googlecode.iterm2.plist
 
-# set transparency
-/usr/libexec/PlistBuddy -c "Set :\"New Bookmarks\":0:\"Transparency\" 0.224709" ~/Library/Preferences/com.googlecode.iterm2.plist
-
 # config clipboard
 /usr/libexec/PlistBuddy -c "Set :\"PasteFromClipboard\" false" ~/Library/Preferences/com.googlecode.iterm2.plist
 /usr/libexec/PlistBuddy -c "Set :\"AllowClipboardAccess\" true" ~/Library/Preferences/com.googlecode.iterm2.plist
@@ -31,14 +28,3 @@
 /usr/libexec/PlistBuddy -c "Set :\"WindowStyle\" 1" ~/Library/Preferences/com.googlecode.iterm2.plist
 /usr/libexec/PlistBuddy -c "Set :\"TabViewType\" 1" ~/Library/Preferences/com.googlecode.iterm2.plist
 /usr/libexec/PlistBuddy -c "Set :\"HideTab\" false" ~/Library/Preferences/com.googlecode.iterm2.plist
-
-THEMEDIR=`dirname $0`/../files/iterm2/
-
-cd $THEMEDIR
-
-for f in *; do
-    THEME=$(basename "$f")
-    defaults write -app iTerm 'Custom Color Presets' -dict-add "$THEME" "`cat $f`"
-done
-
-cd -
