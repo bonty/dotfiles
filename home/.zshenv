@@ -240,3 +240,7 @@ fi
 
 # for homebrew-cask
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+export GOROOT=$(brew --prefix go)/libexec
+export GOPATH=${HOME}/.go
+export PATH=${GOPATH}/bin:$(brew --prefix go)/libexec/bin:$PATH
