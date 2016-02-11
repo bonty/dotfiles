@@ -6,6 +6,8 @@ source ~/.zplug/zplug
 
 zplug "b4b4r07/zplug"
 
+zplug "~/.zsh.d", from:local, nice: 1
+
 zplug "plugins/brew",       from:oh-my-zsh
 zplug "plugins/bundler",    from:oh-my-zsh
 zplug "plugins/capistrano", from:oh-my-zsh
@@ -20,7 +22,7 @@ zplug "plugins/rake",       from:oh-my-zsh
 zplug "plugins/rbenv",      from:oh-my-zsh
 
 zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-syntax-highlighting", nice: 19
 zplug "zsh-users/zsh-history-substring-search"
 
 # pure theme
