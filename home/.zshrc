@@ -6,8 +6,6 @@ source ~/.zsh.d/zplug
 # @see http://www.clear-code.com/blog/2011/9/5.html
 source ~/.zsh.d/zshrc
 
-source ~/.zsh.d/zshfunction
-
 # added by travis gem
 [ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
 
