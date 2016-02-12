@@ -147,6 +147,10 @@ if [ -n "$DISPLAY" ]; then
     preexec_functions=($preexec_functions update_title)
 fi
 
+
+# direnv
+eval "$(direnv hook zsh)"
+
 # z.sh
 . `brew --prefix`/etc/profile.d/z.sh
 function precmd () {
