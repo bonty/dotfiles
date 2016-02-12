@@ -12,8 +12,8 @@
 (load (concat user-emacs-directory "el-get-bundle.el"))
 
 ;; loading theme
-(load-theme 'reverse t t)
-(enable-theme 'reverse)
+(load-theme 'zenburn t t)
+(enable-theme 'zenburn)
 
 ;; init-loader
 (custom-set-variables

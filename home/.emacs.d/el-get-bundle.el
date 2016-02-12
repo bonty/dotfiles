@@ -24,7 +24,7 @@
 (add-to-list 'load-path (locate-user-emacs-file "el-get/dash"))
 
 ;; theme
-(el-get-bundle syohex/emacs-reverse-theme :name reverse-theme
+(el-get-bundle color-theme-zenburn
   (add-to-list 'custom-theme-load-path default-directory))
 
 ;; auto-complete
