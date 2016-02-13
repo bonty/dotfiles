@@ -24,7 +24,7 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # ls command colors
-export LSCOLORS=exfxcxdxbxegedabagacad
+export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 
 # grep
 export GREP_OPTIONS="--binary-files=without-match --color=auto"
@@ -98,15 +98,6 @@ export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=${HOME}/.go
 export GOBIN=${GOPATH}/bin
 export PATH=${GOBIN}:/usr/local/opt/go/libexec/bin:${PATH}
-
-# setting for rbenv
-eval "$(rbenv init - --no-rehash)"
-
-# setting for plenv
-eval "$(plenv init - --no-rehash)"
-
-# setting for pyenv
-eval "$(pyenv init - --no-rehash)"
 
 # Java
 export JAVA_HOME="$(/usr/libexec/java_home)"
