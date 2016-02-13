@@ -216,6 +216,7 @@ lazy fmaps -u='^http://b\.hatena\.ne\.jp/(?!(entry|articles|guide))' j k o,oj e 
 lazy fmaps -e=vkeydown -u='^http://www\.tumblr\.com/' j k r,h q p n L,l <S-e>
 lazy fmaps -u='feedly\.com' ? gh ga gg gl J K a r j k n p o v A m x s b V
 lazy fmaps -u='tweetdeck\.twitter\.com' r T,t F,f n d p h j k l s ? 0 <BS>
+lazy fmaps -u='getpocket\.com' j k a f o ? gl ga gf gs sn so vl vt
 
 " javascript
 " ======================================================================
