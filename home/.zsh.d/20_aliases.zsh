@@ -7,9 +7,9 @@ alias lla='ls -lA'
 alias lh='ls -lh'
 alias la='ls -A'
 
-alias rm="rm -i"
-alias cp="cp -i"
-alias mv="mv -i"
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
 
 alias lv="$PAGER"
 
@@ -51,11 +51,11 @@ pygmentize_alias() {
         cat -
     fi
 }
-alias -g P="| pygmentize_alias"
+alias -g P='| pygmentize_alias'
 
-alias -g A="| awk"
+alias -g A='| awk'
 
-# alias -g GB="`git branch | fzf --select-1 | sed -e "s/^\*[ ]*//g"`"
+alias -g B='`git branch | fzf --select-1 | sed -e "s/^\*[ ]*//g"`'
 
 alias -s pl='perl'
 alias -s rb='ruby'
