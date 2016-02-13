@@ -4,11 +4,35 @@
 
 [core]
   autocrlf = input
-  pager = lv -c
+  pager = less
 
 [color]
   ui = auto
   interactive = auto
+[color "diff"]
+	meta = yellow bold
+	commit = green bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = "red bold 52"
+	newNormal = "green bold"
+	newHighlight = "green bold 22"
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "status"]
+	added = green
+	changed = yellow
+	untracked = cyan
+
+[pager]
+  diff = "diff-so-fancy | LESSOPEN='' less --tabs=1,5 -RFX"
+  show = "diff-so-fancy | LESSOPEN='' less --tabs=1,5 -RFX"
 
 [branch]
   autosetuprebase = always
