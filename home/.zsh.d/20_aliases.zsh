@@ -29,7 +29,7 @@ alias ta='tmux attach'
 # @see: http://qiita.com/takc923/items/45386905f70fde9af0e7
 # alias brew="env PATH=${PATH/$HOME\/\.pyenv\/shims:?/} brew"
 
-alias -g L="|& $PAGER"
+alias -g L="| $PAGER"
 alias -g G='| grep'
 
 alias -g H='| head'
