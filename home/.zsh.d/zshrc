@@ -1,21 +1,10 @@
 # -*- sh -*-
 
-# ディレクトリ移動
-## ディレクトリ名だけでcdする。
-setopt auto_cd
 ## カレントディレクトリ中に指定されたディレクトリが見つからなかった場合に
 ## 移動先を検索するリスト。
 cdpath=(~)
 ## ディレクトリが変わったらディレクトリスタックを表示。
 chpwd_functions=($chpwd_functions dirs)
-
-# プロンプト
-## PROMPT内で変数展開・コマンド置換・算術演算を実行する。
-setopt prompt_subst
-## PROMPT内で「%」文字から始まる置換機能を有効にする。
-setopt prompt_percent
-## コピペしやすいようにコマンド実行後は右プロンプトを消す。
-setopt transient_rprompt
 
 ## 256色生成用便利関数
 ### red: 0-5
@@ -83,41 +72,10 @@ zstyle ':completion:*' verbose yes
 ## sudo時にはsudo用のパスも使う。
 zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"
 
-## globを展開しないで候補の一覧から補完する。
-setopt glob_complete
-## 補完時にヒストリを自動的に展開する。
-setopt hist_expand
-setopt hist_ignore_dups
-setopt hist_reduce_blanks
-## 補完候補がないときなどにビープ音を鳴らさない。
-setopt no_beep
-## 辞書順ではなく数字順に並べる。
-setopt numeric_glob_sort
-
-
-# 展開
-## --prefix=~/localというように「=」の後でも
-## 「~」や「=コマンド」などのファイル名展開を行う。
-setopt magic_equal_subst
-## 拡張globを有効にする。
-## glob中で「(#...)」という書式で指定する。
-setopt extended_glob
-## globでパスを生成したときに、パスがディレクトリだったら最後に「/」をつける。
-setopt mark_dirs
-
-
-# ジョブ
-## jobsでプロセスIDも出力する。
-setopt long_list_jobs
-
-
 # 実行時間
 ## 実行したプロセスの消費時間が3秒以上かかったら
 ## 自動的に消費時間の統計情報を表示する。
 REPORTTIME=3
-
-## ^Dでログアウトしないようにする。
-setopt ignore_eof
 
 # 単語
 ## 「/」も単語区切りとみなす。
@@ -147,7 +105,6 @@ if [ -n "$DISPLAY" ]; then
     preexec_functions=($preexec_functions update_title)
 fi
 
-
 # direnv
 eval "$(direnv hook zsh)"
 
@@ -161,4 +118,14 @@ function precmd () {
 # @see: http://rcmdnk.github.io/blog/2015/06/30/computer-mac-brew-file-homebrew/
 if [ -f $(brew --prefix)/etc/brew-wrap ]; then
     source $(brew --prefix)/etc/brew-wrap
+fi
+
+# added by travis gem
+if [ -f $HOME/.travis/travis.sh ]; then
+    source $HOME/.travis/travis.sh
+fi
+
+# added by google cloud sdk installed by homebrew
+if [ -f /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc ]; then
+    source /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
 fi
