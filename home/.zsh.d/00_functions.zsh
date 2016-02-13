@@ -39,8 +39,20 @@ has() {
     return $status
 }
 
+# Load if file exists
 load-if-exists() {
     test -e "$1" && source "$1"
+}
+
+# is_git_repo returns true if cwd is in git repository
+is_git_repo() {
+    git rev-parse --is-inside-work-tree &>/dev/null
+    return $?
+}
+
+# is_tmux_running returns true if tmux is running
+is_tmux_running() {
+    [ ! -z "$TMUX" ]
 }
 
 chpwd() {
