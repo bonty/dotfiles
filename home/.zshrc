@@ -2,18 +2,18 @@
 # .zshrc
 #
 
-umask 022
-limit coredumpsize 0
+# umask 022
+# limit coredumpsize 0
 
-autoload -Uz add-zsh-hook
-autoload -Uz cdr
-autoload -Uz colors; colors
-autoload -Uz compinit; compinit -u
-autoload -Uz history-search-end
-autoload -Uz modify-current-argument
-autoload -Uz smart-insert-last-word
-autoload -Uz zcalc
-autoload -Uz zmv
+# autoload -Uz add-zsh-hook
+# autoload -Uz cdr
+# autoload -Uz colors; colors
+# autoload -Uz compinit; compinit -u
+# autoload -Uz history-search-end
+# autoload -Uz modify-current-argument
+# autoload -Uz smart-insert-last-word
+# autoload -Uz zcalc
+# autoload -Uz zmv
 
 zsh_zplug() {
     if [ ! -e ~/.zplug/zplug ]; then
@@ -59,10 +59,6 @@ zsh_zplug() {
 
 zsh_zplug
 
-# zshおすすめ設定
-# @see http://www.clear-code.com/blog/2011/9/5.html
-source ~/.zsh.d/zshrc
-
 zstyle ':completion:*:default' menu select=2
 
 zstyle ':completion:*' format '%B%d%b'
@@ -83,3 +79,28 @@ zstyle ':completion:*' list-separator '-->'
 zstyle ':completion:*:manuals' separate-sections true
 
 zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"
+
+# direnv
+eval "$(direnv hook zsh)"
+
+# z.sh
+. `brew --prefix`/etc/profile.d/z.sh
+function precmd () {
+    z --add "$(pwd -P)"
+}
+
+# homebrew-file
+# @see: http://rcmdnk.github.io/blog/2015/06/30/computer-mac-brew-file-homebrew/
+if [ -f $(brew --prefix)/etc/brew-wrap ]; then
+    source $(brew --prefix)/etc/brew-wrap
+fi
+
+# added by travis gem
+if [ -f $HOME/.travis/travis.sh ]; then
+    source $HOME/.travis/travis.sh
+fi
+
+# added by google cloud sdk installed by homebrew
+if [ -f /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc ]; then
+    source /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+fi
