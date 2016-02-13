@@ -1,13 +1,51 @@
+#
 # .zshrc
+#
 
-source ~/.zsh.d/zplug
+zsh_zplug() {
+    if [ ! -e ~/.zplug/zplug ]; then
+        curl -fLo ~/.zplug/zplug --create-dirs git.io/zplug
+    fi
+
+    source ~/.zplug/zplug
+
+    zplug "b4b4r07/zplug"
+
+    zplug "~/.zsh.d", from:local
+
+    # zplug "plugins/brew",       from:oh-my-zsh
+    # zplug "plugins/bundler",    from:oh-my-zsh
+    # zplug "plugins/capistrano", from:oh-my-zsh
+    # zplug "plugins/gem",        from:oh-my-zsh
+    # zplug "plugins/git-flow",   from:oh-my-zsh
+    # zplug "plugins/git",        from:oh-my-zsh
+    # zplug "plugins/github",     from:oh-my-zsh
+    # zplug "plugins/fast",       from:oh-my-zsh
+    # zplug "plugins/osx",        from:oh-my-zsh
+    # zplug "plugins/rails",      from:oh-my-zsh
+    # zplug "plugins/rake",       from:oh-my-zsh
+    # zplug "plugins/rbenv",      from:oh-my-zsh
+
+    zplug "b4b4r07/enhancd", of:enhancd.sh
+    zplug "glidenote/hub-zsh-completion"
+
+    zplug "zsh-users/zsh-completions"
+    zplug "zsh-users/zsh-syntax-highlighting", nice: 19
+    zplug "zsh-users/zsh-history-substring-search"
+
+    # pure theme
+    zplug "mafredri/zsh-async"
+    zplug "sindresorhus/pure"
+
+    if ! zplug check; then
+        zplug install
+    fi
+
+    zplug load
+}
+
+zsh_zplug
 
 # zshおすすめ設定
 # @see http://www.clear-code.com/blog/2011/9/5.html
 source ~/.zsh.d/zshrc
-
-# added by travis gem
-[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
-
-# added by google cloud sdk installed by homebrew
-[ -f /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc ] && source /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
