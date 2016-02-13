@@ -13,6 +13,9 @@ export PAGER=less
 # Less status line
 export LESS='-R -f -X -i -P ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]'
 export LESSCHARSET='utf-8'
+if which source-highlight > /dev/null; then
+    export LESSOPEN='| src-hilite-lesspipe.sh %s'
+fi
 
 # LESS man page colors (makes Man pages more readable).
 export LESS_TERMCAP_mb=$'\E[01;31m'

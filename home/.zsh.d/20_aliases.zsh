@@ -12,10 +12,6 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 alias lv="$PAGER"
-if has source-highlight; then
-    function lessc() { src-hilite-lesspipe.sh $1 | $PAGER }
-    alias less=lessc
-fi
 
 alias zmv='noglob zmv -W'
 
