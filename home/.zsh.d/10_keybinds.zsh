@@ -1,9 +1,9 @@
 bindkey -e
 
 has 'history-substring-search-up' &&
-    bindkey '^P' history-substring-search-up
+    bindkey '^p' history-substring-search-up
 has 'history-substring-search-down' &&
-    bindkey '^N' history-substring-search-down
+    bindkey '^n' history-substring-search-down
 
 # Insert a last word
 zle -N insert-last-word smart-insert-last-word
@@ -16,7 +16,7 @@ quote-previous-word-in-single() {
     zle vi-forward-blank-word
 }
 zle -N quote-previous-word-in-single
-bindkey '^Q' quote-previous-word-in-single
+bindkey '^q' quote-previous-word-in-single
 
 # Surround a forward word by double quote
 quote-previous-word-in-double() {
@@ -41,6 +41,26 @@ _fzf-select-history() {
 zle -N _fzf-select-history
 bindkey '^r' _fzf-select-history
 
+_fzf-find-file() {
+    if is_git_repo; then
+        source_files=$(git ls-files)
+    else
+        source_files=$(find . -type f)
+    fi
+    selected_files=$(echo $source_files | fzf)
+
+    result=''
+    for file in $selected_files; do
+        result="${result}$(echo $file | tr '\n' ' ')"
+    done
+
+    BUFFER="${BUFFER}${result}"
+    CURSOR=$#BUFFER
+    zle redisplay
+}
+zle -N _fzf-find-file
+bindkey '^w' _fzf-find-file
+
 _start-tmux-if-it-is-not-already-started() {
     BUFFER="${${${(M)${+commands[tmuxx]}#1}:+tmuxx}:-tmux}"
     if has "tmux_automatically_attach"; then
@@ -50,8 +70,8 @@ _start-tmux-if-it-is-not-already-started() {
     zle accept-line
 }
 zle -N _start-tmux-if-it-is-not-already-started
-if is_tmux_running; then
-    bindkey '^T' _start-tmux-if-it-is-not-already-started
+if ! is_tmux_running; then
+    bindkey '^t' _start-tmux-if-it-is-not-already-started
 fi
 
 exec-oneliner() {
