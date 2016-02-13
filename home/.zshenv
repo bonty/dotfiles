@@ -110,6 +110,3 @@ export ANDROID_HOME="/usr/local/opt/android-sdk"
 export NDK_ROOT="/usr/local/opt/android-ndk"
 export ANDROID_SDK_ROOT="/usr/local/opt/android-sdk"
 export ANT_ROOT="/usr/local/bin"
-if [ -e $HOME/.profile ]; then
-    source $HOME/.profile
-fi

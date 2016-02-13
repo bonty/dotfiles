@@ -11,23 +11,16 @@ eval "$(pyenv init - --no-rehash)"
 eval "$(direnv hook zsh)"
 
 # z.sh
-. /usr/local/etc/profile.d/z.sh
-function precmd () {
-    z --add "$(pwd -P)"
-}
+_Z_CMD=j
+load-if-exists /usr/local/etc/profile.d/z.sh
+test $? || unset _Z_CMD
 
 # homebrew-file
 # @see: http://rcmdnk.github.io/blog/2015/06/30/computer-mac-brew-file-homebrew/
-if [ -f /usr/local/etc/brew-wrap ]; then
-    source /usr/local/etc/brew-wrap
-fi
+load-if-exists /usr/local/etc/brew-wrap
 
 # added by travis gem
-if [ -f $HOME/.travis/travis.sh ]; then
-    source $HOME/.travis/travis.sh
-fi
+load-if-exists $HOME/.travis/travis.sh
 
 # added by google cloud sdk installed by homebrew
-if [ -f /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc ]; then
-    source /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
-fi
+load-if-exists /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
