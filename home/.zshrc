@@ -2,6 +2,19 @@
 # .zshrc
 #
 
+umask 022
+limit coredumpsize 0
+
+autoload -Uz add-zsh-hook
+autoload -Uz cdr
+autoload -Uz colors; colors
+autoload -Uz compinit; compinit -u
+autoload -Uz history-search-end
+autoload -Uz modify-current-argument
+autoload -Uz smart-insert-last-word
+autoload -Uz zcalc
+autoload -Uz zmv
+
 zsh_zplug() {
     if [ ! -e ~/.zplug/zplug ]; then
         curl -fLo ~/.zplug/zplug --create-dirs git.io/zplug
@@ -49,3 +62,24 @@ zsh_zplug
 # zshおすすめ設定
 # @see http://www.clear-code.com/blog/2011/9/5.html
 source ~/.zsh.d/zshrc
+
+zstyle ':completion:*:default' menu select=2
+
+zstyle ':completion:*' format '%B%d%b'
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'
+zstyle ':completion:*' group-name ''
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z} r:|[._-]=*'
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
+zstyle ':completion:*' use-cache true
+
+zstyle ':completion:*:cd:*' ignore-parents parent pwd
+export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+zstyle ':completion:*' list-separator '-->'
+zstyle ':completion:*:manuals' separate-sections true
+
+zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"
