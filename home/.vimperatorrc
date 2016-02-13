@@ -214,7 +214,8 @@ lazy fmaps -u='^https?://mail\.google\.com/(mail|a)/' c j k n p o u e x s r a # 
 " lazy fmaps -u='^https?://www\.google\.com/calendar/' c e j k n p r t d w m x a <BS> ?
 lazy fmaps -u='^http://b\.hatena\.ne\.jp/(?!(entry|articles|guide))' j k o,oj e a,b
 lazy fmaps -e=vkeydown -u='^http://www\.tumblr\.com/' j k r,h q p n L,l <S-e>
-lazy fmaps -u='www\.feedly\.com' g h m a e t c d p l s n b n p o v V m s S D e t d c / r ? 1 2 3 4 5 6 7 8 9 <Enter>
+lazy fmaps -u='feedly\.com' ? gh ga gg gl J K a r j k n p o v A m x s b V
+lazy fmaps -u='tweetdeck\.twitter\.com' r T,t F,f n d p h j k l s ? 0 <BS>
 
 " javascript
 " ======================================================================
