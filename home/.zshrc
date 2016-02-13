@@ -2,18 +2,18 @@
 # .zshrc
 #
 
-# umask 022
-# limit coredumpsize 0
+umask 022
+limit coredumpsize 0
 
-# autoload -Uz add-zsh-hook
-# autoload -Uz cdr
-# autoload -Uz colors; colors
-# autoload -Uz compinit; compinit -u
-# autoload -Uz history-search-end
-# autoload -Uz modify-current-argument
-# autoload -Uz smart-insert-last-word
-# autoload -Uz zcalc
-# autoload -Uz zmv
+autoload -Uz add-zsh-hook
+autoload -Uz cdr
+autoload -Uz colors; colors
+autoload -Uz compinit; compinit -u
+autoload -Uz history-search-end
+autoload -Uz modify-current-argument
+autoload -Uz smart-insert-last-word
+autoload -Uz zcalc
+autoload -Uz zmv
 
 zsh_zplug() {
     if [ ! -e ~/.zplug/zplug ]; then
