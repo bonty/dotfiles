@@ -84,15 +84,15 @@ zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"
 eval "$(direnv hook zsh)"
 
 # z.sh
-. `brew --prefix`/etc/profile.d/z.sh
+. /usr/local/etc/profile.d/z.sh
 function precmd () {
     z --add "$(pwd -P)"
 }
 
 # homebrew-file
 # @see: http://rcmdnk.github.io/blog/2015/06/30/computer-mac-brew-file-homebrew/
-if [ -f $(brew --prefix)/etc/brew-wrap ]; then
-    source $(brew --prefix)/etc/brew-wrap
+if [ -f /usr/local/etc/brew-wrap ]; then
+    source /usr/local/etc/brew-wrap
 fi
 
 # added by travis gem
