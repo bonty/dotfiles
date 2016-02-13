@@ -22,9 +22,6 @@ alias zmv='noglob zmv -W'
 alias r='rails'
 alias be='bundle exec'
 
-alias tmux='tmux -u'
-alias ta='tmux attach'
-
 # prevent brew doctor warning
 # @see: http://qiita.com/takc923/items/45386905f70fde9af0e7
 # alias brew="env PATH=${PATH/$HOME\/\.pyenv\/shims:?/} brew"

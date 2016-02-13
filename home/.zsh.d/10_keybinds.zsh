@@ -63,8 +63,8 @@ bindkey '^w' _fzf-find-file
 
 _start-tmux-if-it-is-not-already-started() {
     BUFFER="${${${(M)${+commands[tmuxx]}#1}:+tmuxx}:-tmux}"
-    if has "tmux_automatically_attach"; then
-        BUFFER="tmux_automatically_attach"
+    if has "tmux_auto_attach"; then
+        BUFFER="tmux_auto_attach"
     fi
     CURSOR=$#BUFFER
     zle accept-line
