@@ -4,10 +4,6 @@ setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushd_to_home
 
-# Command spell check 
-setopt correct
-setopt correct_all
-
 # {a-c} -> a b c
 setopt brace_ccl
 

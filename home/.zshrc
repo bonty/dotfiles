@@ -25,18 +25,15 @@ zplug "b4b4r07/zplug"
 
 zplug "~/.zsh.d", from:local
 
-# zplug "plugins/brew",       from:oh-my-zsh
-# zplug "plugins/bundler",    from:oh-my-zsh
-# zplug "plugins/capistrano", from:oh-my-zsh
-# zplug "plugins/gem",        from:oh-my-zsh
-# zplug "plugins/git-flow",   from:oh-my-zsh
-# zplug "plugins/git",        from:oh-my-zsh
-# zplug "plugins/github",     from:oh-my-zsh
-# zplug "plugins/fast",       from:oh-my-zsh
-# zplug "plugins/osx",        from:oh-my-zsh
-# zplug "plugins/rails",      from:oh-my-zsh
-# zplug "plugins/rake",       from:oh-my-zsh
-# zplug "plugins/rbenv",      from:oh-my-zsh
+zplug "plugins/brew",       from:oh-my-zsh
+zplug "plugins/bundler",    from:oh-my-zsh
+zplug "plugins/gem",        from:oh-my-zsh
+zplug "plugins/git-flow",   from:oh-my-zsh
+zplug "plugins/git",        from:oh-my-zsh
+zplug "plugins/github",     from:oh-my-zsh
+zplug "plugins/rails",      from:oh-my-zsh
+zplug "plugins/rake",       from:oh-my-zsh
+zplug "plugins/rbenv",      from:oh-my-zsh
 
 zplug "b4b4r07/enhancd", of:enhancd.sh
 zplug "glidenote/hub-zsh-completion"
