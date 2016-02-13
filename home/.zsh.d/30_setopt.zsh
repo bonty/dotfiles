@@ -70,6 +70,9 @@ setopt hist_expire_dups_first
 # Do not display a previously found event
 setopt hist_find_no_dups
 
+# Share history
+setopt share_history
+
 # Pack extra blank
 setopt hist_reduce_blanks
 
