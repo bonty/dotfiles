@@ -67,21 +67,17 @@ if [ ${TERM%%-*} = screen ]; then
     }
 fi
 
-function exists() {
-    type $1 > /dev/null 2>&1
-}
-
 # source-highlightでlvをsyntax highlight
-if exists source-highlight; then
+if has source-highlight; then
     function lvc() { src-hilite-lesspipe.sh $1 | lv -c }
     alias lv=lvc
 fi
 
 # percolでヒストリ検索
-if exists percol; then
+if has percol; then
     function percol_select_history() {
         local tac
-        exists gtac && tac=gtac || tac=tac
+        has gtac && tac=gtac || tac=tac
         BUFFER=$(history | LC_ALL=C sed 's/^ *[0-9*]* *//' | $tac | percol --match-method regex --query "$LBUFFER")
         CURSOR=$#BUFFER         # move cursor
         zle -R -c               # refresh
