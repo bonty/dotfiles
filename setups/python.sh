@@ -6,7 +6,6 @@ pyenv rehash
 
 # TODO: use requirements.txt
 # pyenv exec pip install -r requirements.txt
-pyenv exec pip install percol --allow-external percol --allow-unverified percol
 pyenv exec pip install pygments
 pyenv exec pip install awscli
 pyenv exec pip install awsebcli
