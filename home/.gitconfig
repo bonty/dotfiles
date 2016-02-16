@@ -30,9 +30,9 @@
 	changed = yellow
 	untracked = cyan
 
-[pager]
-  diff = "diff-so-fancy | LESSOPEN='' less --tabs=1,5 -RFX"
-  show = "diff-so-fancy | LESSOPEN='' less --tabs=1,5 -RFX"
+# [pager]
+#   diff = "diff-so-fancy | LESSOPEN='' less -RFX"
+#   show = "diff-so-fancy | LESSOPEN='' less -RFX"
 
 [branch]
   autosetuprebase = always
