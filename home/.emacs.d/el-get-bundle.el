@@ -129,6 +129,9 @@
 ;; nginx.conf
 (el-get-bundle nginx-mode)
 
+;; slim
+(el-get-bundle slim-mode)
+
 ;; shell
 ;; (el-get-bundle syohex/emacs-quickrun :name quickrun)
 
