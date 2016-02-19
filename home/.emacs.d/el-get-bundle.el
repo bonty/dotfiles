@@ -132,6 +132,14 @@
 ;; slim
 (el-get-bundle slim-mode)
 
+;; fluentd.conf
+(el-get-bundle syohex/emacs-fluentd-mode :name fluentd-mode)
+
+;; hashicorp configuration file
+(el-get-bundle syohex/emacs-hcl-mode :name hcl-mode)
+;; terraform
+(el-get-bundle terraform-mode)
+
 ;; shell
 ;; (el-get-bundle syohex/emacs-quickrun :name quickrun)
 
