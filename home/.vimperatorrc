@@ -257,9 +257,4 @@ silent qmark m https://www.messenger.com/
 
 " style
 " ======================================================================
-color hint
 colorscheme abyss
-
-hi Hint font-family: Arial; font-size: 21px; font-weight: bold; text-shadow: -1px -1px 2px black, 1px -1px 2px black, -1px 1px 2px black, 1px 1px 2px black; color: #33cccc;
-hi HintElem color: gray; background-color: #a1e4e6;
-hi HintActive color: black; background-color: #ff8700;
