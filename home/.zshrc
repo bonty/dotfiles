@@ -36,7 +36,7 @@ zsh_zplug() {
     zplug "plugins/rake",       from:oh-my-zsh
     zplug "plugins/rbenv",      from:oh-my-zsh
 
-    zplug "b4b4r07/enhancd", of:enhancd.sh
+    # zplug "b4b4r07/enhancd", of:enhancd.sh
     zplug "glidenote/hub-zsh-completion"
 
     zplug "zsh-users/zsh-completions"
