@@ -1,15 +1,15 @@
 ;; git-gutter+
-(require 'git-gutter-fringe+)
-(global-git-gutter+-mode +1)
-(global-set-key (kbd "C-x v u") 'git-gutter+)
-(global-set-key (kbd "C-x v p") 'git-gutter+-stage-hunks)
-(global-set-key (kbd "C-x v =") 'git-gutter+-popup-hunk)
-(global-set-key (kbd "C-x v r") 'git-gutter+-revert-hunk)
-(global-set-key (kbd "C-x v U") 'git-gutter+-unstage-whole-buffer)
+;; (require 'git-gutter-fringe+)
+;; (global-git-gutter+-mode +1)
+;; (global-set-key (kbd "C-x v u") 'git-gutter+)
+;; (global-set-key (kbd "C-x v p") 'git-gutter+-stage-hunks)
+;; (global-set-key (kbd "C-x v =") 'git-gutter+-popup-hunk)
+;; (global-set-key (kbd "C-x v r") 'git-gutter+-revert-hunk)
+;; (global-set-key (kbd "C-x v U") 'git-gutter+-unstage-whole-buffer)
 
-(smartrep-define-key
-    global-map "C-x" '(("p" . 'git-gutter+-previous-hunk)
-                       ("n" . 'git-gutter+-next-hunk)))
+;; (smartrep-define-key
+;;     global-map "C-x" '(("p" . 'git-gutter+-previous-hunk)
+;;                        ("n" . 'git-gutter+-next-hunk)))
 
 ;; magit
 (custom-set-variables

@@ -90,7 +90,7 @@
 
 ;; git
 (el-get-bundle magit)
-(el-get-bundle git-gutter-fringe+)
+;; (el-get-bundle git-gutter-fringe+)
 
 ;; open-junk-file
 (el-get-bundle open-junk-file)
