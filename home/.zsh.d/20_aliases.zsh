@@ -15,8 +15,8 @@ alias lv="$PAGER"
 
 alias zmv='noglob zmv -W'
 
-alias r='rails'
-alias be='bundle exec'
+# alias r='rails'
+# alias be='bundle exec'
 
 # prevent brew doctor warning
 # @see: http://qiita.com/takc923/items/45386905f70fde9af0e7
