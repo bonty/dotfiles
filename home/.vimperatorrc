@@ -23,8 +23,8 @@ set hintchars=hjklasdfg
 " /,? 検索結果をハイライト
 set hlsearch
 
-" :[tab]open の補完対象と順番
-set complete=tsl
+" " :[tab]open の補完対象と順番
+" set complete=tsl
 
 " ページロード時にテキストボックスにフォーカスするのを防ぐ
 set focuscontent
