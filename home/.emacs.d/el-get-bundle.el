@@ -101,6 +101,9 @@
 (el-get-bundle inf-ruby)
 (el-get-bundle dgutov/robe)
 
+;; go
+(el-get-bundle go-mode)
+
 ;; c
 (el-get-bundle zk-phi/ac-c-headers)
 
