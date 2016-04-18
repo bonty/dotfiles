@@ -8,7 +8,7 @@ limit coredumpsize 0
 autoload -Uz add-zsh-hook
 autoload -Uz cdr
 autoload -Uz colors; colors
-autoload -Uz compinit; compinit -u
+autoload -Uz compinit
 autoload -Uz history-search-end
 autoload -Uz modify-current-argument
 autoload -Uz smart-insert-last-word
