@@ -89,3 +89,6 @@
 (custom-set-variables
  '(smartrep-mode-line-active-bg nil)
  '(smartrep-mode-line-string-activated "<<< SmartRep >>>"))
+
+;; ispell config
+(setq ispell-program-name "/usr/local/bin/aspell")
