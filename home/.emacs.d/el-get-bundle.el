@@ -143,6 +143,9 @@
 ;; terraform
 (el-get-bundle terraform-mode)
 
+;; editorconfig
+(el-get-bundle editorconfig)
+
 ;; shell
 ;; (el-get-bundle syohex/emacs-quickrun :name quickrun)
 

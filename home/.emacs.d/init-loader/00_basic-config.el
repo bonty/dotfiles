@@ -92,3 +92,7 @@
 
 ;; ispell config
 (setq ispell-program-name "/usr/local/bin/aspell")
+
+;; editorconfig
+(require 'editorconfig)
+(editorconfig-mode 1)
