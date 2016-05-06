@@ -254,6 +254,7 @@ silent qmark c https://calendar.google.com/calendar/
 silent qmark g https://mail.google.com/
 silent qmark f https://www.facebook.com/
 silent qmark m https://www.messenger.com/
+silent qmark t https://tweetdeck.twitter.com/
 
 " style
 " ======================================================================
