@@ -128,7 +128,7 @@ command clip echo RIL.addCurrent() !== false ? 'Success' : 'Failed (or alread cl
 " ======================================================================
 " plugin_loader.js
 let g:plugin_loader_roots = "~/.homesick/repos/dotfiles/files/vimperator-plugins/"
-let g:plugin_loader_plugins = "_libly,appendAnchor,auto_detect_link,auto-focus-frame,copy,feedSomeKeys_3,multi_requester,sbmcommentsviewer,walk-input,stella,opener"
+let g:plugin_loader_plugins = "_libly,appendAnchor,auto_detect_link,copy,feedSomeKeys_3,multi_requester,sbmcommentsviewer,walk-input,stella,opener"
 
 " caret-hint
 let g:caret_hint_key = "i"
