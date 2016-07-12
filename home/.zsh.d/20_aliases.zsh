@@ -21,6 +21,7 @@ alias zmv='noglob zmv -W'
 # prevent brew doctor warning
 # @see: http://qiita.com/takc923/items/45386905f70fde9af0e7
 # alias brew="env PATH=${PATH/$HOME\/\.pyenv\/shims:?/} brew"
+alias brew-cask-clean-outdated='for c in /usr/local/Caskroom/*; do vl=(`ls -t $c`) && for v in "${vl[@]:1}"; do rm -rf "$c/$v"; done; done'
 
 alias -g L="| $PAGER"
 alias -g G='| grep'

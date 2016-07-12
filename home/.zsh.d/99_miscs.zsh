@@ -23,4 +23,4 @@ load-if-exists /usr/local/etc/brew-wrap
 load-if-exists $HOME/.travis/travis.sh
 
 # added by google cloud sdk installed by homebrew
-load-if-exists /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+load-if-exists /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc

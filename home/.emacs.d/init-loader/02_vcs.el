@@ -41,3 +41,8 @@
 
 (with-eval-after-load 'git-commit
   (add-hook 'git-commit-mode-hook 'my/git-commit-mode-hook))
+
+;; helm-ghq
+(require 'helm-ghq)
+(add-to-list 'helm-for-files-preferred-list 'helm-source-ghq)
+(define-key global-map (kbd "C-x n")     'helm-ghq)
