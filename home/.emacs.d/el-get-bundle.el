@@ -97,6 +97,7 @@
 (el-get-bundle open-junk-file)
 
 ;; ruby
+(el-get-bundle enh-ruby-mode)
 (el-get-bundle ruby-block)
 (el-get-bundle ruby-end)
 (el-get-bundle inf-ruby)
