@@ -73,7 +73,7 @@
 (setq search-highlight t)
 (setq lazy-highlight-initial-delay 0)
 (setq query-replace-highlight t)
-(global-hl-line-mode 1)
+;; (global-hl-line-mode 1)
 
 ;; yes/no -> y/n
 (defalias 'yes-or-no-p 'y-or-n-p)
