@@ -34,3 +34,6 @@
 (set-fontset-font
  t 'symbol
  (font-spec :family "Apple Color Emoji") nil 'prepend)
+
+;; maximize window automatically
+(set-frame-parameter nil 'fullscreen 'maximized)
