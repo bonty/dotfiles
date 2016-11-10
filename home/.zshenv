@@ -5,7 +5,7 @@ export LC_ALL=${LANGUAGE}
 export LC_CTYPE=${LANGUAGE}
 
 # Editor
-export EDITOR=emacsclient
+export EDITOR=vi
 export GIT_EDITOR=${EDITOR}
 
 # Pager
