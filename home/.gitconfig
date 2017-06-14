@@ -1,11 +1,11 @@
 [user]
-  name = bonty
-  email = bonty.shushusha@gmail.com
+	name = bonty
+	email = bonty.shushusha@gmail.com
 
 [core]
   autocrlf = input
   pager = less
-  excludesfile = /Users/scott/.gitignore_global
+	excludesfile = /Users/scott/.gitignore_global
 
 [color]
   ui = auto
@@ -128,4 +128,4 @@
   allowed = AKIAIOSFODNN7EXAMPLE
   allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 [commit]
-  template = /Users/scott/.stCommitMsg
+	template = /Users/scott/.stCommitMsg

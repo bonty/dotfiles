@@ -15,6 +15,8 @@ alias lv="$PAGER"
 
 alias zmv='noglob zmv -W'
 
+alias ghqcd='cd `ghq list -p | fzf`'
+
 # alias r='rails'
 # alias be='bundle exec'
 
