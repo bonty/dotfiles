@@ -9,7 +9,6 @@ rbenv exec gem install bundler
 # TODO: use bundler to install packages
 rbenv exec gem install homesick
 rbenv exec gem install ec2ssh
-rbenv exec gem install tmuxinator
 rbenv rehash
 
 # setup homesick
