@@ -61,19 +61,6 @@ _fzf-find-file() {
 zle -N _fzf-find-file
 bindkey '^w' _fzf-find-file
 
-_start-tmux-if-it-is-not-already-started() {
-    BUFFER="${${${(M)${+commands[tmuxx]}#1}:+tmuxx}:-tmux}"
-    if has "tmux_auto_attach"; then
-        BUFFER="tmux_auto_attach"
-    fi
-    CURSOR=$#BUFFER
-    zle accept-line
-}
-zle -N _start-tmux-if-it-is-not-already-started
-if ! is_tmux_running; then
-    bindkey '^t' _start-tmux-if-it-is-not-already-started
-fi
-
 exec-oneliner() {
     local oneliner_f
     oneliner_f="${ONELINER_FILE:-${HOME}/.oneliner.txt}"
