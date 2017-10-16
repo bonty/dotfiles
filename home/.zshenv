@@ -49,8 +49,6 @@ path=($HOME/bin(N-/)
       $HOME/local/bin(N-/)
       # for gem install --user-install
       $HOME/.gem/ruby/*/bin(N-/)
-      # for nodebrew
-      $HOME/.nodebrew/current/bin(N-/)
       # for rails project
       ./bin
       # for android development

@@ -1,6 +1,9 @@
 # setting for rbenv
 eval "$(rbenv init - --no-rehash)"
 
+# setting for ndenv
+eval "$(ndenv init - --no-rehash)"
+
 # setting for plenv
 eval "$(plenv init - --no-rehash)"
 
