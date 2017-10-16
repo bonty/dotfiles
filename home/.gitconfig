@@ -1,6 +1,7 @@
 [user]
 	name = bonty
 	email = bonty.shushusha@gmail.com
+  signingkey = 8B36F2C9
 
 [core]
   autocrlf = input
@@ -129,3 +130,6 @@
   allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 [commit]
 	template = /Users/scott/.stCommitMsg
+	gpgsign = true
+[gpg]
+	program = gpg
